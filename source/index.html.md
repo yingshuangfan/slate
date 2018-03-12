@@ -19,219 +19,281 @@ search: true
 
 # Introduction
 
-API-接口总结
+API-查询语法文档
 
 This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
+# 实时安全报告
 
-> To authorize, use this code:
+## GEO-MAP 实时地图组件
 
-```ruby
-require 'kittn'
+### 绘图点 + 线 + 总操作数
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+描述：无过滤器模式下，返回地图的绘图信息；
 
-```python
-import kittn
+|  字段   |   描述    |
+|----:|:----:|
+| source_location.latitude  | 起点-纬度  |
+| source_location.longitude | 起点-经度  |
+| source_location.city | 起点-城市标签  |
+| host_location.latitude | 重点-经度  |
+| host_location.longitude | 重点-经度  |
+| operation_type | 边-操作类型标签  |
+| operation_result | 边-操作结果标签  |
 
-api = kittn.authorize('meowmeowmeow')
-```
+优化（待完成） -> 将请求的N条数据集中选取M个具有特征的日志并返回（例如，不同的应用、部门、用户、地理位置等等）
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+> request HEADERS
 
-```javascript
-const kittn = require('kittn');
+    Tenant-Id: default
+    Start-Time: 20180201T090000+0800
+    End-Time: 20180301T000000+0000
+    Query-Param: LIMIT 100 ORDER BY time_local DESC
 
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+> response 
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+
+    {
+        "data": {
+            "aggs": {},
+            "list": [{
+                 "device_id": "10142_deviceC",
+                 "device_id_1d": "{\"10142_deviceC\":5013}",
+                 "device_id_1h": "{\"10142_deviceC\":5013}",
+                 "device_id_1month": "{\"10142_deviceC\":5013}",
+                 "device_id_1w": "{\"10142_deviceC\":5013}",
+                 "device_id_5m": "{\"10142_deviceC\":5013}",
+                 "event_id": "12",
+                 "host_ip": "220.181.16.184",
+                 "host_location": {
+                     "city": "北京",
+                     "latitude": 39.9289,
+                     "longitude": 116.3883
+                 },
+                 "http_user_agent": {
+                     "browser": "Mobile Safari",
+                     "browser_version": "6",
+                     "device": "Mobile",
+                     "operating_system": "iOS 6 (iPhone)"
+                 },
+                 "httpcode": "200",
+                 "httpcode_1d": "{\"200\":5013}",
+                 "httpcode_1h": "{\"200\":5013}",
+                 "httpcode_1month": "{\"200\":5013}",
+                 "httpcode_1w": "{\"200\":5013}",
+                 "httpcode_5m": "{\"200\":5013}",
+                 "is_handled": 1,
+                 "is_safe": 0,
+                 "label": {
+                     "100": 0.0000039327715,
+                     "101": 9.955179e-7,
+                     "400": 1,
+                     "000": 0.9999951
+                 },
+                 "label_account": 0,
+                 "label_device": 0,
+                 "label_operation": 1,
+                 "label_user": 0.0000039327715,
+                 "operation_result": "success",
+                 "operation_type": "login",
+                 "operation_type_1d": "{\"login\":{\"success\":5013}}",
+                 "operation_type_1h": "{\"login\":{\"success\":5013}}",
+                 "operation_type_1h_advanced": "{\"login\":{\"success\":5013}}",
+                 "operation_type_1month": "{\"login\":{\"success\":5013}}",
+                 "operation_type_1w": "{\"login\":{\"success\":5013}}",
+                 "operation_type_5m": "{\"login\":{\"success\":5013}}",
+                 "pre_location": "{\"pre_device_id\":\"10142_deviceC\",\"pre_time_local\":1519362384,\"distance\":0,\"city\":\"北京\",\"latitude\":39.9289,\"speed\":0,\"longitude\":116.3883}",
+                 "source_ip": "220.181.16.84",
+                 "source_location": {
+                     "city": "北京",
+                     "distance": 0,
+                     "latitude": 39.9289,
+                     "longitude": 116.3883,
+                     "pre_device_id": "10142_deviceC",
+                     "speed": 0
+                 },
+                 "tenant_id": "default",
+                 "time_local": 1519362384,
+                 "time_series_predict_result": 0,
+                 "time_series_predict_result_1d": "{\"0\":5013}",
+                 "uid": "testbychenlifei",
+                 "user_name": "yufu_user_name",
+                 "version": "1"
+             }],
+            "total": 72000
+        },
+        "message": "success",
+        "status": 0
+    }    
+
 ```
 
-This endpoint retrieves all kittens.
+### 在线人数
 
-### HTTP Request
+描述：无过滤器模式下，返回在线人数统计值；
 
-`GET http://example.com/api/kittens`
+|  字段   |   描述    |
+|----:|:----:|
+| aggs.dimension_a.buckets.length  | 人数统计值  |
 
-### Query Parameters
+> request HEADERS
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+    Tenant-Id: default
+    Start-Time: 20180201T090000+0800
+    End-Time: 20180301T000000+0000
+    Query-Param: GROUP BY uid
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> response 
 
 ```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
+    {
+        "data": {
+            "aggs": {
+                "dimension_a": {
+                    "buckets": [
+                        {
+                            "doc_count": 72000,
+                            "key": "testbychenlifei"
+                        }
+                    ],
+                    "doc_count_error_upper_bound": 0,
+                    "sum_other_doc_count": 0
+                }
+            },
+            "list": [],
+            "total": 72000
+        },
+        "message": "success",
+        "status": 0
+    }
 ```
 
-This endpoint retrieves a specific kitten.
+### 危险账号数 + 危险账号列表
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+#### 高危
 
-### HTTP Request
+描述：无过滤器模式下，返回高危账号列表和高危账号数统计值；
 
-`GET http://example.com/kittens/<ID>`
+|  字段   |   描述    |
+|----:|:----:|
+| aggs.dimension_a.buckets.length  | 高危账号数统计值  |
+| aggs.dimension_a.buckets  | 高危账号列表  |
 
-### URL Parameters
+> request HEADERS
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+    Tenant-Id: default
+    Start-Time: 20180201T090000+0800
+    End-Time: 20180301T000000+0000
+    Query-Param: WHERE label_user BETWEEN (0.9, 1) GROUP BY uid
 
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
+> response 
 
 ```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
+    {
+        "data": {
+            "aggs": {
+                "dimension_a": {
+                    "buckets": [
+                        {
+                            "doc_count": 22,
+                            "key": "testbychenlifei"
+                        }
+                    ],
+                    "doc_count_error_upper_bound": 0,
+                    "sum_other_doc_count": 0
+                }
+            },
+            "list": [],
+            "total": 22
+        },
+        "message": "success",
+        "status": 0
+    }
 ```
 
-This endpoint deletes a specific kitten.
+#### 中危
 
-### HTTP Request
+描述：无过滤器模式下，返回中危账号列表和中危账号数统计值；
 
-`DELETE http://example.com/kittens/<ID>`
+|  字段   |   描述    |
+|----:|:----:|
+| aggs.dimension_a.buckets.length  | 中危账号数统计值  |
+| aggs.dimension_a.buckets  | 中危账号列表  |
 
-### URL Parameters
+> request HEADERS
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+    Tenant-Id: default
+    Start-Time: 20180201T090000+0800
+    End-Time: 20180301T000000+0000
+    Query-Param: WHERE label_user BETWEEN (0.5, 9) GROUP BY uid
+
+> response 
+
+```json
+    {
+        "data": {
+            "aggs": {
+                "dimension_a": {
+                    "buckets": [
+                        {
+                            "doc_count": 44,
+                            "key": "testbychenlifei"
+                        }
+                    ],
+                    "doc_count_error_upper_bound": 0,
+                    "sum_other_doc_count": 0
+                }
+            },
+            "list": [],
+            "total": 44
+        },
+        "message": "success",
+        "status": 0
+    }
+```
+
+#### 低危
+
+描述：无过滤器模式下，返回低危账号列表和低危账号数统计值；
+
+|  字段   |   描述    |
+|----:|:----:|
+| aggs.dimension_a.buckets.length  | 低危账号数统计值  |
+| aggs.dimension_a.buckets  | 低危账号列表  |
+
+> request HEADERS
+
+    Tenant-Id: default
+    Start-Time: 20180201T090000+0800
+    End-Time: 20180301T000000+0000
+    Query-Param: WHERE label_user BETWEEN (0.3, 0.5) GROUP BY uid
+
+> response 
+
+```json
+    {
+        "data": {
+            "aggs": {
+                "dimension_a": {
+                    "buckets": [
+                        {
+                            "doc_count": 88,
+                            "key": "testbychenlifei"
+                        }
+                    ],
+                    "doc_count_error_upper_bound": 0,
+                    "sum_other_doc_count": 0
+                }
+            },
+            "list": [],
+            "total": 88
+        },
+        "message": "success",
+        "status": 0
+    }
+```
+
+
+
 
