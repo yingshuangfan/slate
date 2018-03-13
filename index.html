@@ -254,6 +254,17 @@
               </ul>
           </li>
           <li>
+            <a href="#9244f67449" class="toc-h1 toc-link" data-title="">用户数 + 操作数时序图</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#51ee730b0c" class="toc-h2 toc-link" data-title="">用户数时序图</a>
+                  </li>
+                  <li>
+                    <a href="#04c9c1e0d4" class="toc-h2 toc-link" data-title="">操作数时序图</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="errors">Errors</a>
           </li>
       </div>
@@ -1177,6 +1188,202 @@
 
 </span></code></pre>
 <p>注意：应用列表和部门列表如果是依照日志动态生成，同样受过滤器选择的制约，查询条件同上</p>
+<h1 id='9244f67449'>用户数 + 操作数时序图</h1><h2 id='51ee730b0c'>用户数时序图</h2>
+<p>描述：用户数在时间区间内和时间粒度中的分布序列；注意GROUP BY的顺序是时间序列在前，用户在后；</p>
+
+<p><strong>HTTP Reqeust:</strong> <code>GET   /api</code></p>
+
+<p><strong>Request Headers:</strong></p>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Tenant-Id</td>
+<td>default</td>
+</tr>
+<tr>
+<td>Start-Time</td>
+<td>20180201T090000+0800</td>
+</tr>
+<tr>
+<td>End-Time</td>
+<td>20180301T000000+0000</td>
+</tr>
+<tr>
+<td>Query-Param</td>
+<td>GROUP BY (time_local INTER 3600), uid</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response Parameters:</strong></p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>aggs.dimension_a.buckets</td>
+<td>时间序列-列表</td>
+</tr>
+<tr>
+<td>aggs.dimension_a.buckets[i].key</td>
+<td>时间戳</td>
+</tr>
+<tr>
+<td>aggs.dimension_a.buckets[i].dimension_b.buckets</td>
+<td>用户序列-列表</td>
+</tr>
+<tr>
+<td>aggs.dimension_a.buckets[i].dimension_b.buckets.length</td>
+<td>用户数</td>
+</tr>
+<tr>
+<td>aggs.dimension_a.buckets[i].dimension_b.buckets[j].key</td>
+<td>用户ID</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>response
+<code>json
+{
+    &quot;data&quot;: {
+        &quot;aggs&quot;: {
+            &quot;dimension_a&quot;: {
+                &quot;buckets&quot;: [
+                    {
+                        &quot;dimension_b&quot;: {
+                            &quot;buckets&quot;: [
+                                {
+                                    &quot;doc_count&quot;: 72000,
+                                    &quot;key&quot;: &quot;testbychenlifei&quot;
+                                }
+                            ],
+                            &quot;doc_count_error_upper_bound&quot;: 0,
+                            &quot;sum_other_doc_count&quot;: 0
+                        },
+                        &quot;doc_count&quot;: 72000,
+                        &quot;key&quot;: 1519362000
+                    },
+                    {
+                        &quot;dimension_b&quot;: {
+                            &quot;buckets&quot;: [],
+                            &quot;doc_count_error_upper_bound&quot;: 0,
+                            &quot;sum_other_doc_count&quot;: 0
+                        },
+                        &quot;doc_count&quot;: 0,
+                        &quot;key&quot;: 1519365600
+                    },
+                    {
+                        &quot;dimension_b&quot;: {
+                            &quot;buckets&quot;: [],
+                            &quot;doc_count_error_upper_bound&quot;: 0,
+                            &quot;sum_other_doc_count&quot;: 0
+                        },
+                        &quot;doc_count&quot;: 0,
+                        &quot;key&quot;: 1519369200
+                    }
+                ]
+            }
+        },
+        &quot;list&quot;: [],
+        &quot;total&quot;: 72000
+    },
+    &quot;message&quot;: &quot;success&quot;,
+    &quot;status&quot;: 0
+}
+</code></p>
+</blockquote>
+<h2 id='04c9c1e0d4'>操作数时序图</h2>
+<p>描述：操作数在时间区间内和时间粒度中的分布序列；</p>
+
+<p><strong>HTTP Reqeust:</strong> <code>GET   /api</code></p>
+
+<p><strong>Request Headers:</strong></p>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Tenant-Id</td>
+<td>default</td>
+</tr>
+<tr>
+<td>Start-Time</td>
+<td>20180201T090000+0800</td>
+</tr>
+<tr>
+<td>End-Time</td>
+<td>20180301T000000+0000</td>
+</tr>
+<tr>
+<td>Query-Param</td>
+<td>GROUP BY time_local INTER 3600</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response Parameters:</strong></p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>aggs.dimension_a.buckets</td>
+<td>时间序列-列表</td>
+</tr>
+<tr>
+<td>aggs.dimension_a.buckets[i].doc_count</td>
+<td>操作数</td>
+</tr>
+<tr>
+<td>aggs.dimension_a.buckets[i].key</td>
+<td>时间戳</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>response
+<code>json
+{
+    &quot;data&quot;: {
+        &quot;aggs&quot;: {
+            &quot;dimension_a&quot;: {
+                &quot;buckets&quot;: [
+                    {
+                        &quot;doc_count&quot;: 72000,
+                        &quot;key&quot;: 1519362000
+                    },
+                    {
+                        &quot;doc_count&quot;: 0,
+                        &quot;key&quot;: 1519365600
+                    },
+                    {
+                        &quot;doc_count&quot;: 0,
+                        &quot;key&quot;: 1519369200
+                    }
+                ]
+            }
+        },
+        &quot;list&quot;: [],
+        &quot;total&quot;: 72000
+    },
+    &quot;message&quot;: &quot;success&quot;,
+    &quot;status&quot;: 0
+}
+</code></p>
+</blockquote>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
