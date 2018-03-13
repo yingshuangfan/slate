@@ -251,52 +251,71 @@
 <h1 id='c3d8372f99'>实时安全报告</h1><h2 id='geo-map'>GEO-MAP 实时地图组件</h2><h3 id='27f9f4b73b'>绘图点 + 线 + 总操作数</h3>
 <p>描述：无过滤器模式下，返回地图的绘图信息；</p>
 
+<aside class="warning">优化（待完成） -> 将请求的N条数据集中选取M个具有特征的日志并返回（例如，不同的应用、部门、用户、地理位置等等）</aside>
+
+<p>请求头:</p>
+
 <table><thead>
 <tr>
-<th style="text-align: right">字段</th>
-<th style="text-align: center">描述</th>
+<th>Header</th>
+<th>Value</th>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">source_location.latitude</td>
-<td style="text-align: center">起点-纬度</td>
+<td>Tenant-Id</td>
+<td>default</td>
 </tr>
 <tr>
-<td style="text-align: right">source_location.longitude</td>
-<td style="text-align: center">起点-经度</td>
+<td>Start-Time</td>
+<td>20180201T090000+0800</td>
 </tr>
 <tr>
-<td style="text-align: right">source_location.city</td>
-<td style="text-align: center">起点-城市标签</td>
+<td>End-Time</td>
+<td>20180301T000000+0000</td>
 </tr>
 <tr>
-<td style="text-align: right">host_location.latitude</td>
-<td style="text-align: center">重点-经度</td>
-</tr>
-<tr>
-<td style="text-align: right">host_location.longitude</td>
-<td style="text-align: center">重点-经度</td>
-</tr>
-<tr>
-<td style="text-align: right">operation_type</td>
-<td style="text-align: center">边-操作类型标签</td>
-</tr>
-<tr>
-<td style="text-align: right">operation_result</td>
-<td style="text-align: center">边-操作结果标签</td>
+<td>Query-Param</td>
+<td>LIMIT 100 ORDER BY time_local DESC</td>
 </tr>
 </tbody></table>
 
-<p>优化（待完成） -&gt; 将请求的N条数据集中选取M个具有特征的日志并返回（例如，不同的应用、部门、用户、地理位置等等）</p>
+<p>返回结果字段解析：</p>
 
-<blockquote>
-<p>request HEADERS</p>
-</blockquote>
-
-<p>Tenant-Id: default
-    Start-Time: 20180201T090000+0800
-    End-Time: 20180301T000000+0000
-    Query-Param: LIMIT 100 ORDER BY time_local DESC</p>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>source_location.latitude</td>
+<td>起点-纬度</td>
+</tr>
+<tr>
+<td>source_location.longitude</td>
+<td>起点-经度</td>
+</tr>
+<tr>
+<td>source_location.city</td>
+<td>起点-城市标签</td>
+</tr>
+<tr>
+<td>host_location.latitude</td>
+<td>重点-经度</td>
+</tr>
+<tr>
+<td>host_location.longitude</td>
+<td>重点-经度</td>
+</tr>
+<tr>
+<td>operation_type</td>
+<td>边-操作类型标签</td>
+</tr>
+<tr>
+<td>operation_result</td>
+<td>边-操作结果标签</td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>response </p>
@@ -378,26 +397,45 @@
 </span></code></pre><h3 id='1f0244b714'>在线人数</h3>
 <p>描述：无过滤器模式下，返回在线人数统计值；</p>
 
+<p>请求头:</p>
+
 <table><thead>
 <tr>
-<th style="text-align: right">字段</th>
-<th style="text-align: center">描述</th>
+<th>Header</th>
+<th>Value</th>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">aggs.dimension_a.buckets.length</td>
-<td style="text-align: center">人数统计值</td>
+<td>Tenant-Id</td>
+<td>default</td>
+</tr>
+<tr>
+<td>Start-Time</td>
+<td>20180201T090000+0800</td>
+</tr>
+<tr>
+<td>End-Time</td>
+<td>20180301T000000+0000</td>
+</tr>
+<tr>
+<td>Query-Param</td>
+<td>GROUP BY uid</td>
 </tr>
 </tbody></table>
 
-<blockquote>
-<p>request HEADERS</p>
-</blockquote>
+<p>返回结果字段解析：</p>
 
-<p>Tenant-Id: default
-    Start-Time: 20180201T090000+0800
-    End-Time: 20180301T000000+0000
-    Query-Param: GROUP BY uid</p>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>aggs.dimension_a.buckets.length</td>
+<td>人数统计值</td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>response </p>
@@ -425,30 +463,49 @@
 </span></code></pre><h3 id='819e16a423'>危险账号数 + 危险账号列表</h3><h4 id='e62ee8c03e'>高危</h4>
 <p>描述：无过滤器模式下，返回高危账号列表和高危账号数统计值；</p>
 
+<p>请求头:</p>
+
 <table><thead>
 <tr>
-<th style="text-align: right">字段</th>
-<th style="text-align: center">描述</th>
+<th>Header</th>
+<th>Value</th>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">aggs.dimension_a.buckets.length</td>
-<td style="text-align: center">高危账号数统计值</td>
+<td>Tenant-Id</td>
+<td>default</td>
 </tr>
 <tr>
-<td style="text-align: right">aggs.dimension_a.buckets</td>
-<td style="text-align: center">高危账号列表</td>
+<td>Start-Time</td>
+<td>20180201T090000+0800</td>
+</tr>
+<tr>
+<td>End-Time</td>
+<td>20180301T000000+0000</td>
+</tr>
+<tr>
+<td>Query-Param</td>
+<td>WHERE label_user BETWEEN (0.9, 1) GROUP BY uid</td>
 </tr>
 </tbody></table>
 
-<blockquote>
-<p>request HEADERS</p>
-</blockquote>
+<p>返回结果字段解析：</p>
 
-<p>Tenant-Id: default
-    Start-Time: 20180201T090000+0800
-    End-Time: 20180301T000000+0000
-    Query-Param: WHERE label_user BETWEEN (0.9, 1) GROUP BY uid</p>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>aggs.dimension_a.buckets.length</td>
+<td>高危账号数统计值</td>
+</tr>
+<tr>
+<td>aggs.dimension_a.buckets</td>
+<td>高危账号列表</td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>response </p>
@@ -476,30 +533,49 @@
 </span></code></pre><h4 id='1098e65681'>中危</h4>
 <p>描述：无过滤器模式下，返回中危账号列表和中危账号数统计值；</p>
 
+<p>请求头:</p>
+
 <table><thead>
 <tr>
-<th style="text-align: right">字段</th>
-<th style="text-align: center">描述</th>
+<th>Header</th>
+<th>Value</th>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">aggs.dimension_a.buckets.length</td>
-<td style="text-align: center">中危账号数统计值</td>
+<td>Tenant-Id</td>
+<td>default</td>
 </tr>
 <tr>
-<td style="text-align: right">aggs.dimension_a.buckets</td>
-<td style="text-align: center">中危账号列表</td>
+<td>Start-Time</td>
+<td>20180201T090000+0800</td>
+</tr>
+<tr>
+<td>End-Time</td>
+<td>20180301T000000+0000</td>
+</tr>
+<tr>
+<td>Query-Param</td>
+<td>WHERE label_user BETWEEN (0.5, 9) GROUP BY uid</td>
 </tr>
 </tbody></table>
 
-<blockquote>
-<p>request HEADERS</p>
-</blockquote>
+<p>返回结果字段解析：</p>
 
-<p>Tenant-Id: default
-    Start-Time: 20180201T090000+0800
-    End-Time: 20180301T000000+0000
-    Query-Param: WHERE label_user BETWEEN (0.5, 9) GROUP BY uid</p>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>aggs.dimension_a.buckets.length</td>
+<td>中危账号数统计值</td>
+</tr>
+<tr>
+<td>aggs.dimension_a.buckets</td>
+<td>中危账号列表</td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>response </p>
@@ -527,30 +603,49 @@
 </span></code></pre><h4 id='478c8d2fe5'>低危</h4>
 <p>描述：无过滤器模式下，返回低危账号列表和低危账号数统计值；</p>
 
+<p>请求头:</p>
+
 <table><thead>
 <tr>
-<th style="text-align: right">字段</th>
-<th style="text-align: center">描述</th>
+<th>Header</th>
+<th>Value</th>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: right">aggs.dimension_a.buckets.length</td>
-<td style="text-align: center">低危账号数统计值</td>
+<td>Tenant-Id</td>
+<td>default</td>
 </tr>
 <tr>
-<td style="text-align: right">aggs.dimension_a.buckets</td>
-<td style="text-align: center">低危账号列表</td>
+<td>Start-Time</td>
+<td>20180201T090000+0800</td>
+</tr>
+<tr>
+<td>End-Time</td>
+<td>20180301T000000+0000</td>
+</tr>
+<tr>
+<td>Query-Param</td>
+<td>WHERE label_user BETWEEN (0.3, 0.5) GROUP BY uid</td>
 </tr>
 </tbody></table>
 
-<blockquote>
-<p>request HEADERS</p>
-</blockquote>
+<p>返回结果字段解析：</p>
 
-<p>Tenant-Id: default
-    Start-Time: 20180201T090000+0800
-    End-Time: 20180301T000000+0000
-    Query-Param: WHERE label_user BETWEEN (0.3, 0.5) GROUP BY uid</p>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>aggs.dimension_a.buckets.length</td>
+<td>低危账号数统计值</td>
+</tr>
+<tr>
+<td>aggs.dimension_a.buckets</td>
+<td>低危账号列表</td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>response </p>
