@@ -31,25 +31,29 @@ This example API documentation page was created with [Slate](https://github.com/
 
 描述：无过滤器模式下，返回地图的绘图信息；
 
-|  字段   |   描述    |
-|----:|:----:|
-| source_location.latitude  | 起点-纬度  |
-| source_location.longitude | 起点-经度  |
-| source_location.city | 起点-城市标签  |
-| host_location.latitude | 重点-经度  |
-| host_location.longitude | 重点-经度  |
-| operation_type | 边-操作类型标签  |
-| operation_result | 边-操作结果标签  |
+<aside class="warning">优化（待完成） -> 将请求的N条数据集中选取M个具有特征的日志并返回（例如，不同的应用、部门、用户、地理位置等等）</aside>
 
-优化（待完成） -> 将请求的N条数据集中选取M个具有特征的日志并返回（例如，不同的应用、部门、用户、地理位置等等）
+请求头:
 
-> request HEADERS
+   Header  |   Value  
+-----------|--------------
+Tenant-Id | default
+Start-Time  | 20180201T090000+0800
+End-Time  | 20180301T000000+0000
+Query-Param | LIMIT 100 ORDER BY time_local DESC
+  
+返回结果字段解析：
 
-    Tenant-Id: default
-    Start-Time: 20180201T090000+0800
-    End-Time: 20180301T000000+0000
-    Query-Param: LIMIT 100 ORDER BY time_local DESC
-
+  字段   |   描述    
+ --------- | ------- 
+ source_location.latitude  | 起点-纬度  
+ source_location.longitude | 起点-经度  
+ source_location.city | 起点-城市标签  
+ host_location.latitude | 重点-经度  
+ host_location.longitude | 重点-经度  
+ operation_type | 边-操作类型标签  
+ operation_result | 边-操作结果标签 
+ 
 > response 
 
 ```json
@@ -133,16 +137,20 @@ This example API documentation page was created with [Slate](https://github.com/
 
 描述：无过滤器模式下，返回在线人数统计值；
 
+请求头:
+
+   Header  |   Value  
+-----------|--------------
+Tenant-Id | default
+Start-Time  | 20180201T090000+0800
+End-Time  | 20180301T000000+0000
+Query-Param | GROUP BY uid
+
+返回结果字段解析：
+
 |  字段   |   描述    |
-|----:|:----:|
+| --------- | ------- |
 | aggs.dimension_a.buckets.length  | 人数统计值  |
-
-> request HEADERS
-
-    Tenant-Id: default
-    Start-Time: 20180201T090000+0800
-    End-Time: 20180301T000000+0000
-    Query-Param: GROUP BY uid
 
 > response 
 
@@ -175,17 +183,21 @@ This example API documentation page was created with [Slate](https://github.com/
 
 描述：无过滤器模式下，返回高危账号列表和高危账号数统计值；
 
+请求头:
+
+   Header  |   Value  
+-----------|--------------
+Tenant-Id | default
+Start-Time  | 20180201T090000+0800
+End-Time  | 20180301T000000+0000
+Query-Param | WHERE label_user BETWEEN (0.9, 1) GROUP BY uid
+
+返回结果字段解析：
+
 |  字段   |   描述    |
-|----:|:----:|
+| --------- | ------- |
 | aggs.dimension_a.buckets.length  | 高危账号数统计值  |
 | aggs.dimension_a.buckets  | 高危账号列表  |
-
-> request HEADERS
-
-    Tenant-Id: default
-    Start-Time: 20180201T090000+0800
-    End-Time: 20180301T000000+0000
-    Query-Param: WHERE label_user BETWEEN (0.9, 1) GROUP BY uid
 
 > response 
 
@@ -216,17 +228,21 @@ This example API documentation page was created with [Slate](https://github.com/
 
 描述：无过滤器模式下，返回中危账号列表和中危账号数统计值；
 
+请求头:
+
+   Header  |   Value  
+-----------|--------------
+Tenant-Id | default
+Start-Time  | 20180201T090000+0800
+End-Time  | 20180301T000000+0000
+Query-Param | WHERE label_user BETWEEN (0.5, 9) GROUP BY uid
+
+返回结果字段解析：
+
 |  字段   |   描述    |
-|----:|:----:|
+| --------- | ------- |
 | aggs.dimension_a.buckets.length  | 中危账号数统计值  |
 | aggs.dimension_a.buckets  | 中危账号列表  |
-
-> request HEADERS
-
-    Tenant-Id: default
-    Start-Time: 20180201T090000+0800
-    End-Time: 20180301T000000+0000
-    Query-Param: WHERE label_user BETWEEN (0.5, 9) GROUP BY uid
 
 > response 
 
@@ -257,17 +273,21 @@ This example API documentation page was created with [Slate](https://github.com/
 
 描述：无过滤器模式下，返回低危账号列表和低危账号数统计值；
 
+请求头:
+
+   Header  |   Value  
+-----------|--------------
+Tenant-Id | default
+Start-Time  | 20180201T090000+0800
+End-Time  | 20180301T000000+0000
+Query-Param | WHERE label_user BETWEEN (0.3, 0.5) GROUP BY uid
+
+返回结果字段解析：
+
 |  字段   |   描述    |
-|----:|:----:|
+| --------- | ------- |
 | aggs.dimension_a.buckets.length  | 低危账号数统计值  |
 | aggs.dimension_a.buckets  | 低危账号列表  |
-
-> request HEADERS
-
-    Tenant-Id: default
-    Start-Time: 20180201T090000+0800
-    End-Time: 20180301T000000+0000
-    Query-Param: WHERE label_user BETWEEN (0.3, 0.5) GROUP BY uid
 
 > response 
 
