@@ -25,9 +25,9 @@ This example API documentation page was created with [Slate](https://github.com/
 
 # 实时安全报告
 
-## GEO-MAP 实时地图组件
+# GEO-MAP 实时地图组件
 
-### 绘图点 + 线 + 总操作数
+## 绘图点 + 线 + 总操作数
 
 描述：无过滤器模式下，返回地图的绘图信息；
 
@@ -133,7 +133,7 @@ Query-Param | LIMIT 100 ORDER BY time_local DESC
 
 ```
 
-### 在线人数
+## 在线人数
 
 描述：无过滤器模式下，返回在线人数统计值；
 
@@ -177,9 +177,9 @@ Query-Param | GROUP BY uid
     }
 ```
 
-### 危险账号数 + 危险账号列表
+## 危险账号数 + 危险账号列表
 
-#### 高危
+### 高危列表
 
 描述：无过滤器模式下，返回高危账号列表和高危账号数统计值；
 
@@ -224,7 +224,7 @@ Query-Param | WHERE label_user BETWEEN (0.9, 1) GROUP BY uid
     }
 ```
 
-#### 中危
+### 中危列表
 
 描述：无过滤器模式下，返回中危账号列表和中危账号数统计值；
 
@@ -269,7 +269,7 @@ Query-Param | WHERE label_user BETWEEN (0.5, 9) GROUP BY uid
     }
 ```
 
-#### 低危
+### 低危列表
 
 描述：无过滤器模式下，返回低危账号列表和低危账号数统计值；
 
