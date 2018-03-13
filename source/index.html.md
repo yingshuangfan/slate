@@ -619,3 +619,133 @@ Query-Param | WHERE label_user BETWEEN (0.9, 1) AND label_operation BETWEEN (0.9
 
 注意：应用列表和部门列表如果是依照日志动态生成，同样受过滤器选择的制约，查询条件同上
 
+# 用户数 + 操作数时序图
+
+## 用户数时序图 
+
+描述：用户数在时间区间内和时间粒度中的分布序列；注意GROUP BY的顺序是时间序列在前，用户在后；
+
+**HTTP Reqeust:** `GET   /api`
+  
+**Request Headers:**
+
+   Header  |   Value  
+-----------|--------------
+Tenant-Id | default
+Start-Time  | 20180201T090000+0800
+End-Time  | 20180301T000000+0000
+Query-Param | GROUP BY (time_local INTER 3600), uid
+
+**Response Parameters:**
+
+  字段   |   描述    
+ --------- | ------- 
+ aggs.dimension_a.buckets  | 时间序列-列表
+ aggs.dimension_a.buckets[i].key  | 时间戳
+ aggs.dimension_a.buckets[i].dimension_b.buckets | 用户序列-列表 
+ aggs.dimension_a.buckets[i].dimension_b.buckets.length | 用户数
+ aggs.dimension_a.buckets[i].dimension_b.buckets[j].key | 用户ID
+ 
+> response
+```json
+{
+    "data": {
+        "aggs": {
+            "dimension_a": {
+                "buckets": [
+                    {
+                        "dimension_b": {
+                            "buckets": [
+                                {
+                                    "doc_count": 72000,
+                                    "key": "testbychenlifei"
+                                }
+                            ],
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0
+                        },
+                        "doc_count": 72000,
+                        "key": 1519362000
+                    },
+                    {
+                        "dimension_b": {
+                            "buckets": [],
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0
+                        },
+                        "doc_count": 0,
+                        "key": 1519365600
+                    },
+                    {
+                        "dimension_b": {
+                            "buckets": [],
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0
+                        },
+                        "doc_count": 0,
+                        "key": 1519369200
+                    }
+                ]
+            }
+        },
+        "list": [],
+        "total": 72000
+    },
+    "message": "success",
+    "status": 0
+}
+```
+
+## 操作数时序图 
+
+描述：操作数在时间区间内和时间粒度中的分布序列；
+
+**HTTP Reqeust:** `GET   /api`
+  
+**Request Headers:**
+
+   Header  |   Value  
+-----------|--------------
+Tenant-Id | default
+Start-Time  | 20180201T090000+0800
+End-Time  | 20180301T000000+0000
+Query-Param | GROUP BY time_local INTER 3600
+
+**Response Parameters:**
+
+  字段   |   描述    
+ --------- | ------- 
+ aggs.dimension_a.buckets  | 时间序列-列表
+ aggs.dimension_a.buckets[i].doc_count  | 操作数
+ aggs.dimension_a.buckets[i].key  | 时间戳
+ 
+> response
+```json
+{
+    "data": {
+        "aggs": {
+            "dimension_a": {
+                "buckets": [
+                    {
+                        "doc_count": 72000,
+                        "key": 1519362000
+                    },
+                    {
+                        "doc_count": 0,
+                        "key": 1519365600
+                    },
+                    {
+                        "doc_count": 0,
+                        "key": 1519369200
+                    }
+                ]
+            }
+        },
+        "list": [],
+        "total": 72000
+    },
+    "message": "success",
+    "status": 0
+}
+```
+
