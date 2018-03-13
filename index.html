@@ -328,11 +328,11 @@
 </tr>
 <tr>
 <td>host_location.latitude</td>
-<td>重点-经度</td>
+<td>终点-经度</td>
 </tr>
 <tr>
 <td>host_location.longitude</td>
-<td>重点-经度</td>
+<td>终点-经度</td>
 </tr>
 <tr>
 <td>operation_type</td>
@@ -749,7 +749,7 @@
 </thead><tbody>
 <tr>
 <td>total</td>
-<td>高危操作数</td>
+<td>中危操作数</td>
 </tr>
 </tbody></table>
 <h3 id='083815c4b3'>低危操作数</h3>
@@ -791,7 +791,7 @@
 </thead><tbody>
 <tr>
 <td>total</td>
-<td>高危操作数</td>
+<td>低危操作数</td>
 </tr>
 </tbody></table>
 <h2 id='548a8ebf2e'>应用列表</h2>
@@ -842,26 +842,26 @@
 <blockquote>
 <p>response
 <code>json
-  {
-      &quot;data&quot;: {
-          &quot;aggs&quot;: {
-              &quot;dimension_a&quot;: {
-                  &quot;buckets&quot;: [
-                      {
-                          &quot;doc_count&quot;: 72000,
-                          &quot;key&quot;: &quot;sample-app-id&quot;
-                      }
-                  ],
-                  &quot;doc_count_error_upper_bound&quot;: 0,
-                  &quot;sum_other_doc_count&quot;: 0
-              }
-          },
-          &quot;list&quot;: [],
-          &quot;total&quot;: 72000
-      },
-      &quot;message&quot;: &quot;success&quot;,
-      &quot;status&quot;: 0
-  }
+{
+    &quot;data&quot;: {
+        &quot;aggs&quot;: {
+            &quot;dimension_a&quot;: {
+                &quot;buckets&quot;: [
+                    {
+                        &quot;doc_count&quot;: 72000,
+                        &quot;key&quot;: &quot;sample-app-id&quot;
+                    }
+                ],
+                &quot;doc_count_error_upper_bound&quot;: 0,
+                &quot;sum_other_doc_count&quot;: 0
+            }
+        },
+        &quot;list&quot;: [],
+        &quot;total&quot;: 72000
+    },
+    &quot;message&quot;: &quot;success&quot;,
+    &quot;status&quot;: 0
+}
 </code></p>
 </blockquote>
 <h3 id='step-mariadb'>STEP-MariaDB 暂缺</h3>
@@ -1082,11 +1082,11 @@
 </tr>
 <tr>
 <td>host_location.latitude</td>
-<td>重点-经度</td>
+<td>终点-经度</td>
 </tr>
 <tr>
 <td>host_location.longitude</td>
-<td>重点-经度</td>
+<td>终点-经度</td>
 </tr>
 <tr>
 <td>operation_type</td>
@@ -1176,7 +1176,7 @@
     </span><span class="p">}</span><span class="w">    
 
 </span></code></pre>
-<p>注意：应用列表和部门列表如果是依照日志动态生成，则也受过滤器选择的制约，查询条件同上</p>
+<p>注意：应用列表和部门列表如果是依照日志动态生成，同样受过滤器选择的制约，查询条件同上</p>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
