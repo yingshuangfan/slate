@@ -375,6 +375,7 @@ Query-Param | GROUP BY app_id
 | aggs.dimension_a.buckets  | 应用ID列表  |
 
 > response
+
 ```json
 {
     "data": {
@@ -447,6 +448,7 @@ Query-Param | GROUP BY dept_id
 | aggs.dimension_a.buckets  | 部门ID列表  |
 
 > response
+
 ```json
 {
     "data": {
@@ -647,6 +649,7 @@ Query-Param | GROUP BY (time_local INTER 3600), uid
  aggs.dimension_a.buckets[i].dimension_b.buckets[j].key | 用户ID
  
 > response
+
 ```json
 {
     "data": {
@@ -720,6 +723,7 @@ Query-Param | GROUP BY time_local INTER 3600
  aggs.dimension_a.buckets[i].key  | 时间戳
  
 > response
+
 ```json
 {
     "data": {
