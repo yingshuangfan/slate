@@ -55,8 +55,8 @@ Query-Param | LIMIT 100 ORDER BY time_local DESC
  source_location.latitude  | 起点-纬度  
  source_location.longitude | 起点-经度  
  source_location.city | 起点-城市标签  
- host_location.latitude | 重点-经度  
- host_location.longitude | 重点-经度  
+ host_location.latitude | 终点-经度  
+ host_location.longitude | 终点-经度  
  operation_type | 边-操作类型标签  
  operation_result | 边-操作结果标签 
  
@@ -329,7 +329,7 @@ Query-Param | WHERE label_operation BETWEEN (0.5, 9) LIMIT 0
 
 |  字段   |   描述    |
 | --------- | ------- |
-| total  | 高危操作数  |
+| total  | 中危操作数  |
 
 ### 低危操作数
 
@@ -348,7 +348,7 @@ Query-Param | WHERE label_operation BETWEEN (0.3, 0.5) LIMIT 0
 
 |  字段   |   描述    |
 | --------- | ------- |
-| total  | 高危操作数  |
+| total  | 低危操作数  |
 
 
 ## 应用列表
@@ -376,26 +376,26 @@ Query-Param | GROUP BY app_id
 
 > response
 ```json
-  {
-      "data": {
-          "aggs": {
-              "dimension_a": {
-                  "buckets": [
-                      {
-                          "doc_count": 72000,
-                          "key": "sample-app-id"
-                      }
-                  ],
-                  "doc_count_error_upper_bound": 0,
-                  "sum_other_doc_count": 0
-              }
-          },
-          "list": [],
-          "total": 72000
-      },
-      "message": "success",
-      "status": 0
-  }
+{
+    "data": {
+        "aggs": {
+            "dimension_a": {
+                "buckets": [
+                    {
+                        "doc_count": 72000,
+                        "key": "sample-app-id"
+                    }
+                ],
+                "doc_count_error_upper_bound": 0,
+                "sum_other_doc_count": 0
+            }
+        },
+        "list": [],
+        "total": 72000
+    },
+    "message": "success",
+    "status": 0
+}
 ```
 
 ### STEP-MariaDB 暂缺
@@ -533,8 +533,8 @@ Query-Param | WHERE label_user BETWEEN (0.9, 1) AND label_operation BETWEEN (0.9
  source_location.latitude  | 起点-纬度  
  source_location.longitude | 起点-经度  
  source_location.city | 起点-城市标签  
- host_location.latitude | 重点-经度  
- host_location.longitude | 重点-经度  
+ host_location.latitude | 终点-经度  
+ host_location.longitude | 终点-经度  
  operation_type | 边-操作类型标签  
  operation_result | 边-操作结果标签 
  
@@ -617,5 +617,5 @@ Query-Param | WHERE label_user BETWEEN (0.9, 1) AND label_operation BETWEEN (0.9
 
 ```
 
-注意：应用列表和部门列表如果是依照日志动态生成，则也受过滤器选择的制约，查询条件同上
+注意：应用列表和部门列表如果是依照日志动态生成，同样受过滤器选择的制约，查询条件同上
 
