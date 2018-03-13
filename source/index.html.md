@@ -25,6 +25,10 @@ This example API documentation page was created with [Slate](https://github.com/
 
 # 实时安全报告
 
+API-Server Develop环境 地址：
+  
+    http://es.dev.allseeingsecurity.net:9200
+
 # GEO-MAP 实时地图组件
 
 ## 绘图点 + 线 + 总操作数
@@ -33,7 +37,11 @@ This example API documentation page was created with [Slate](https://github.com/
 
 <aside class="warning">优化（待完成） -> 将请求的N条数据集中选取M个具有特征的日志并返回（例如，不同的应用、部门、用户、地理位置等等）</aside>
 
-请求头:
+HTTP Reqeust:
+
+    GET   /api
+  
+Request Headers:
 
    Header  |   Value  
 -----------|--------------
@@ -42,7 +50,7 @@ Start-Time  | 20180201T090000+0800
 End-Time  | 20180301T000000+0000
 Query-Param | LIMIT 100 ORDER BY time_local DESC
   
-返回结果字段解析：
+Response Parameters：仅解释部分有效字段
 
   字段   |   描述    
  --------- | ------- 
@@ -244,31 +252,6 @@ Query-Param | WHERE label_user BETWEEN (0.5, 9) GROUP BY uid
 | aggs.dimension_a.buckets.length  | 中危账号数统计值  |
 | aggs.dimension_a.buckets  | 中危账号列表  |
 
-> response 
-
-```json
-    {
-        "data": {
-            "aggs": {
-                "dimension_a": {
-                    "buckets": [
-                        {
-                            "doc_count": 44,
-                            "key": "testbychenlifei"
-                        }
-                    ],
-                    "doc_count_error_upper_bound": 0,
-                    "sum_other_doc_count": 0
-                }
-            },
-            "list": [],
-            "total": 44
-        },
-        "message": "success",
-        "status": 0
-    }
-```
-
 ### 低危列表
 
 描述：无过滤器模式下，返回低危账号列表和低危账号数统计值；
@@ -288,31 +271,6 @@ Query-Param | WHERE label_user BETWEEN (0.3, 0.5) GROUP BY uid
 | --------- | ------- |
 | aggs.dimension_a.buckets.length  | 低危账号数统计值  |
 | aggs.dimension_a.buckets  | 低危账号列表  |
-
-> response 
-
-```json
-    {
-        "data": {
-            "aggs": {
-                "dimension_a": {
-                    "buckets": [
-                        {
-                            "doc_count": 88,
-                            "key": "testbychenlifei"
-                        }
-                    ],
-                    "doc_count_error_upper_bound": 0,
-                    "sum_other_doc_count": 0
-                }
-            },
-            "list": [],
-            "total": 88
-        },
-        "message": "success",
-        "status": 0
-    }
-```
 
 
 
