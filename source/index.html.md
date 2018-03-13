@@ -25,9 +25,7 @@ This example API documentation page was created with [Slate](https://github.com/
 
 # 实时安全报告
 
-API-Server Develop环境 地址：
-  
-    http://es.dev.allseeingsecurity.net:9200
+API-Server Develop环境 地址：`http://svc.dev.allseeingsecurity.net:30052`
 
 # GEO-MAP 实时地图组件
 
@@ -37,11 +35,9 @@ API-Server Develop环境 地址：
 
 <aside class="warning">优化（待完成） -> 将请求的N条数据集中选取M个具有特征的日志并返回（例如，不同的应用、部门、用户、地理位置等等）</aside>
 
-HTTP Reqeust:
-
-    GET   /api
+**HTTP Reqeust:** `GET   /api`
   
-Request Headers:
+**Request Headers:**
 
    Header  |   Value  
 -----------|--------------
@@ -50,7 +46,7 @@ Start-Time  | 20180201T090000+0800
 End-Time  | 20180301T000000+0000
 Query-Param | LIMIT 100 ORDER BY time_local DESC
   
-Response Parameters：仅解释部分有效字段
+**Response Parameters:** 仅解释部分有效字段
 
   字段   |   描述    
  --------- | ------- 
@@ -145,7 +141,9 @@ Response Parameters：仅解释部分有效字段
 
 描述：无过滤器模式下，返回在线人数统计值；
 
-请求头:
+**HTTP Reqeust:** `GET   /api`
+  
+**Request Headers:**
 
    Header  |   Value  
 -----------|--------------
@@ -154,7 +152,7 @@ Start-Time  | 20180201T090000+0800
 End-Time  | 20180301T000000+0000
 Query-Param | GROUP BY uid
 
-返回结果字段解析：
+**Response Parameters:**
 
 |  字段   |   描述    |
 | --------- | ------- |
@@ -191,7 +189,9 @@ Query-Param | GROUP BY uid
 
 描述：无过滤器模式下，返回高危账号列表和高危账号数统计值；
 
-请求头:
+**HTTP Reqeust:** `GET   /api`
+  
+**Request Headers:**
 
    Header  |   Value  
 -----------|--------------
@@ -200,7 +200,7 @@ Start-Time  | 20180201T090000+0800
 End-Time  | 20180301T000000+0000
 Query-Param | WHERE label_user BETWEEN (0.9, 1) GROUP BY uid
 
-返回结果字段解析：
+**Response Parameters:**
 
 |  字段   |   描述    |
 | --------- | ------- |
@@ -236,7 +236,9 @@ Query-Param | WHERE label_user BETWEEN (0.9, 1) GROUP BY uid
 
 描述：无过滤器模式下，返回中危账号列表和中危账号数统计值；
 
-请求头:
+**HTTP Reqeust:** `GET   /api`
+  
+**Request Headers:**
 
    Header  |   Value  
 -----------|--------------
@@ -245,7 +247,7 @@ Start-Time  | 20180201T090000+0800
 End-Time  | 20180301T000000+0000
 Query-Param | WHERE label_user BETWEEN (0.5, 9) GROUP BY uid
 
-返回结果字段解析：
+**Response Parameters:**
 
 |  字段   |   描述    |
 | --------- | ------- |
@@ -256,7 +258,9 @@ Query-Param | WHERE label_user BETWEEN (0.5, 9) GROUP BY uid
 
 描述：无过滤器模式下，返回低危账号列表和低危账号数统计值；
 
-请求头:
+**HTTP Reqeust:** `GET   /api`
+  
+**Request Headers:**
 
    Header  |   Value  
 -----------|--------------
@@ -265,13 +269,88 @@ Start-Time  | 20180201T090000+0800
 End-Time  | 20180301T000000+0000
 Query-Param | WHERE label_user BETWEEN (0.3, 0.5) GROUP BY uid
 
-返回结果字段解析：
+**Response Parameters:**
 
 |  字段   |   描述    |
 | --------- | ------- |
 | aggs.dimension_a.buckets.length  | 低危账号数统计值  |
 | aggs.dimension_a.buckets  | 低危账号列表  |
 
+
+## 危险操作数
+
+### 高危操作数
+
+描述：无过滤器模式下，返回高危操作数统计值，不必记录高危操作列表；
+
+**HTTP Reqeust:** `GET   /api`
+  
+**Request Headers:**
+
+   Header  |   Value  
+-----------|--------------
+Tenant-Id | default
+Start-Time  | 20180201T090000+0800
+End-Time  | 20180301T000000+0000
+Query-Param | WHERE label_operation BETWEEN (0.9, 1) LIMIT 0
+
+**Response Parameters:**
+
+|  字段   |   描述    |
+| --------- | ------- |
+| total  | 高危操作数  |
+
+> response 
+
+```json
+    {
+        "data": {
+            "aggs": {},
+            "list": [],
+            "total": 5
+        },
+        "message": "success",
+        "status": 0
+    }
+```
+
+### 中危列表
+
+**HTTP Reqeust:** `GET   /api`
+  
+**Request Headers:**
+
+   Header  |   Value  
+-----------|--------------
+Tenant-Id | default
+Start-Time  | 20180201T090000+0800
+End-Time  | 20180301T000000+0000
+Query-Param | WHERE label_operation BETWEEN (0.5, 9) LIMIT 0
+
+**Response Parameters:**
+
+|  字段   |   描述    |
+| --------- | ------- |
+| total  | 高危操作数  |
+
+### 低危列表
+
+**HTTP Reqeust:** `GET   /api`
+  
+**Request Headers:**
+
+   Header  |   Value  
+-----------|--------------
+Tenant-Id | default
+Start-Time  | 20180201T090000+0800
+End-Time  | 20180301T000000+0000
+Query-Param | WHERE label_operation BETWEEN (0.3, 0.5) LIMIT 0
+
+**Response Parameters:**
+
+|  字段   |   描述    |
+| --------- | ------- |
+| total  | 高危操作数  |
 
 
 
