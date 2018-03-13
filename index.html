@@ -257,12 +257,20 @@
 <p>API-查询语法文档</p>
 
 <p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='c3d8372f99'>实时安全报告</h1><h1 id='geo-map'>GEO-MAP 实时地图组件</h1><h2 id='27f9f4b73b'>绘图点 + 线 + 总操作数</h2>
+<h1 id='c3d8372f99'>实时安全报告</h1>
+<p>API-Server Develop环境 地址：</p>
+
+<p>http://es.dev.allseeingsecurity.net:9200</p>
+<h1 id='geo-map'>GEO-MAP 实时地图组件</h1><h2 id='27f9f4b73b'>绘图点 + 线 + 总操作数</h2>
 <p>描述：无过滤器模式下，返回地图的绘图信息；</p>
 
 <aside class="warning">优化（待完成） -> 将请求的N条数据集中选取M个具有特征的日志并返回（例如，不同的应用、部门、用户、地理位置等等）</aside>
 
-<p>请求头:</p>
+<p>HTTP Reqeust:</p>
+
+<p>GET   /api</p>
+
+<p>Request Headers:</p>
 
 <table><thead>
 <tr>
@@ -288,7 +296,7 @@
 </tr>
 </tbody></table>
 
-<p>返回结果字段解析：</p>
+<p>Response Parameters：仅解释部分有效字段</p>
 
 <table><thead>
 <tr>
@@ -585,31 +593,7 @@
 <td>中危账号列表</td>
 </tr>
 </tbody></table>
-
-<blockquote>
-<p>response </p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                        </span><span class="p">{</span><span class="w">
-                            </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">44</span><span class="p">,</span><span class="w">
-                            </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testbychenlifei"</span><span class="w">
-                        </span><span class="p">}</span><span class="w">
-                    </span><span class="p">],</span><span class="w">
-                    </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">44</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='21feeed124'>低危列表</h3>
+<h3 id='21feeed124'>低危列表</h3>
 <p>描述：无过滤器模式下，返回低危账号列表和低危账号数统计值；</p>
 
 <p>请求头:</p>
@@ -655,31 +639,7 @@
 <td>低危账号列表</td>
 </tr>
 </tbody></table>
-
-<blockquote>
-<p>response </p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                        </span><span class="p">{</span><span class="w">
-                            </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">88</span><span class="p">,</span><span class="w">
-                            </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testbychenlifei"</span><span class="w">
-                        </span><span class="p">}</span><span class="w">
-                    </span><span class="p">],</span><span class="w">
-                    </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">88</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='errors'>Errors</h1>
+<h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
