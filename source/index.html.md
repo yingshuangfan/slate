@@ -23,6 +23,11 @@ API-查询语法文档
 
 This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
+# Create API 创建文档
+
+描述：向elasticsearch中添加文档，要求
+
+
 # 实时安全报告
 
 API_Server Develop环境 地址：`http://svc.dev.allseeingsecurity.net:30052`
