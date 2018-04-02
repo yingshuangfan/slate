@@ -26,13 +26,14 @@ This example API documentation page was created with [Slate](https://github.com/
 # 基础CRUD
 
 **HTTP Status Code**
+
    Code  |   Description  
 -----------|--------------
-200 |   success     请求成功
-400 |   bad request 请求参数非法
-404 |   resources not found 请求路径非法
-500 |   internal error 内部错误（未捕获）
-504 |   server connection timeout 服务请求超时
+  200 |   success     请求成功
+  400 |   bad request 请求参数非法
+  404 |   resources not found 请求路径非法
+  500 |   internal error 内部错误（未捕获）
+  504 |   server connection timeout 服务请求超时
 
 
 ## Create API 创建文档
@@ -78,7 +79,8 @@ raw_data | 必填（非空） |    待创建文档内容 |   string(json-encoded
 }
 ```
  
-注意：如果创建时，发现索引中已经存在相同的ID，则返回报错：version 
+注意：如果创建时，发现索引中已经存在相同的ID，则返回报错：version conflict
+
 ```json
 {
     "data": {},
@@ -86,6 +88,322 @@ raw_data | 必填（非空） |    待创建文档内容 |   string(json-encoded
     "status": 3
 }
 ```
+
+## Update-by-id API 根据ID更新文档
+描述：根据唯一标识ID查找文档，并整体替换为请求体中的文档内容
+
+**HTTP Reqeust:** `POST   /api/update`
+  
+**Request Headers:**
+
+   Header  |   Value  
+-----------|--------------
+Content-Type | application/json
+
+**Request Parameters:**
+
+   Parameter  |  Required   |    Description   |   Type 
+-----------|-------------|--------------------|---------------
+event_id | 必填（非空） |   索引ID |   string
+raw_data | 必填（非空） |    待创建文档内容 |   string(json-encoded)
+
+
+```json
+{
+    "event_id": "0006",
+    "raw_data": "{\"device_id\": \"10142_deviceC\", \"device_id_1d\": \"{\\\"10142_deviceC\\\":5013}\", \"device_id_1h\": \"{\\\"10142_deviceC\\\":5013}\", \"device_id_1month\": \"{\\\"10142_deviceC\\\":5013}\", \"device_id_1w\": \"{\\\"10142_deviceC\\\":5013}\", \"device_id_5m\": \"{\\\"10142_deviceC\\\":5013}\", \"event_id\": \"12\", \"host_ip\": \"220.181.16.184\", \"host_location\": {\"city\": \"\u5317\u4eac\", \"latitude\": 39.9289, \"longitude\": 116.3883}, \"http_user_agent\": {\"browser\": \"Mobile Safari\", \"browser_version\": \"6\", \"device\": \"Mobile\", \"operating_system\": \"iOS 6 (iPhone)\"}, \"httpcode\": \"200\", \"httpcode_1d\": \"{\\\"200\\\":5013}\", \"httpcode_1h\": \"{\\\"200\\\":5013}\", \"httpcode_1month\": \"{\\\"200\\\":5013}\", \"httpcode_1w\": \"{\\\"200\\\":5013}\", \"httpcode_5m\": \"{\\\"200\\\":5013}\", \"is_handled\": 1, \"is_safe\": 0, \"label\": {\"100\": 3.9327715e-06, \"101\": 9.955179e-07, \"400\": 1, \"000\": 0.9999951}, \"label_account\": 0, \"label_device\": 0, \"label_operation\": 1, \"label_user\": 3.9327715e-06, \"operation_result\": \"success\", \"operation_type\": \"login\", \"operation_type_1d\": \"{\\\"login\\\":{\\\"success\\\":5013}}\", \"operation_type_1h\": \"{\\\"login\\\":{\\\"success\\\":5013}}\", \"operation_type_1h_advanced\": \"{\\\"login\\\":{\\\"success\\\":5013}}\", \"operation_type_1month\": \"{\\\"login\\\":{\\\"success\\\":5013}}\", \"operation_type_1w\": \"{\\\"login\\\":{\\\"success\\\":5013}}\", \"operation_type_5m\": \"{\\\"login\\\":{\\\"success\\\":5013}}\", \"pre_location\": \"{\\\"pre_device_id\\\":\\\"10142_deviceC\\\",\\\"pre_time_local\\\":1519362384,\\\"distance\\\":0,\\\"city\\\":\\\"\u5317\u4eac\\\",\\\"latitude\\\":39.9289,\\\"speed\\\":0,\\\"longitude\\\":116.3883}\", \"source_ip\": \"220.181.16.84\", \"source_location\": {\"city\": \"\u5317\u4eac\", \"distance\": 0, \"latitude\": 39.9289, \"longitude\": 116.3883, \"pre_device_id\": \"10142_deviceC\", \"speed\": 0}, \"tenant_id\": \"default\", \"time_local\": 1519362384, \"time_series_predict_result\": 0, \"time_series_predict_result_1d\": \"{\\\"0\\\":5013}\", \"uid\": \"testbychenlifei\", \"user_name\": \"yufu_user_name\", \"version\": \"1\"}"
+}
+```
+
+**Response Parameters:** 仅解释部分有效字段
+
+  字段   |   描述    
+ --------- | ------- 
+ data  | 返回数据字段：空 
+ message | 返回状态描述
+ status | 返回状态码
+
+
+```json
+{
+    "data": {},
+    "message": "success",
+    "status": 0
+}
+```
+ 
+注意：如果在更新中，在index中无法根据ID查找到文档，会报错：document missing
+
+```json
+{
+    "data": {},
+    "message": "cannot find doc with the given 'event_id', with exception:TransportError(404, 'document_missing_exception', '[db-to-es][0060]: document missing')",
+    "status": 3
+}
+```
+
+## Update-by-query API 根据查询语法批量更新文档
+描述：根据查询语法过滤得到一列文档，并统一更新其中的一个或多个字段
+
+**HTTP Reqeust:** `POST   /api/update_by_query`
+  
+**Request Headers:**
+
+   Header  |   Value  
+-----------|--------------
+Content-Type | application/json
+Tenant-Id   |   yufu
+Start-Time  |   20180201T090000+0800
+End-Time    |   20180301T000000+0000
+Update-Param    |    SET label_user=0 WHERE uid=testbychenlifei
+
+
+**Response Parameters:** 仅解释部分有效字段
+
+  字段   |   描述    
+ --------- | ------- 
+ data.total  | 查询获得文档数量
+ data.updated | 更新文档数量
+ data.version_conflicts  |  更新时发生版本冲突次数
+ message | 返回状态描述
+ status | 返回状态码
+
+
+```json
+{
+    "data": {
+        "total": 4,
+        "updated": 4,
+        "version_conflicts": 0
+    },
+    "message": "success",
+    "status": 0
+}
+```
+ 
+注意：如果在更新中，发生版本冲突，会自动放弃更新操作；当更新文档数量较大，或者更新操作频繁时，容易发生版本冲突；
+
+```json
+
+```
+
+## Search API 查询文档
+描述：根据查询语法过滤得到一列文档，返回结果是分页的
+
+**HTTP Reqeust:** `GET   /api/search`
+  
+**Request Headers:**
+
+   Header  |   Value  
+-----------|--------------
+Tenant-Id   |   yufu
+Start-Time  |   20180201T090000+0800
+End-Time    |   20180301T000000+0000
+Update-Param    |    LIMIT 20 ORDER BY time_local DESC 
+
+
+**Response Parameters:** 仅解释部分有效字段
+
+  字段   |   描述    
+ --------- | ------- 
+ data     |    返回数据结构
+ data.aggs   | 聚合返回结果
+ data.list   | 查询返回结果
+ data.total  | 查询文档总数量
+ message | 返回状态描述
+ status | 返回状态码
+
+
+```json
+{
+    "data": {
+        "aggs": {},
+        "list": [
+            {
+                "app_info": {
+                    "app_type": null,
+                    "display_name": "Otcom"
+                },
+                "departments": [],
+                "device_id": "10142_deviceC",
+                "device_id_1d": "{\"10142_deviceC\":5013}",
+                "device_id_1h": "{\"10142_deviceC\":5013}",
+                "device_id_1month": "{\"10142_deviceC\":5013}",
+                "device_id_1w": "{\"10142_deviceC\":5013}",
+                "device_id_5m": "{\"10142_deviceC\":5013}",
+                "device_info": {
+                    "device_type": null,
+                    "display_name": "Newspeak",
+                    "risk_level": 0.0181778,
+                    "user_agent": "Dennis Ritchie"
+                },
+                "event_id": "1001",
+                "host_ip": "220.181.16.184",
+                "host_location": {
+                    "city": "北京",
+                    "latitude": 39.9289,
+                    "longitude": 116.3883
+                },
+                "http_user_agent": {
+                    "browser": "Mobile Safari",
+                    "browser_version": "6",
+                    "device": "Mobile",
+                    "operating_system": "iOS 6 (iPhone)"
+                },
+                "httpcode": "200",
+                "httpcode_1d": "{\"200\":5013}",
+                "httpcode_1h": "{\"200\":5013}",
+                "httpcode_1month": "{\"200\":5013}",
+                "httpcode_1w": "{\"200\":5013}",
+                "httpcode_5m": "{\"200\":5013}",
+                "is_handled": 1,
+                "is_safe": 0,
+                "label": {
+                    "100": 0.0000039327715,
+                    "101": 9.955179e-7,
+                    "400": 1,
+                    "000": 0.9999951
+                },
+                "label_account": 0,
+                "label_device": 0,
+                "label_operation": 1,
+                "label_user": 0.0000039327715,
+                "operation_result": "success",
+                "operation_type": "login",
+                "operation_type_1d": "{\"login\":{\"success\":5013}}",
+                "operation_type_1h": "{\"login\":{\"success\":5013}}",
+                "operation_type_1h_advanced": "{\"login\":{\"success\":5013}}",
+                "operation_type_1month": "{\"login\":{\"success\":5013}}",
+                "operation_type_1w": "{\"login\":{\"success\":5013}}",
+                "operation_type_5m": "{\"login\":{\"success\":5013}}",
+                "pre_location": "{\"pre_device_id\":\"10142_deviceC\",\"pre_time_local\":1519362384,\"distance\":0,\"city\":\"北京\",\"latitude\":39.9289,\"speed\":0,\"longitude\":116.3883}",
+                "risk_level": 0.0181778,
+                "source_ip": "220.181.16.84",
+                "source_location": {
+                    "city": "北京",
+                    "distance": 0,
+                    "latitude": 39.9289,
+                    "longitude": 116.3883,
+                    "pre_device_id": "10142_deviceC",
+                    "speed": 0
+                },
+                "state": "resolving",
+                "tenant_id": "yufu",
+                "time_local": 1522397782,
+                "time_series_predict_result": 0,
+                "time_series_predict_result_1d": "{\"0\":5013}",
+                "uid": "testbychenlifei",
+                "user_info": {
+                    "display_name": "Kyra Koepp",
+                    "email": "leonardo.stoltenberg@kohler.io",
+                    "name": "Kyra Koepp",
+                    "position": "Human Marketing Executive",
+                    "risk_level": 0,
+                    "role": 0
+                },
+                "user_name": "yufu_user_name",
+                "version": "1"
+            },
+            ...
+        ],
+        "total": 1005
+    },
+    "message": "success",
+    "status": 0
+}
+```
+ 
+## Search API 聚合文档
+描述：根据查询语法过滤得到一列文档，并根据字段做聚合操作，返回聚合结果列表
+
+**HTTP Reqeust:** `GET   /api/search`
+  
+**Request Headers:**
+
+   Header  |   Value  
+-----------|--------------
+Tenant-Id   |   yufu
+Start-Time  |   20180201T090000+0800
+End-Time    |   20180301T000000+0000
+Update-Param    |    WHERE uid=testbychenlifei GROUP BY app_info.display_name
+
+
+**Response Parameters:** 仅解释部分有效字段
+
+  字段   |   描述    
+ --------- | ------- 
+ data     |    返回数据结构
+ data.aggs   | 聚合返回结果
+ data.list   | 查询返回结果
+ data.total  | 查询文档总数量
+ message | 返回状态描述
+ status | 返回状态码
+
+
+```json
+{
+    "data": {
+        "aggs": {
+            "dimension_a": {
+                "buckets": [
+                    {
+                        "doc_count": 119,
+                        "key": "Otcom"
+                    },
+                    {
+                        "doc_count": 112,
+                        "key": "Veribet"
+                    },
+                    {
+                        "doc_count": 106,
+                        "key": "Tin"
+                    },
+                    {
+                        "doc_count": 103,
+                        "key": "Fixflex"
+                    },
+                    {
+                        "doc_count": 101,
+                        "key": "Job"
+                    },
+                    {
+                        "doc_count": 96,
+                        "key": "Zamit"
+                    },
+                    {
+                        "doc_count": 93,
+                        "key": "Hatity"
+                    },
+                    {
+                        "doc_count": 91,
+                        "key": "Alpha"
+                    },
+                    {
+                        "doc_count": 90,
+                        "key": "Holdlamis"
+                    },
+                    {
+                        "doc_count": 89,
+                        "key": "Quo Lux"
+                    },
+                    {
+                        "doc_count": 1,
+                        "key": "office-365"
+                    }
+                ],
+                "doc_count_error_upper_bound": 0,
+                "sum_other_doc_count": 0
+            }
+        },
+        "list": [],
+        "total": 1005
+    },
+    "message": "success",
+    "status": 0
+}
+```
+ 
+
 
 
 # 实时安全报告
