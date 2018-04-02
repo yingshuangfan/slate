@@ -23,9 +23,69 @@ API-查询语法文档
 
 This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Create API 创建文档
+# 基础CRUD
 
-描述：向elasticsearch中添加文档，要求
+**HTTP Status Code**
+   Code  |   Description  
+-----------|--------------
+200 |   success     请求成功
+400 |   bad request 请求参数非法
+404 |   resources not found 请求路径非法
+500 |   internal error 内部错误（未捕获）
+504 |   server connection timeout 服务请求超时
+
+
+## Create API 创建文档
+描述：向elasticsearch中添加新的文档，要求提供唯一标识ID作为文档索引的依据；
+
+**HTTP Reqeust:** `POST   /api/create`
+  
+**Request Headers:**
+
+   Header  |   Value  
+-----------|--------------
+Content-Type | application/json
+
+**Request Parameters:**
+
+   Parameter  |  Required   |    Description   |   Type 
+-----------|-------------|--------------------|---------------
+event_id | 必填（非空） |   索引ID |   string
+raw_data | 必填（非空） |    待创建文档内容 |   string(json-encoded)
+
+
+```json
+{
+    "event_id": "0006",
+    "raw_data": "{\"device_id\": \"10142_deviceC\", \"device_id_1d\": \"{\\\"10142_deviceC\\\":5013}\", \"device_id_1h\": \"{\\\"10142_deviceC\\\":5013}\", \"device_id_1month\": \"{\\\"10142_deviceC\\\":5013}\", \"device_id_1w\": \"{\\\"10142_deviceC\\\":5013}\", \"device_id_5m\": \"{\\\"10142_deviceC\\\":5013}\", \"event_id\": \"12\", \"host_ip\": \"220.181.16.184\", \"host_location\": {\"city\": \"\u5317\u4eac\", \"latitude\": 39.9289, \"longitude\": 116.3883}, \"http_user_agent\": {\"browser\": \"Mobile Safari\", \"browser_version\": \"6\", \"device\": \"Mobile\", \"operating_system\": \"iOS 6 (iPhone)\"}, \"httpcode\": \"200\", \"httpcode_1d\": \"{\\\"200\\\":5013}\", \"httpcode_1h\": \"{\\\"200\\\":5013}\", \"httpcode_1month\": \"{\\\"200\\\":5013}\", \"httpcode_1w\": \"{\\\"200\\\":5013}\", \"httpcode_5m\": \"{\\\"200\\\":5013}\", \"is_handled\": 1, \"is_safe\": 0, \"label\": {\"100\": 3.9327715e-06, \"101\": 9.955179e-07, \"400\": 1, \"000\": 0.9999951}, \"label_account\": 0, \"label_device\": 0, \"label_operation\": 1, \"label_user\": 3.9327715e-06, \"operation_result\": \"success\", \"operation_type\": \"login\", \"operation_type_1d\": \"{\\\"login\\\":{\\\"success\\\":5013}}\", \"operation_type_1h\": \"{\\\"login\\\":{\\\"success\\\":5013}}\", \"operation_type_1h_advanced\": \"{\\\"login\\\":{\\\"success\\\":5013}}\", \"operation_type_1month\": \"{\\\"login\\\":{\\\"success\\\":5013}}\", \"operation_type_1w\": \"{\\\"login\\\":{\\\"success\\\":5013}}\", \"operation_type_5m\": \"{\\\"login\\\":{\\\"success\\\":5013}}\", \"pre_location\": \"{\\\"pre_device_id\\\":\\\"10142_deviceC\\\",\\\"pre_time_local\\\":1519362384,\\\"distance\\\":0,\\\"city\\\":\\\"\u5317\u4eac\\\",\\\"latitude\\\":39.9289,\\\"speed\\\":0,\\\"longitude\\\":116.3883}\", \"source_ip\": \"220.181.16.84\", \"source_location\": {\"city\": \"\u5317\u4eac\", \"distance\": 0, \"latitude\": 39.9289, \"longitude\": 116.3883, \"pre_device_id\": \"10142_deviceC\", \"speed\": 0}, \"tenant_id\": \"default\", \"time_local\": 1519362384, \"time_series_predict_result\": 0, \"time_series_predict_result_1d\": \"{\\\"0\\\":5013}\", \"uid\": \"testbychenlifei\", \"user_name\": \"yufu_user_name\", \"version\": \"1\"}"
+}
+```
+
+**Response Parameters:** 仅解释部分有效字段
+
+  字段   |   描述    
+ --------- | ------- 
+ data  | 返回数据字段：空 
+ message | 返回状态描述
+ status | 返回状态码
+
+
+```json
+{
+    "data": {},
+    "message": "success",
+    "status": 0
+}
+```
+ 
+注意：如果创建时，发现索引中已经存在相同的ID，则返回报错：version 
+```json
+{
+    "data": {},
+    "message": "version conflict: event_id already exist in es-index, with exception:TransportError(409, 'version_conflict_engine_exception', '[db-to-es][0000]: version conflict, document already exists (current version [2])')",
+    "status": 3
+}
+```
 
 
 # 实时安全报告
