@@ -400,32 +400,12 @@
 
 <ol>
 <li><p>日期使用10位时间戳存储，才能支持对日期的聚合查询</p></li>
-<li><p>支持三种粒度的时间序列查询：自然日、自然周、自然月，且默认为东八区时区；</p></li>
+<li><p>支持三种粒度的时间序列查询：自然日、自然周（以周一为开始）、自然月，且默认为东八区时区；</p></li>
 </ol>
 
-<table><thead>
-<tr>
-<th>粒度</th>
-<th>描述</th>
-<th>查询语句</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>自然日</td>
-<td>对日取整</td>
-<td>GROUP BY field_name INTER DAY</td>
-</tr>
-<tr>
-<td>日然周</td>
-<td>对周取整，周一为开始</td>
-<td>GROUP BY field_name INTER WEEK</td>
-</tr>
-<tr>
-<td>日然月</td>
-<td>对月取整</td>
-<td>GROUP BY field_name INTER MONTH</td>
-</tr>
-</tbody></table>
+<p>自然日：<code>GROUP BY field_name INTER DAY</code>
+ 自然周：<code>GROUP BY field_name INTER WEEK</code>
+ 自然月：<code>GROUP BY field_name INTER MONTH</code> </p>
 
 <ol>
 <li>查询时间序列时，需严格限定起始和结束时间 </li>
