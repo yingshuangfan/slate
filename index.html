@@ -225,6 +225,17 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="introduction">Introduction</a>
           </li>
           <li>
+            <a href="#4ff5f8c2de" class="toc-h1 toc-link" data-title="">自定义文档添加和查询</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#7e095e8361" class="toc-h2 toc-link" data-title="">添加文档</a>
+                  </li>
+                  <li>
+                    <a href="#a681f188b6" class="toc-h2 toc-link" data-title="">时序查询文档</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#crud" class="toc-h1 toc-link" data-title="crud">基础CRUD</a>
               <ul class="toc-list-h2">
                   <li>
@@ -300,7 +311,132 @@
 <p>API-查询语法文档</p>
 
 <p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='crud'>基础CRUD</h1>
+<h1 id='4ff5f8c2de'>自定义文档添加和查询</h1><h2 id='7e095e8361'>添加文档</h2>
+<p>首次添加的文档，会默认生成对应的映射表; 需要提供指定的文档ID和文档类型; 
+文档ID是同类型中文档的唯一标志；文档类型是标识一类文档的特殊关键词，在查询时也需要指定文档类型；</p>
+
+<p><strong>HTTP Reqeust:</strong> <code>POST   /api/create</code></p>
+
+<p><strong>Request Headers:</strong></p>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request Parameters:</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>必填（非空）</td>
+<td>索引ID</td>
+<td>string</td>
+</tr>
+<tr>
+<td>source</td>
+<td>必填（id非空）</td>
+<td>待创建文档内容</td>
+<td>string(json-encoded)</td>
+</tr>
+<tr>
+<td>type</td>
+<td>必填（非空）</td>
+<td>待创建文档类型</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"insecure_users_by_day"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{ </span><span class="se">\"</span><span class="s2">date</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">1523701714</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">user_id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">user_123</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">department_id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">dept_123</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">security_level</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">high</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">risk_level</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">mid</span><span class="se">\"</span><span class="s2">}"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='a681f188b6'>时序查询文档</h2>
+<p><strong>HTTP Reqeust:</strong> <code>GET   /api/search</code></p>
+
+<p>例如：/api/search?type=insecure_users_by_day&amp;query=WHERE date BETWEEN(1519344000, 1522370000) GROUP BY date INTER DAY</p>
+
+<blockquote>
+<p>日期使用10位时间戳存储，才能支持对日期的聚合查询</p>
+
+<p>支持三种粒度的时间序列查询：自然日、自然周（以周一为开始）、自然月，且默认为东八区时区；</p>
+</blockquote>
+
+<p>GROUP BY field_name INTER DAY 
+    GROUP BY field_name INTER WEEK
+    GROUP BY field_name INTER MONTH</p>
+
+<blockquote>
+<p>查询时间序列时，需严格限定起始和结束时间 </p>
+</blockquote>
+
+<p>WHERE field_name BETWEEN(start_timestamp, end_timestamp)</p>
+
+<p><strong>Request Parameters:</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>必填（非空）</td>
+<td>查询文档类型</td>
+<td>string</td>
+</tr>
+<tr>
+<td>query</td>
+<td>必填（非空）</td>
+<td>查询语句</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1519344000</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1519430400</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="err">...</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522368000</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1005</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='crud'>基础CRUD</h1>
 <p><strong>HTTP Status Code</strong></p>
 
 <table><thead>
