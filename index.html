@@ -231,7 +231,13 @@
                     <a href="#7e095e8361" class="toc-h2 toc-link" data-title="">添加文档</a>
                   </li>
                   <li>
-                    <a href="#a681f188b6" class="toc-h2 toc-link" data-title="">时序查询文档</a>
+                    <a href="#cbe1481634" class="toc-h2 toc-link" data-title="">部门列表过滤器</a>
+                  </li>
+                  <li>
+                    <a href="#cfa843a24f" class="toc-h2 toc-link" data-title="">部门列表聚合</a>
+                  </li>
+                  <li>
+                    <a href="#6ad63067b5" class="toc-h2 toc-link" data-title="">时间序列聚合</a>
                   </li>
               </ul>
           </li>
@@ -362,9 +368,9 @@
 </tr>
 </tbody></table>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"insecure_users_by_day"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{ </span><span class="se">\"</span><span class="s2">date</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">1523701714</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">user_id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">user_123</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">department_id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">dept_123</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">security_level</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">high</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">risk_level</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">mid</span><span class="se">\"</span><span class="s2">}"</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0009"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{ </span><span class="se">\"</span><span class="s2">date</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">1523701714</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">user_id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">user_123</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">departments_id</span><span class="se">\"</span><span class="s2">: [</span><span class="se">\"</span><span class="s2">dept_2</span><span class="se">\"</span><span class="s2">], </span><span class="se">\"</span><span class="s2">security_level</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">high</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">risk_level</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">mid</span><span class="se">\"</span><span class="s2">}"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"insecure_users_by_day"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><strong>Response Parameters:</strong> </p>
@@ -393,10 +399,183 @@
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='a681f188b6'>时序查询文档</h2>
+</span></code></pre><h2 id='cbe1481634'>部门列表过滤器</h2>
 <p><strong>HTTP Reqeust:</strong> <code>GET   /api/search</code></p>
 
-<p>例如：<code>GET  /api/search?type=insecure_users_by_day&amp;query=WHERE date BETWEEN(1519344000, 1522370000) GROUP BY date INTER DAY</code></p>
+<p><strong>Request Parameters:</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>必填（非空）</td>
+<td>查询文档类型</td>
+<td>string</td>
+</tr>
+<tr>
+<td>query</td>
+<td>必填（非空）</td>
+<td>查询语句</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p>部门列表中包含dept_1：<code>GET  /api/search?query=WHERE departments_id=dept_1&amp;type=insecure_users_by_day</code></p>
+
+<p><strong>Response Parameters:</strong> </p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data.aggs.dimension_a.buckets</td>
+<td>时间聚合序列</td>
+</tr>
+<tr>
+<td>data.aggs.dimension_a.buckets[i].doc_count</td>
+<td>区间内统计数</td>
+</tr>
+<tr>
+<td>data.aggs.dimension_a.buckets[i].key</td>
+<td>区间开始时间戳</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回状态描述</td>
+</tr>
+<tr>
+<td>status</td>
+<td>返回状态码</td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1523701714"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"departments_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"dept_1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"dept_2"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"dept_3"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"risk_level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mid"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"security_level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"high"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_123"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1523701714"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"departments_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"dept_1"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"risk_level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mid"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"security_level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"high"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_123"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='cfa843a24f'>部门列表聚合</h2>
+<p><strong>HTTP Reqeust:</strong> <code>GET   /api/search</code></p>
+
+<p><strong>Request Parameters:</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>必填（非空）</td>
+<td>查询文档类型</td>
+<td>string</td>
+</tr>
+<tr>
+<td>query</td>
+<td>必填（非空）</td>
+<td>查询语句</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p>部门列表聚合：<code>GET  /api/search?query=GROUP BY departments_id&amp;type=insecure_users_by_day</code></p>
+
+<p><strong>Response Parameters:</strong> </p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data.aggs.dimension_a.buckets</td>
+<td>部门统计列表</td>
+</tr>
+<tr>
+<td>data.aggs.dimension_a.buckets[i].doc_count</td>
+<td>部门统计值</td>
+</tr>
+<tr>
+<td>data.aggs.dimension_a.buckets[i].key</td>
+<td>部门ID</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回状态描述</td>
+</tr>
+<tr>
+<td>status</td>
+<td>返回状态码</td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dept_1"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dept_2"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dept_3"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='6ad63067b5'>时间序列聚合</h2>
+<p><strong>HTTP Reqeust:</strong> <code>GET   /api/search</code></p>
 
 <p>1&gt;. 日期使用10位时间戳存储，才能支持对日期的聚合查询</p>
 
@@ -415,12 +594,12 @@
 <td>GROUP BY field_name INTER DAY</td>
 </tr>
 <tr>
-<td>日然周</td>
+<td>自然周</td>
 <td>对周取整，周一为开始</td>
 <td>GROUP BY field_name INTER WEEK</td>
 </tr>
 <tr>
-<td>日然月</td>
+<td>自然月</td>
 <td>对月取整</td>
 <td>GROUP BY field_name INTER MONTH</td>
 </tr>
@@ -453,6 +632,8 @@
 <td>string</td>
 </tr>
 </tbody></table>
+
+<p>在时间区间内，以自然日为单位聚合：<code>GET  /api/search?type=insecure_users_by_day&amp;query=WHERE date BETWEEN(1519344000, 1522370000) GROUP BY date INTER DAY</code></p>
 
 <p><strong>Response Parameters:</strong> </p>
 
