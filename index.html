@@ -231,6 +231,9 @@
                     <a href="#7e095e8361" class="toc-h2 toc-link" data-title="">添加文档</a>
                   </li>
                   <li>
+                    <a href="#154295858c" class="toc-h2 toc-link" data-title="">批量添加文档</a>
+                  </li>
+                  <li>
                     <a href="#6ad63067b5" class="toc-h2 toc-link" data-title="">时间序列聚合</a>
                   </li>
                   <li>
@@ -400,6 +403,95 @@
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='154295858c'>批量添加文档</h2>
+<p>首次添加的文档，会默认生成对应的映射表; 需要提供指定的文档ID和文档类型; </p>
+
+<p><strong>HTTP Reqeust:</strong> <code>POST   /api/create/bulk</code></p>
+
+<p><strong>Request Headers:</strong></p>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request Parameters:</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>list</td>
+<td>必填（非空）</td>
+<td>待创建文档列表，包含{id, source}</td>
+<td>string(json-encoded)</td>
+</tr>
+<tr>
+<td>type</td>
+<td>必填（非空）</td>
+<td>待创建文档类型</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p>文档列表中的每一项文档(json-encoded)，均包含id和source字段：
+1. id: 是同类型中文档的唯一标志；
+2. source: 原始文档(json object)；</p>
+
+<p>注意：时间戳以iso8601为标准，日期中必须携带时区信息，例如：2018-04-22T22:16:00+0800
+<code>json
+{
+    &quot;type&quot;: &quot;insecure_users_by_day&quot;,
+    &quot;list&quot;: [
+        &quot;{\&quot;id\&quot;:\&quot;0000\&quot;,\&quot;source\&quot;:{ \&quot;date\&quot;: \&quot;2018-04-22T22:16:00+0800\&quot;, \&quot;user_id\&quot;: \&quot;user_123\&quot;, \&quot;departments_id\&quot;: [\&quot;dept_2\&quot;], \&quot;department_1\&quot;: \&quot;dept_2\&quot;,\&quot;security_level\&quot;: \&quot;high\&quot;, \&quot;risk_level\&quot;: \&quot;mid\&quot;}}&quot;,
+        &quot;{\&quot;id\&quot;:\&quot;0001\&quot;,\&quot;source\&quot;:{ \&quot;date\&quot;: \&quot;2018-04-22T22:16:00+0800\&quot;, \&quot;user_id\&quot;: \&quot;user_123\&quot;, \&quot;departments_id\&quot;: [\&quot;dept_2\&quot;], \&quot;department_1\&quot;: \&quot;dept_2\&quot;,\&quot;security_level\&quot;: \&quot;high\&quot;, \&quot;risk_level\&quot;: \&quot;mid\&quot;}}&quot;,
+        &quot;{\&quot;id\&quot;:\&quot;0002\&quot;,\&quot;source\&quot;:{ \&quot;date\&quot;: \&quot;2018-04-22T22:16:00+0800\&quot;, \&quot;user_id\&quot;: \&quot;user_123\&quot;, \&quot;departments_id\&quot;: [\&quot;dept_2\&quot;], \&quot;department_1\&quot;: \&quot;dept_2\&quot;,\&quot;security_level\&quot;: \&quot;high\&quot;, \&quot;risk_level\&quot;: \&quot;mid\&quot;}}&quot;,
+        ...
+        &quot;{\&quot;id\&quot;:\&quot;0999\&quot;,\&quot;source\&quot;:{ \&quot;date\&quot;: \&quot;2018-04-22T22:16:00+0800\&quot;, \&quot;user_id\&quot;: \&quot;user_123\&quot;, \&quot;departments_id\&quot;: [\&quot;dept_2\&quot;], \&quot;department_1\&quot;: \&quot;dept_2\&quot;,\&quot;security_level\&quot;: \&quot;high\&quot;, \&quot;risk_level\&quot;: \&quot;mid\&quot;}}&quot;
+    ]
+}
+</code></p>
+
+<p><strong>Response Parameters:</strong> </p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data.succeed</td>
+<td>成功写入文档数目</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回状态描述</td>
+</tr>
+<tr>
+<td>status</td>
+<td>返回状态码</td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"succeed"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+  </span><span class="p">},</span><span class="w"> 
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='6ad63067b5'>时间序列聚合</h2>
 <p><strong>HTTP Reqeust:</strong> <code>GET   /api/search</code></p>
