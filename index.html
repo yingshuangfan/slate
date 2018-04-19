@@ -234,6 +234,9 @@
                     <a href="#154295858c" class="toc-h2 toc-link" data-title="">批量添加文档</a>
                   </li>
                   <li>
+                    <a href="#c2aea3d33b" class="toc-h2 toc-link" data-title="">删除文档类型</a>
+                  </li>
+                  <li>
                     <a href="#6ad63067b5" class="toc-h2 toc-link" data-title="">时间序列聚合</a>
                   </li>
                   <li>
@@ -491,6 +494,46 @@
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='c2aea3d33b'>删除文档类型</h2>
+<p>删除指定类型的所有文档；注意这一接口仅在develop环境中允许使用；</p>
+
+<p><strong>HTTP Reqeust:</strong> <code>DELETE   /api/delete/&lt;doc_type&gt;</code></p>
+
+<p>例如：<code>curl -X DELETE http://127.0.0.1:5000/api/delete/test-0419</code></p>
+
+<p><strong>Response Parameters:</strong> </p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>空</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回状态描述</td>
+</tr>
+<tr>
+<td>status</td>
+<td>返回状态码</td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>如果在非develop环境下调用，返回错误提示：</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no access right to delete index:['test-0419']"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='6ad63067b5'>时间序列聚合</h2>
 <p><strong>HTTP Reqeust:</strong> <code>GET   /api/search</code></p>
 
@@ -639,13 +682,13 @@
 </tr>
 <tr>
 <td>query</td>
-<td>WHERE department_id=dept_3 AND security_level=high AND risk_level=high AND date BETWEEN(2018-04-17T17:00:00+0800, 2018-05-01T00:00:00+0800) GROUP BY date INTER day</td>
+<td>WHERE department_id=dept_3 AND security_level=high AND risk_level=high AND (date BETWEEN(2018-04-17T17:00:00+0800, 2018-05-01T00:00:00+0800)) GROUP BY date INTER day</td>
 </tr>
 </tbody></table>
 
 <p>注意：如果使用嵌套聚合，则将risk_level放在GROUP BY语句中</p>
 
-<p>例如：<code>WHERE department_id=dept_3 AND security_level=high AND date BETWEEN(2018-04-17T17:00:00+0800, 2018-05-01T00:00:00+0800) GROUP BY date INTER day, risk_level</code></p>
+<p>例如：<code>WHERE department_id=dept_3 AND security_level=high AND (date BETWEEN(2018-04-17T17:00:00+0800, 2018-05-01T00:00:00+0800)) GROUP BY date INTER day, risk_level</code></p>
 <h2 id='amp'>文本&amp;列表字段聚合</h2>
 <p><strong>HTTP Reqeust:</strong> <code>GET   /api/search</code></p>
 
@@ -769,7 +812,9 @@
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='84058c10ac'>实例：部门列表聚合</h3>
-<p>注意：departments_id是列表，例如 [&#39;id_1&#39;, &#39;id_2&#39;, ...]；列表中元素类型应当保持一致；元素类型不能是对象；</p>
+<p>注意：
+1. departments_id是列表，例如 [&#39;id_1&#39;, &#39;id_2&#39;, ...]；列表中元素类型应当保持一致；元素类型不能是对象；
+2. BETWEEN语句作为过滤器，出现在AND语句中时，建议使用括号区分优先级；例如 <code>condition A AND ( condition B with BETWENN )</code></p>
 
 <table><thead>
 <tr>
@@ -799,7 +844,7 @@
 </tr>
 <tr>
 <td>query</td>
-<td>WHERE deparment_id=dept_3 AND date BETWEEN(2018-04-17T17:00:00-0800, 2018-05-01T00:00:00-0800) GROUP BY risk_level</td>
+<td>WHERE deparment_id=dept_3 AND (date BETWEEN(2018-04-17T17:00:00-0800, 2018-05-01T00:00:00-0800)) GROUP BY risk_level</td>
 </tr>
 </tbody></table>
 <h3 id='aadee20761-2'>实例：部门过滤器+风险评级聚合</h3>
@@ -815,7 +860,7 @@
 </tr>
 <tr>
 <td>query</td>
-<td>WHERE deparment_id=dept_3 AND date BETWEEN(2018-04-17T17:00:00-0800, 2018-05-01T00:00:00-0800) GROUP BY risk_level</td>
+<td>WHERE deparment_id=dept_3 AND (date BETWEEN(2018-04-17T17:00:00-0800, 2018-05-01T00:00:00-0800)) GROUP BY risk_level</td>
 </tr>
 </tbody></table>
 <h3 id='93a87898f0'>实例：用户聚合</h3>
@@ -847,7 +892,7 @@
 </tr>
 <tr>
 <td>query</td>
-<td>WHERE user_id=user_1 AND date BETWEEN(2018-04-17T17:00:00-0800, 2018-05-01T00:00:00-0800) GROUP BY risk_level</td>
+<td>WHERE user_id=user_1 AND (date BETWEEN(2018-04-17T17:00:00-0800, 2018-05-01T00:00:00-0800)) GROUP BY risk_level</td>
 </tr>
 </tbody></table>
 <h3 id='64f6187dc3'>实例：风险过滤器+应用聚合</h3>
@@ -863,7 +908,7 @@
 </tr>
 <tr>
 <td>query</td>
-<td>WHERE risk_level=high AND date BETWEEN(2018-04-17T17:00:00-0800, 2018-05-01T00:00:00-0800) GROUP BY app_id</td>
+<td>WHERE risk_level=high AND (date BETWEEN(2018-04-17T17:00:00-0800, 2018-05-01T00:00:00-0800)) GROUP BY app_id</td>
 </tr>
 </tbody></table>
 <h3 id='b2151e7ee4'>实例：风险过滤器+（第一层级）部门聚合</h3>
@@ -879,7 +924,7 @@
 </tr>
 <tr>
 <td>query</td>
-<td>WHERE risk_level=high AND date BETWEEN(2018-04-17T17:00:00-0800, 2018-05-01T00:00:00-0800) GROUP BY department_1</td>
+<td>WHERE risk_level=high AND (date BETWEEN(2018-04-17T17:00:00-0800, 2018-05-01T00:00:00-0800)) GROUP BY department_1</td>
 </tr>
 </tbody></table>
 <h1 id='crud'>基础CRUD</h1>
