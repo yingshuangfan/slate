@@ -1217,19 +1217,57 @@
 <tr>
 <td>_external.status</td>
 <td>keyword</td>
-<td>日志处理状态=已处理(resolved)/未处理(unresolved)/忽略(ignored)</td>
+<td>日志处理状态</td>
+</tr>
+<tr>
+<td>_external.resolved_method</td>
+<td>keyword</td>
+<td>日志已处理的手段</td>
+</tr>
+<tr>
+<td>_pipeline.source_location.city</td>
+<td>keyword</td>
+<td>城市</td>
+</tr>
+<tr>
+<td>_pipeline.source_location.country</td>
+<td>keyword</td>
+<td>国家</td>
+</tr>
+<tr>
+<td>_pipeline.is_valid</td>
+<td>boolean</td>
+<td>格式是否合法</td>
+</tr>
+<tr>
+<td>_pipeline.risk_level</td>
+<td>keyword</td>
+<td>日志风险等级</td>
+</tr>
+<tr>
+<td>_pipeline.labels</td>
+<td>keyword</td>
+<td>预警类型的列表（优先级由高到低）</td>
+</tr>
+<tr>
+<td>_pipeline.label.xxx</td>
+<td>float</td>
+<td>某预警类型置信概率</td>
+</tr>
+<tr>
+<td>_pipeline.tags</td>
+<td>keyword</td>
+<td>与某预警类型相关的列表</td>
 </tr>
 </tbody></table>
 
-<p>，健康日志默认为空，危险日志默认为未处理
-_external.resolved_method   | keyword   |   日志已处理的手段=停用(suspend)/封禁(lock)；默认为空
-_pipeline.source_location.city |     keyword     |     城市
-_pipeline.source_location.country |     keyword     |     国家
-_pipeline.is_valid    |     boolean     |     格式是否合法<br>
-_pipeline.risk_level    |     keyword     |     日志风险等级=high/mid/low/healthy(优先级高于label.xxx)
-_pipeline.labels    |     keyword     |     预警类型的列表（优先级由高到低）
-_pipeline.label.xxx   |     float     |     某预警类型置信概率
-_pipeline.tags|      keyword     |    与某预警类型相关的列表</p>
+<p>注意：</p>
+
+<ol>
+<li>日志处理状态：已处理(resolved)/未处理(unresolved)/忽略(ignored)，健康日志默认为空，危险日志默认为未处理</li>
+<li>日志处理手段：停用(suspend)/封禁(lock)；默认为空</li>
+<li>日志风险等级：高危(high)/中危(mid)/低危(low)/健康(healthy)，优先级高于label.xxx</li>
+</ol>
 
 <ul>
 <li>外部字段</li>
@@ -1529,7 +1567,7 @@ _pipeline.tags|      keyword     |    与某预警类型相关的列表</p>
 </tr>
 <tr>
 <td>query</td>
-<td>RELATED BY <event_id>, <label></td>
+<td>RELATED BY event_id, label</td>
 </tr>
 </tbody></table>
 
