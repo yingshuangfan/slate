@@ -225,13 +225,19 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="introduction">Introduction</a>
           </li>
           <li>
-            <a href="#4ff5f8c2de" class="toc-h1 toc-link" data-title="">自定义文档添加和查询</a>
+            <a href="#crud" class="toc-h1 toc-link" data-title="crud">基础CRUD</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#38645019ef" class="toc-h2 toc-link" data-title="">查询文档</a>
+                  </li>
                   <li>
                     <a href="#7e095e8361" class="toc-h2 toc-link" data-title="">添加文档</a>
                   </li>
                   <li>
                     <a href="#154295858c" class="toc-h2 toc-link" data-title="">批量添加文档</a>
+                  </li>
+                  <li>
+                    <a href="#fe2cc3e076" class="toc-h2 toc-link" data-title="">更新文档</a>
                   </li>
                   <li>
                     <a href="#c2aea3d33b" class="toc-h2 toc-link" data-title="">删除文档类型</a>
@@ -245,62 +251,13 @@
               </ul>
           </li>
           <li>
-            <a href="#crud" class="toc-h1 toc-link" data-title="crud">基础CRUD</a>
+            <a href="#78d4d8d1ca" class="toc-h1 toc-link" data-title="">查询语句示例</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#create-api" class="toc-h2 toc-link" data-title="create-api">Create API 创建文档</a>
+                    <a href="#e7d73a53d9" class="toc-h2 toc-link" data-title="">安全日志：查询接口</a>
                   </li>
                   <li>
-                    <a href="#update-by-id-api-id" class="toc-h2 toc-link" data-title="update-by-id-api-id">Update-by-id API 根据ID更新文档</a>
-                  </li>
-                  <li>
-                    <a href="#update-by-query-api" class="toc-h2 toc-link" data-title="update-by-query-api">Update-by-query API 根据查询语法批量更新文档</a>
-                  </li>
-                  <li>
-                    <a href="#search-api" class="toc-h2 toc-link" data-title="search-api">Search API 查询文档</a>
-                  </li>
-                  <li>
-                    <a href="#search-api-2" class="toc-h2 toc-link" data-title="search-api">Search API 聚合文档</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#c3d8372f99" class="toc-h1 toc-link" data-title="">实时安全报告</a>
-          </li>
-          <li>
-            <a href="#geo-map" class="toc-h1 toc-link" data-title="geo-map">GEO-MAP 实时地图组件</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#27f9f4b73b" class="toc-h2 toc-link" data-title="">绘图点 + 线 + 总操作数</a>
-                  </li>
-                  <li>
-                    <a href="#1f0244b714" class="toc-h2 toc-link" data-title="">在线人数</a>
-                  </li>
-                  <li>
-                    <a href="#819e16a423" class="toc-h2 toc-link" data-title="">危险账号数 + 危险账号列表</a>
-                  </li>
-                  <li>
-                    <a href="#6948dc6950" class="toc-h2 toc-link" data-title="">危险操作数</a>
-                  </li>
-                  <li>
-                    <a href="#548a8ebf2e" class="toc-h2 toc-link" data-title="">应用列表</a>
-                  </li>
-                  <li>
-                    <a href="#fe7aa50b5f" class="toc-h2 toc-link" data-title="">部门列表</a>
-                  </li>
-                  <li>
-                    <a href="#cc81fff589" class="toc-h2 toc-link" data-title="">过滤器</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#9244f67449" class="toc-h1 toc-link" data-title="">用户数 + 操作数时序图</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#51ee730b0c" class="toc-h2 toc-link" data-title="">用户数时序图</a>
-                  </li>
-                  <li>
-                    <a href="#04c9c1e0d4" class="toc-h2 toc-link" data-title="">操作数时序图</a>
+                    <a href="#9ae4129295" class="toc-h2 toc-link" data-title="">安全日志：更新接口</a>
                   </li>
               </ul>
           </li>
@@ -320,7 +277,105 @@
 <p>API-查询语法文档</p>
 
 <p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='4ff5f8c2de'>自定义文档添加和查询</h1><h2 id='7e095e8361'>添加文档</h2>
+<h1 id='crud'>基础CRUD</h1><h2 id='38645019ef'>查询文档</h2>
+<p><strong>HTTP Reqeust:</strong> <code>GET   /api/search</code></p>
+
+<p><strong>Request Parameters:</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>必填（非空）</td>
+<td>查询文档类型</td>
+<td>string</td>
+</tr>
+<tr>
+<td>query</td>
+<td>必填（非空）</td>
+<td>查询语句</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response Parameters:</strong> </p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data.list</td>
+<td>文档列表</td>
+</tr>
+<tr>
+<td>data.total</td>
+<td>文档总数</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回状态描述</td>
+</tr>
+<tr>
+<td>status</td>
+<td>返回状态码</td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"_external"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ignored"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"_pipeline"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"is_valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"labels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="mi">300</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"390"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"reasoning"</span><span class="p">:</span><span class="w"> </span><span class="s2">"caused by..."</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"risk_level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"high"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"source_location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"杭州"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"中国"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"300"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"200"</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="s2">"time_local"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528945358</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"app_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"微软云"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1528945358305.86218"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"operation_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUSPENDFAILURE"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"operation_result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FAILURE"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"operation_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUSPEND"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"source_ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.32.100.220"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tn-xsy"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"time_local"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-14T11:02:38"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_476"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"user_agent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_476 (HttpUrlConnection 1.8.0_102)"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">10100</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='7e095e8361'>添加文档</h2>
 <p>首次添加的文档，会默认生成对应的映射表; 需要提供指定的文档ID和文档类型; </p>
 
 <ol>
@@ -494,6 +549,80 @@
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='fe2cc3e076'>更新文档</h2>
+<p>描述：根据查询语法过滤得到一列文档，并统一更新其中的一个或多个字段</p>
+
+<p><strong>HTTP Reqeust:</strong> <code>POST   /api/update</code></p>
+
+<p><strong>Request Parameters:</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>必填（非空）</td>
+<td>查询文档类型</td>
+<td>string</td>
+</tr>
+<tr>
+<td>query</td>
+<td>必填（非空）</td>
+<td>查询语句</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p>更新单个字段：<code>SET _pipeline.risk_level=healthy WHERE uid=sample_uid</code></p>
+
+<p>更新多个字段：<code>SET _pipeline.risk_level=healthy AND _external.status=resolved WHERE uid=sample_uid</code></p>
+
+<p><strong>Response Parameters:</strong> 仅解释部分有效字段</p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data.total</td>
+<td>查询获得文档数量</td>
+</tr>
+<tr>
+<td>data.updated</td>
+<td>更新文档数量</td>
+</tr>
+<tr>
+<td>data.failures</td>
+<td>操作异常列表</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回状态描述</td>
+</tr>
+<tr>
+<td>status</td>
+<td>返回状态码</td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"failures"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>注意：如果在更新中，发生版本冲突，会自动放弃更新操作；当更新文档数量较大，或者更新操作频繁时，容易发生版本冲突；</p>
+<pre class="highlight json tab-json"><code><span class="w">
 </span></code></pre><h2 id='c2aea3d33b'>删除文档类型</h2>
 <p>删除指定类型的所有文档；注意这一接口仅在develop环境中允许使用；</p>
 
@@ -938,1653 +1067,573 @@
 <td>WHERE risk_level=high AND (date BETWEEN(2018-04-17T17:00:00-0800, 2018-05-01T00:00:00-0800)) GROUP BY department_1</td>
 </tr>
 </tbody></table>
-<h1 id='crud'>基础CRUD</h1>
-<p><strong>HTTP Status Code</strong></p>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td>success     请求成功</td>
-</tr>
-<tr>
-<td>400</td>
-<td>bad request 请求参数非法</td>
-</tr>
-<tr>
-<td>404</td>
-<td>resources not found 请求路径非法</td>
-</tr>
-<tr>
-<td>500</td>
-<td>internal error 内部错误（未捕获）</td>
-</tr>
-<tr>
-<td>504</td>
-<td>server connection timeout 服务请求超时</td>
-</tr>
-</tbody></table>
-<h2 id='create-api'>Create API 创建文档</h2>
-<p>描述：向elasticsearch中添加新的文档，要求提供唯一标识ID作为文档索引的依据；</p>
-
-<p><strong>HTTP Reqeust:</strong> <code>POST   /api/create</code></p>
-
-<p><strong>Request Headers:</strong></p>
-
-<table><thead>
-<tr>
-<th>Header</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Content-Type</td>
-<td>application/json</td>
-</tr>
-</tbody></table>
-
-<p><strong>Request Parameters:</strong></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-<th>Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>event_id</td>
-<td>必填（非空）</td>
-<td>索引ID</td>
-<td>string</td>
-</tr>
-<tr>
-<td>raw_data</td>
-<td>必填（非空）</td>
-<td>待创建文档内容</td>
-<td>string(json-encoded)</td>
-</tr>
-</tbody></table>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0006"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"raw_data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">device_id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">device_id_1d</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">10142_deviceC</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">device_id_1h</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">10142_deviceC</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">device_id_1month</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">10142_deviceC</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">device_id_1w</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">10142_deviceC</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">device_id_5m</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">10142_deviceC</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">event_id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">12</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">host_ip</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">220.181.16.184</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">host_location</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\"</span><span class="s2">city</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"\u</span><span class="s2">5317</span><span class="se">\u</span><span class="s2">4eac</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">latitude</span><span class="se">\"</span><span class="s2">: 39.9289, </span><span class="se">\"</span><span class="s2">longitude</span><span class="se">\"</span><span class="s2">: 116.3883}, </span><span class="se">\"</span><span class="s2">http_user_agent</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\"</span><span class="s2">browser</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Mobile Safari</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">browser_version</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">6</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">device</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Mobile</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">operating_system</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">iOS 6 (iPhone)</span><span class="se">\"</span><span class="s2">}, </span><span class="se">\"</span><span class="s2">httpcode</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">200</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">httpcode_1d</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">200</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">httpcode_1h</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">200</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">httpcode_1month</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">200</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">httpcode_1w</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">200</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">httpcode_5m</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">200</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">is_handled</span><span class="se">\"</span><span class="s2">: 1, </span><span class="se">\"</span><span class="s2">is_safe</span><span class="se">\"</span><span class="s2">: 0, </span><span class="se">\"</span><span class="s2">label</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\"</span><span class="s2">100</span><span class="se">\"</span><span class="s2">: 3.9327715e-06, </span><span class="se">\"</span><span class="s2">101</span><span class="se">\"</span><span class="s2">: 9.955179e-07, </span><span class="se">\"</span><span class="s2">400</span><span class="se">\"</span><span class="s2">: 1, </span><span class="se">\"</span><span class="s2">000</span><span class="se">\"</span><span class="s2">: 0.9999951}, </span><span class="se">\"</span><span class="s2">label_account</span><span class="se">\"</span><span class="s2">: 0, </span><span class="se">\"</span><span class="s2">label_device</span><span class="se">\"</span><span class="s2">: 0, </span><span class="se">\"</span><span class="s2">label_operation</span><span class="se">\"</span><span class="s2">: 1, </span><span class="se">\"</span><span class="s2">label_user</span><span class="se">\"</span><span class="s2">: 3.9327715e-06, </span><span class="se">\"</span><span class="s2">operation_result</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">success</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">operation_type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">login</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">operation_type_1d</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">login</span><span class="se">\\\"</span><span class="s2">:{</span><span class="se">\\\"</span><span class="s2">success</span><span class="se">\\\"</span><span class="s2">:5013}}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">operation_type_1h</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">login</span><span class="se">\\\"</span><span class="s2">:{</span><span class="se">\\\"</span><span class="s2">success</span><span class="se">\\\"</span><span class="s2">:5013}}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">operation_type_1h_advanced</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">login</span><span class="se">\\\"</span><span class="s2">:{</span><span class="se">\\\"</span><span class="s2">success</span><span class="se">\\\"</span><span class="s2">:5013}}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">operation_type_1month</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">login</span><span class="se">\\\"</span><span class="s2">:{</span><span class="se">\\\"</span><span class="s2">success</span><span class="se">\\\"</span><span class="s2">:5013}}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">operation_type_1w</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">login</span><span class="se">\\\"</span><span class="s2">:{</span><span class="se">\\\"</span><span class="s2">success</span><span class="se">\\\"</span><span class="s2">:5013}}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">operation_type_5m</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">login</span><span class="se">\\\"</span><span class="s2">:{</span><span class="se">\\\"</span><span class="s2">success</span><span class="se">\\\"</span><span class="s2">:5013}}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">pre_location</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">pre_device_id</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">10142_deviceC</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">pre_time_local</span><span class="se">\\\"</span><span class="s2">:1519362384,</span><span class="se">\\\"</span><span class="s2">distance</span><span class="se">\\\"</span><span class="s2">:0,</span><span class="se">\\\"</span><span class="s2">city</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"\u</span><span class="s2">5317</span><span class="se">\u</span><span class="s2">4eac</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">latitude</span><span class="se">\\\"</span><span class="s2">:39.9289,</span><span class="se">\\\"</span><span class="s2">speed</span><span class="se">\\\"</span><span class="s2">:0,</span><span class="se">\\\"</span><span class="s2">longitude</span><span class="se">\\\"</span><span class="s2">:116.3883}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">source_ip</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">220.181.16.84</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">source_location</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\"</span><span class="s2">city</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"\u</span><span class="s2">5317</span><span class="se">\u</span><span class="s2">4eac</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">distance</span><span class="se">\"</span><span class="s2">: 0, </span><span class="se">\"</span><span class="s2">latitude</span><span class="se">\"</span><span class="s2">: 39.9289, </span><span class="se">\"</span><span class="s2">longitude</span><span class="se">\"</span><span class="s2">: 116.3883, </span><span class="se">\"</span><span class="s2">pre_device_id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">speed</span><span class="se">\"</span><span class="s2">: 0}, </span><span class="se">\"</span><span class="s2">tenant_id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">default</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">time_local</span><span class="se">\"</span><span class="s2">: 1519362384, </span><span class="se">\"</span><span class="s2">time_series_predict_result</span><span class="se">\"</span><span class="s2">: 0, </span><span class="se">\"</span><span class="s2">time_series_predict_result_1d</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">0</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">uid</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">testbychenlifei</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">user_name</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">yufu_user_name</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">version</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">1</span><span class="se">\"</span><span class="s2">}"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p><strong>Response Parameters:</strong> 仅解释部分有效字段</p>
-
-<table><thead>
-<tr>
-<th>字段</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>data</td>
-<td>返回数据字段：空</td>
-</tr>
-<tr>
-<td>message</td>
-<td>返回状态描述</td>
-</tr>
-<tr>
-<td>status</td>
-<td>返回状态码</td>
-</tr>
-</tbody></table>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>注意：如果创建时，发现索引中已经存在相同的ID，则返回报错：version conflict</p>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"version conflict: event_id already exist in es-index, with exception:TransportError(409, 'version_conflict_engine_exception', '[db-to-es][0000]: version conflict, document already exists (current version [2])')"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='update-by-id-api-id'>Update-by-id API 根据ID更新文档</h2>
-<p>描述：根据唯一标识ID查找文档，并整体替换为请求体中的文档内容</p>
-
-<p><strong>HTTP Reqeust:</strong> <code>POST   /api/update</code></p>
-
-<p><strong>Request Headers:</strong></p>
-
-<table><thead>
-<tr>
-<th>Header</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Content-Type</td>
-<td>application/json</td>
-</tr>
-</tbody></table>
-
-<p><strong>Request Parameters:</strong></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-<th>Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>event_id</td>
-<td>必填（非空）</td>
-<td>索引ID</td>
-<td>string</td>
-</tr>
-<tr>
-<td>raw_data</td>
-<td>必填（非空）</td>
-<td>待创建文档内容</td>
-<td>string(json-encoded)</td>
-</tr>
-</tbody></table>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0006"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"raw_data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">device_id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">device_id_1d</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">10142_deviceC</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">device_id_1h</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">10142_deviceC</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">device_id_1month</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">10142_deviceC</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">device_id_1w</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">10142_deviceC</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">device_id_5m</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">10142_deviceC</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">event_id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">12</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">host_ip</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">220.181.16.184</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">host_location</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\"</span><span class="s2">city</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"\u</span><span class="s2">5317</span><span class="se">\u</span><span class="s2">4eac</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">latitude</span><span class="se">\"</span><span class="s2">: 39.9289, </span><span class="se">\"</span><span class="s2">longitude</span><span class="se">\"</span><span class="s2">: 116.3883}, </span><span class="se">\"</span><span class="s2">http_user_agent</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\"</span><span class="s2">browser</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Mobile Safari</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">browser_version</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">6</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">device</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">Mobile</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">operating_system</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">iOS 6 (iPhone)</span><span class="se">\"</span><span class="s2">}, </span><span class="se">\"</span><span class="s2">httpcode</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">200</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">httpcode_1d</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">200</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">httpcode_1h</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">200</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">httpcode_1month</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">200</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">httpcode_1w</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">200</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">httpcode_5m</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">200</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">is_handled</span><span class="se">\"</span><span class="s2">: 1, </span><span class="se">\"</span><span class="s2">is_safe</span><span class="se">\"</span><span class="s2">: 0, </span><span class="se">\"</span><span class="s2">label</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\"</span><span class="s2">100</span><span class="se">\"</span><span class="s2">: 3.9327715e-06, </span><span class="se">\"</span><span class="s2">101</span><span class="se">\"</span><span class="s2">: 9.955179e-07, </span><span class="se">\"</span><span class="s2">400</span><span class="se">\"</span><span class="s2">: 1, </span><span class="se">\"</span><span class="s2">000</span><span class="se">\"</span><span class="s2">: 0.9999951}, </span><span class="se">\"</span><span class="s2">label_account</span><span class="se">\"</span><span class="s2">: 0, </span><span class="se">\"</span><span class="s2">label_device</span><span class="se">\"</span><span class="s2">: 0, </span><span class="se">\"</span><span class="s2">label_operation</span><span class="se">\"</span><span class="s2">: 1, </span><span class="se">\"</span><span class="s2">label_user</span><span class="se">\"</span><span class="s2">: 3.9327715e-06, </span><span class="se">\"</span><span class="s2">operation_result</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">success</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">operation_type</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">login</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">operation_type_1d</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">login</span><span class="se">\\\"</span><span class="s2">:{</span><span class="se">\\\"</span><span class="s2">success</span><span class="se">\\\"</span><span class="s2">:5013}}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">operation_type_1h</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">login</span><span class="se">\\\"</span><span class="s2">:{</span><span class="se">\\\"</span><span class="s2">success</span><span class="se">\\\"</span><span class="s2">:5013}}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">operation_type_1h_advanced</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">login</span><span class="se">\\\"</span><span class="s2">:{</span><span class="se">\\\"</span><span class="s2">success</span><span class="se">\\\"</span><span class="s2">:5013}}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">operation_type_1month</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">login</span><span class="se">\\\"</span><span class="s2">:{</span><span class="se">\\\"</span><span class="s2">success</span><span class="se">\\\"</span><span class="s2">:5013}}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">operation_type_1w</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">login</span><span class="se">\\\"</span><span class="s2">:{</span><span class="se">\\\"</span><span class="s2">success</span><span class="se">\\\"</span><span class="s2">:5013}}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">operation_type_5m</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">login</span><span class="se">\\\"</span><span class="s2">:{</span><span class="se">\\\"</span><span class="s2">success</span><span class="se">\\\"</span><span class="s2">:5013}}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">pre_location</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">pre_device_id</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"</span><span class="s2">10142_deviceC</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">pre_time_local</span><span class="se">\\\"</span><span class="s2">:1519362384,</span><span class="se">\\\"</span><span class="s2">distance</span><span class="se">\\\"</span><span class="s2">:0,</span><span class="se">\\\"</span><span class="s2">city</span><span class="se">\\\"</span><span class="s2">:</span><span class="se">\\\"\u</span><span class="s2">5317</span><span class="se">\u</span><span class="s2">4eac</span><span class="se">\\\"</span><span class="s2">,</span><span class="se">\\\"</span><span class="s2">latitude</span><span class="se">\\\"</span><span class="s2">:39.9289,</span><span class="se">\\\"</span><span class="s2">speed</span><span class="se">\\\"</span><span class="s2">:0,</span><span class="se">\\\"</span><span class="s2">longitude</span><span class="se">\\\"</span><span class="s2">:116.3883}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">source_ip</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">220.181.16.84</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">source_location</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\"</span><span class="s2">city</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"\u</span><span class="s2">5317</span><span class="se">\u</span><span class="s2">4eac</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">distance</span><span class="se">\"</span><span class="s2">: 0, </span><span class="se">\"</span><span class="s2">latitude</span><span class="se">\"</span><span class="s2">: 39.9289, </span><span class="se">\"</span><span class="s2">longitude</span><span class="se">\"</span><span class="s2">: 116.3883, </span><span class="se">\"</span><span class="s2">pre_device_id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">speed</span><span class="se">\"</span><span class="s2">: 0}, </span><span class="se">\"</span><span class="s2">tenant_id</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">default</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">time_local</span><span class="se">\"</span><span class="s2">: 1519362384, </span><span class="se">\"</span><span class="s2">time_series_predict_result</span><span class="se">\"</span><span class="s2">: 0, </span><span class="se">\"</span><span class="s2">time_series_predict_result_1d</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">{</span><span class="se">\\\"</span><span class="s2">0</span><span class="se">\\\"</span><span class="s2">:5013}</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">uid</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">testbychenlifei</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">user_name</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">yufu_user_name</span><span class="se">\"</span><span class="s2">, </span><span class="se">\"</span><span class="s2">version</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">1</span><span class="se">\"</span><span class="s2">}"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p><strong>Response Parameters:</strong> 仅解释部分有效字段</p>
-
-<table><thead>
-<tr>
-<th>字段</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>data</td>
-<td>返回数据字段：空</td>
-</tr>
-<tr>
-<td>message</td>
-<td>返回状态描述</td>
-</tr>
-<tr>
-<td>status</td>
-<td>返回状态码</td>
-</tr>
-</tbody></table>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>注意：如果在更新中，在index中无法根据ID查找到文档，会报错：document missing</p>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cannot find doc with the given 'event_id', with exception:TransportError(404, 'document_missing_exception', '[db-to-es][0060]: document missing')"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='update-by-query-api'>Update-by-query API 根据查询语法批量更新文档</h2>
-<p>描述：根据查询语法过滤得到一列文档，并统一更新其中的一个或多个字段</p>
-
-<p><strong>HTTP Reqeust:</strong> <code>POST   /api/update_by_query</code></p>
-
-<p><strong>Request Headers:</strong></p>
-
-<table><thead>
-<tr>
-<th>Header</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Content-Type</td>
-<td>application/json</td>
-</tr>
-<tr>
-<td>Tenant-Id</td>
-<td>yufu</td>
-</tr>
-<tr>
-<td>Start-Time</td>
-<td>20180201T090000+0800</td>
-</tr>
-<tr>
-<td>End-Time</td>
-<td>20180301T000000+0000</td>
-</tr>
-<tr>
-<td>Update-Param</td>
-<td>SET label_user=0 WHERE uid=testbychenlifei</td>
-</tr>
-</tbody></table>
-
-<p><strong>Response Parameters:</strong> 仅解释部分有效字段</p>
-
-<table><thead>
-<tr>
-<th>字段</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>data.total</td>
-<td>查询获得文档数量</td>
-</tr>
-<tr>
-<td>data.updated</td>
-<td>更新文档数量</td>
-</tr>
-<tr>
-<td>data.version_conflicts</td>
-<td>更新时发生版本冲突次数</td>
-</tr>
-<tr>
-<td>message</td>
-<td>返回状态描述</td>
-</tr>
-<tr>
-<td>status</td>
-<td>返回状态码</td>
-</tr>
-</tbody></table>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"version_conflicts"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>注意：如果在更新中，发生版本冲突，会自动放弃更新操作；当更新文档数量较大，或者更新操作频繁时，容易发生版本冲突；</p>
-<pre class="highlight json tab-json"><code><span class="w">
-</span></code></pre><h2 id='search-api'>Search API 查询文档</h2>
-<p>描述：根据查询语法过滤得到一列文档，返回结果是分页的</p>
-
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api/search</code></p>
-
-<p><strong>Request Headers:</strong></p>
-
-<table><thead>
-<tr>
-<th>Header</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Tenant-Id</td>
-<td>yufu</td>
-</tr>
-<tr>
-<td>Start-Time</td>
-<td>20180201T090000+0800</td>
-</tr>
-<tr>
-<td>End-Time</td>
-<td>20180301T000000+0000</td>
-</tr>
-<tr>
-<td>Update-Param</td>
-<td>LIMIT 20 ORDER BY time_local DESC</td>
-</tr>
-</tbody></table>
-
-<p><strong>Response Parameters:</strong> 仅解释部分有效字段</p>
-
-<table><thead>
-<tr>
-<th>字段</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>data</td>
-<td>返回数据结构</td>
-</tr>
-<tr>
-<td>data.aggs</td>
-<td>聚合返回结果</td>
-</tr>
-<tr>
-<td>data.list</td>
-<td>查询返回结果</td>
-</tr>
-<tr>
-<td>data.total</td>
-<td>查询文档总数量</td>
-</tr>
-<tr>
-<td>message</td>
-<td>返回状态描述</td>
-</tr>
-<tr>
-<td>status</td>
-<td>返回状态码</td>
-</tr>
-</tbody></table>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"app_info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"app_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Otcom"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="s2">"departments"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-                </span><span class="s2">"device_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10142_deviceC"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"device_id_1d"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"device_id_1h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"device_id_1month"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"device_id_1w"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"device_id_5m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"device_info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"device_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Newspeak"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"risk_level"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0181778</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"user_agent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dennis Ritchie"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="s2">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1001"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"host_ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"220.181.16.184"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"host_location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"北京"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">39.9289</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">116.3883</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="s2">"http_user_agent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"browser"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Safari"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"browser_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"device"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"operating_system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iOS 6 (iPhone)"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="s2">"httpcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"httpcode_1d"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">200</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"httpcode_1h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">200</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"httpcode_1month"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">200</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"httpcode_1w"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">200</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"httpcode_5m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">200</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"is_handled"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"is_safe"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"100"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0000039327715</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"101"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.955179e-7</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"400"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"000"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9999951</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="s2">"label_account"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"label_device"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"label_operation"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"label_user"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0000039327715</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"operation_result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"operation_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"login"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"operation_type_1d"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">login</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">success</span><span class="se">\"</span><span class="s2">:5013}}"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"operation_type_1h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">login</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">success</span><span class="se">\"</span><span class="s2">:5013}}"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"operation_type_1h_advanced"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">login</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">success</span><span class="se">\"</span><span class="s2">:5013}}"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"operation_type_1month"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">login</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">success</span><span class="se">\"</span><span class="s2">:5013}}"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"operation_type_1w"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">login</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">success</span><span class="se">\"</span><span class="s2">:5013}}"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"operation_type_5m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">login</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">success</span><span class="se">\"</span><span class="s2">:5013}}"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"pre_location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">pre_device_id</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">pre_time_local</span><span class="se">\"</span><span class="s2">:1519362384,</span><span class="se">\"</span><span class="s2">distance</span><span class="se">\"</span><span class="s2">:0,</span><span class="se">\"</span><span class="s2">city</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">北京</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">latitude</span><span class="se">\"</span><span class="s2">:39.9289,</span><span class="se">\"</span><span class="s2">speed</span><span class="se">\"</span><span class="s2">:0,</span><span class="se">\"</span><span class="s2">longitude</span><span class="se">\"</span><span class="s2">:116.3883}"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"risk_level"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0181778</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"source_ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"220.181.16.84"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"source_location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"北京"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">39.9289</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">116.3883</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"pre_device_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10142_deviceC"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"speed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resolving"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yufu"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"time_local"</span><span class="p">:</span><span class="w"> </span><span class="mi">1522397782</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"time_series_predict_result"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"time_series_predict_result_1d"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">0</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testbychenlifei"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"user_info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kyra Koepp"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"leonardo.stoltenberg@kohler.io"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kyra Koepp"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Human Marketing Executive"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"risk_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="s2">"user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yufu_user_name"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="err">...</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1005</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='search-api-2'>Search API 聚合文档</h2>
-<p>描述：根据查询语法过滤得到一列文档，并根据字段做聚合操作，返回聚合结果列表</p>
-
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api/search</code></p>
-
-<p><strong>Request Headers:</strong></p>
-
-<table><thead>
-<tr>
-<th>Header</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Tenant-Id</td>
-<td>yufu</td>
-</tr>
-<tr>
-<td>Start-Time</td>
-<td>20180201T090000+0800</td>
-</tr>
-<tr>
-<td>End-Time</td>
-<td>20180301T000000+0000</td>
-</tr>
-<tr>
-<td>Update-Param</td>
-<td>WHERE uid=testbychenlifei GROUP BY app_info.display_name</td>
-</tr>
-</tbody></table>
-
-<p><strong>Response Parameters:</strong> 仅解释部分有效字段</p>
-
-<table><thead>
-<tr>
-<th>字段</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>data</td>
-<td>返回数据结构</td>
-</tr>
-<tr>
-<td>data.aggs</td>
-<td>聚合返回结果</td>
-</tr>
-<tr>
-<td>data.list</td>
-<td>查询返回结果</td>
-</tr>
-<tr>
-<td>data.total</td>
-<td>查询文档总数量</td>
-</tr>
-<tr>
-<td>message</td>
-<td>返回状态描述</td>
-</tr>
-<tr>
-<td>status</td>
-<td>返回状态码</td>
-</tr>
-</tbody></table>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">119</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Otcom"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">112</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Veribet"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">106</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tin"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fixflex"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Job"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">96</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zamit"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">93</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hatity"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">91</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alpha"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Holdlamis"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">89</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Quo Lux"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"office-365"</span><span class="w">
-                    </span><span class="p">}</span><span class="w">
-                </span><span class="p">],</span><span class="w">
-                </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1005</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='c3d8372f99'>实时安全报告</h1>
-<p>API_Server Develop环境 地址：<code>http://svc.dev.allseeingsecurity.net:30052</code></p>
-
-<p>Console_Server_Rails Develop环境 地址：<code>54.222.166.143:30030</code></p>
-<h1 id='geo-map'>GEO-MAP 实时地图组件</h1><h2 id='27f9f4b73b'>绘图点 + 线 + 总操作数</h2>
-<p>描述：无过滤器模式下，返回地图的绘图信息；</p>
-
-<aside class="warning">优化（待完成） -> 将请求的N条数据集中选取M个具有特征的日志并返回（例如，不同的应用、部门、用户、地理位置等等）</aside>
-
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api</code></p>
-
-<p><strong>Request Headers:</strong></p>
-
-<table><thead>
-<tr>
-<th>Header</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Tenant-Id</td>
-<td>default</td>
-</tr>
-<tr>
-<td>Start-Time</td>
-<td>20180201T090000+0800</td>
-</tr>
-<tr>
-<td>End-Time</td>
-<td>20180301T000000+0000</td>
-</tr>
-<tr>
-<td>Query-Param</td>
-<td>LIMIT 100 ORDER BY time_local DESC</td>
-</tr>
-</tbody></table>
-
-<p><strong>Response Parameters:</strong> 仅解释部分有效字段</p>
-
-<table><thead>
-<tr>
-<th>字段</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>source_location.latitude</td>
-<td>起点-纬度</td>
-</tr>
-<tr>
-<td>source_location.longitude</td>
-<td>起点-经度</td>
-</tr>
-<tr>
-<td>source_location.city</td>
-<td>起点-城市标签</td>
-</tr>
-<tr>
-<td>host_location.latitude</td>
-<td>终点-经度</td>
-</tr>
-<tr>
-<td>host_location.longitude</td>
-<td>终点-经度</td>
-</tr>
-<tr>
-<td>operation_type</td>
-<td>边-操作类型标签</td>
-</tr>
-<tr>
-<td>operation_result</td>
-<td>边-操作结果标签</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>response </p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-            </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-                 </span><span class="s2">"device_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10142_deviceC"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"device_id_1d"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"device_id_1h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"device_id_1month"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"device_id_1w"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"device_id_5m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"host_ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"220.181.16.184"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"host_location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                     </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"北京"</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">39.9289</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">116.3883</span><span class="w">
-                 </span><span class="p">},</span><span class="w">
-                 </span><span class="s2">"http_user_agent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                     </span><span class="s2">"browser"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Safari"</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"browser_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"device"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile"</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"operating_system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iOS 6 (iPhone)"</span><span class="w">
-                 </span><span class="p">},</span><span class="w">
-                 </span><span class="s2">"httpcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"httpcode_1d"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">200</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"httpcode_1h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">200</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"httpcode_1month"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">200</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"httpcode_1w"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">200</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"httpcode_5m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">200</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"is_handled"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"is_safe"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                     </span><span class="s2">"100"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0000039327715</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"101"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.955179e-7</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"400"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"000"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9999951</span><span class="w">
-                 </span><span class="p">},</span><span class="w">
-                 </span><span class="s2">"label_account"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"label_device"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"label_operation"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"label_user"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0000039327715</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"operation_result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"operation_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"login"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"operation_type_1d"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">login</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">success</span><span class="se">\"</span><span class="s2">:5013}}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"operation_type_1h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">login</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">success</span><span class="se">\"</span><span class="s2">:5013}}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"operation_type_1h_advanced"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">login</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">success</span><span class="se">\"</span><span class="s2">:5013}}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"operation_type_1month"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">login</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">success</span><span class="se">\"</span><span class="s2">:5013}}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"operation_type_1w"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">login</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">success</span><span class="se">\"</span><span class="s2">:5013}}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"operation_type_5m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">login</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">success</span><span class="se">\"</span><span class="s2">:5013}}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"pre_location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">pre_device_id</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">pre_time_local</span><span class="se">\"</span><span class="s2">:1519362384,</span><span class="se">\"</span><span class="s2">distance</span><span class="se">\"</span><span class="s2">:0,</span><span class="se">\"</span><span class="s2">city</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">北京</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">latitude</span><span class="se">\"</span><span class="s2">:39.9289,</span><span class="se">\"</span><span class="s2">speed</span><span class="se">\"</span><span class="s2">:0,</span><span class="se">\"</span><span class="s2">longitude</span><span class="se">\"</span><span class="s2">:116.3883}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"source_ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"220.181.16.84"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"source_location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                     </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"北京"</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">39.9289</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">116.3883</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"pre_device_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10142_deviceC"</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"speed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-                 </span><span class="p">},</span><span class="w">
-                 </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"time_local"</span><span class="p">:</span><span class="w"> </span><span class="mi">1519362384</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"time_series_predict_result"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"time_series_predict_result_1d"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">0</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testbychenlifei"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yufu_user_name"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
-             </span><span class="p">}],</span><span class="w">
-            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">72000</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">}</span><span class="w">    
-
-</span></code></pre><h2 id='1f0244b714'>在线人数</h2>
-<p>描述：无过滤器模式下，返回在线人数统计值；</p>
-
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api</code></p>
-
-<p><strong>Request Headers:</strong></p>
-
-<table><thead>
-<tr>
-<th>Header</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Tenant-Id</td>
-<td>default</td>
-</tr>
-<tr>
-<td>Start-Time</td>
-<td>20180201T090000+0800</td>
-</tr>
-<tr>
-<td>End-Time</td>
-<td>20180301T000000+0000</td>
-</tr>
-<tr>
-<td>Query-Param</td>
-<td>GROUP BY uid</td>
-</tr>
-</tbody></table>
-
-<p><strong>Response Parameters:</strong></p>
-
-<table><thead>
-<tr>
-<th>字段</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>aggs.dimension_a.buckets.length</td>
-<td>人数统计值</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>response </p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                        </span><span class="p">{</span><span class="w">
-                            </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">72000</span><span class="p">,</span><span class="w">
-                            </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testbychenlifei"</span><span class="w">
-                        </span><span class="p">}</span><span class="w">
-                    </span><span class="p">],</span><span class="w">
-                    </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">72000</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='819e16a423'>危险账号数 + 危险账号列表</h2>
-<p>描述：无过滤器模式下，返回危险账号列表和危险账号数统计值；</p>
-<h3 id='d28fa85f7b'>高危列表</h3>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api</code></p>
-
-<p><strong>Request Headers:</strong></p>
-
-<table><thead>
-<tr>
-<th>Header</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Tenant-Id</td>
-<td>default</td>
-</tr>
-<tr>
-<td>Start-Time</td>
-<td>20180201T090000+0800</td>
-</tr>
-<tr>
-<td>End-Time</td>
-<td>20180301T000000+0000</td>
-</tr>
-<tr>
-<td>Query-Param</td>
-<td>WHERE label_user BETWEEN (0.9, 1) GROUP BY uid</td>
-</tr>
-</tbody></table>
-
-<p><strong>Response Parameters:</strong></p>
-
-<table><thead>
-<tr>
-<th>字段</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>aggs.dimension_a.buckets.length</td>
-<td>高危账号数统计值</td>
-</tr>
-<tr>
-<td>aggs.dimension_a.buckets</td>
-<td>高危账号列表</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>response </p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                        </span><span class="p">{</span><span class="w">
-                            </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
-                            </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testbychenlifei"</span><span class="w">
-                        </span><span class="p">}</span><span class="w">
-                    </span><span class="p">],</span><span class="w">
-                    </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='72edbd4267'>中危列表</h3>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api</code></p>
-
-<p><strong>Request Headers:</strong></p>
-
-<table><thead>
-<tr>
-<th>Header</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Tenant-Id</td>
-<td>default</td>
-</tr>
-<tr>
-<td>Start-Time</td>
-<td>20180201T090000+0800</td>
-</tr>
-<tr>
-<td>End-Time</td>
-<td>20180301T000000+0000</td>
-</tr>
-<tr>
-<td>Query-Param</td>
-<td>WHERE label_user BETWEEN (0.5, 9) GROUP BY uid</td>
-</tr>
-</tbody></table>
-
-<p><strong>Response Parameters:</strong></p>
-
-<table><thead>
-<tr>
-<th>字段</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>aggs.dimension_a.buckets.length</td>
-<td>中危账号数统计值</td>
-</tr>
-<tr>
-<td>aggs.dimension_a.buckets</td>
-<td>中危账号列表</td>
-</tr>
-</tbody></table>
-<h3 id='21feeed124'>低危列表</h3>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api</code></p>
-
-<p><strong>Request Headers:</strong></p>
-
-<table><thead>
-<tr>
-<th>Header</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Tenant-Id</td>
-<td>default</td>
-</tr>
-<tr>
-<td>Start-Time</td>
-<td>20180201T090000+0800</td>
-</tr>
-<tr>
-<td>End-Time</td>
-<td>20180301T000000+0000</td>
-</tr>
-<tr>
-<td>Query-Param</td>
-<td>WHERE label_user BETWEEN (0.3, 0.5) GROUP BY uid</td>
-</tr>
-</tbody></table>
-
-<p><strong>Response Parameters:</strong></p>
-
-<table><thead>
-<tr>
-<th>字段</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>aggs.dimension_a.buckets.length</td>
-<td>低危账号数统计值</td>
-</tr>
-<tr>
-<td>aggs.dimension_a.buckets</td>
-<td>低危账号列表</td>
-</tr>
-</tbody></table>
-<h2 id='6948dc6950'>危险操作数</h2>
-<p>描述：无过滤器模式下，返回危险操作数统计值，不必记录危险操作列表；查询时添加对label_operation的条件即可；</p>
-<h3 id='85b72610bd'>高危操作数</h3>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api</code></p>
-
-<p><strong>Request Headers:</strong></p>
-
-<table><thead>
-<tr>
-<th>Header</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Tenant-Id</td>
-<td>default</td>
-</tr>
-<tr>
-<td>Start-Time</td>
-<td>20180201T090000+0800</td>
-</tr>
-<tr>
-<td>End-Time</td>
-<td>20180301T000000+0000</td>
-</tr>
-<tr>
-<td>Query-Param</td>
-<td>WHERE label_operation BETWEEN (0.9, 1) LIMIT 0</td>
-</tr>
-</tbody></table>
-
-<p><strong>Response Parameters:</strong></p>
-
-<table><thead>
-<tr>
-<th>字段</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>total</td>
-<td>高危操作数</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>response </p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-            </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='cfb4e24fb1'>中危操作数</h3>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api</code></p>
-
-<p><strong>Request Headers:</strong></p>
-
-<table><thead>
-<tr>
-<th>Header</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Tenant-Id</td>
-<td>default</td>
-</tr>
-<tr>
-<td>Start-Time</td>
-<td>20180201T090000+0800</td>
-</tr>
-<tr>
-<td>End-Time</td>
-<td>20180301T000000+0000</td>
-</tr>
-<tr>
-<td>Query-Param</td>
-<td>WHERE label_operation BETWEEN (0.5, 9) LIMIT 0</td>
-</tr>
-</tbody></table>
-
-<p><strong>Response Parameters:</strong></p>
-
-<table><thead>
-<tr>
-<th>字段</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>total</td>
-<td>中危操作数</td>
-</tr>
-</tbody></table>
-<h3 id='083815c4b3'>低危操作数</h3>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api</code></p>
-
-<p><strong>Request Headers:</strong></p>
-
-<table><thead>
-<tr>
-<th>Header</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Tenant-Id</td>
-<td>default</td>
-</tr>
-<tr>
-<td>Start-Time</td>
-<td>20180201T090000+0800</td>
-</tr>
-<tr>
-<td>End-Time</td>
-<td>20180301T000000+0000</td>
-</tr>
-<tr>
-<td>Query-Param</td>
-<td>WHERE label_operation BETWEEN (0.3, 0.5) LIMIT 0</td>
-</tr>
-</tbody></table>
-
-<p><strong>Response Parameters:</strong></p>
-
-<table><thead>
-<tr>
-<th>字段</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>total</td>
-<td>低危操作数</td>
-</tr>
-</tbody></table>
-<h2 id='548a8ebf2e'>应用列表</h2>
-<p>描述：由当前时间段中的日志动态生成应用列表的取值范围，并提供针对应用的过滤器；</p>
-<h3 id='step-es'>STEP-ES</h3>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api</code></p>
-
-<p><strong>Request Headers:</strong></p>
-
-<table><thead>
-<tr>
-<th>Header</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Tenant-Id</td>
-<td>default</td>
-</tr>
-<tr>
-<td>Start-Time</td>
-<td>20180201T090000+0800</td>
-</tr>
-<tr>
-<td>End-Time</td>
-<td>20180301T000000+0000</td>
-</tr>
-<tr>
-<td>Query-Param</td>
-<td>GROUP BY app_id</td>
-</tr>
-</tbody></table>
-
-<p><strong>Response Parameters:</strong></p>
-
-<table><thead>
-<tr>
-<th>字段</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>aggs.dimension_a.buckets</td>
-<td>应用ID列表</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">72000</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample-app-id"</span><span class="w">
-                    </span><span class="p">}</span><span class="w">
-                </span><span class="p">],</span><span class="w">
-                </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">72000</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='step-mariadb'>STEP-MariaDB 暂缺</h3>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /users/:user_id/apps</code></p>
-
-<p><strong>Request Parameters:</strong></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>user_id</td>
-<td>sample_uid</td>
-</tr>
-</tbody></table>
-
-<p><strong>Response Parameters:</strong></p>
-
-<table><thead>
-<tr>
-<th>字段</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>...</td>
-<td>...</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='fe7aa50b5f'>部门列表</h2>
-<p>描述：由当前时间段中的日志动态生成部门列表的取值范围，并提供针对部门的过滤器；</p>
-<h3 id='step-es-2'>STEP-ES</h3>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api</code></p>
-
-<p><strong>Request Headers:</strong></p>
-
-<table><thead>
-<tr>
-<th>Header</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Tenant-Id</td>
-<td>default</td>
-</tr>
-<tr>
-<td>Start-Time</td>
-<td>20180201T090000+0800</td>
-</tr>
-<tr>
-<td>End-Time</td>
-<td>20180301T000000+0000</td>
-</tr>
-<tr>
-<td>Query-Param</td>
-<td>GROUP BY dept_id</td>
-</tr>
-</tbody></table>
-
-<p><strong>Response Parameters:</strong></p>
-
-<table><thead>
-<tr>
-<th>字段</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>aggs.dimension_a.buckets</td>
-<td>部门ID列表</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">72000</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"human-resource"</span><span class="w">
-                    </span><span class="p">}</span><span class="w">
-                </span><span class="p">],</span><span class="w">
-                </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">72000</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='step-mariadb-2'>STEP-MariaDB 暂缺</h3>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /users/:user_id/departments</code></p>
-
-<p><strong>Request Parameters:</strong></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>user_id</td>
-<td>sample_uid</td>
-</tr>
-</tbody></table>
-
-<p><strong>Response Parameters:</strong></p>
-
-<table><thead>
-<tr>
-<th>字段</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>...</td>
-<td>...</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='cc81fff589'>过滤器</h2>
-<p>查询语法为以下几类的随意组合：</p>
+<h1 id='78d4d8d1ca'>查询语句示例</h1><h2 id='e7d73a53d9'>安全日志：查询接口</h2>
+<p>接口调用方法见：<a href="#38645019ef">基础CRUD-查询文档</a></p>
+<pre class="highlight plaintext"><code>curl -X POST \
+  'http://analytic_service:5000/api/update?type=log&amp;query=WHERE%20_pipeline.risk_level%3Dhealthy%20WHERE%20event_id%3Devent-d83h'
+</code></pre>
+<p>日志查询字段列表：</p>
 
 <ol>
-<li><p>危险账号过滤器：</p>
-
-<ul>
-<li>高危：<code>WHERE label_user BETWEEN (0.9, 1)</code></li>
-<li>中危：<code>WHERE label_user BETWEEN (0.5, 0.9)</code></li>
-<li>低危：<code>WHERE label_user BETWEEN (0.3, 0.5)</code></li>
-</ul></li>
-<li><p>危险操作过滤器：</p>
-
-<ul>
-<li>高危：<code>WHERE label_operation BETWEEN (0.9, 1)</code></li>
-<li>中危：<code>WHERE label_operation BETWEEN (0.5, 0.9)</code></li>
-<li>低危：<code>WHERE label_operation BETWEEN (0.3, 0.5)</code></li>
-</ul></li>
-<li><p>应用过滤器：<code>WHERE app_id = sample_app_id</code></p></li>
-<li><p>部门过滤器：<code>WHERE department_id = sample_department_id</code></p></li>
+<li>原始日志字段在最外层，不做解析处理；</li>
+<li>内部字段：实际存储在日志内部的字段，支持过滤和聚合；</li>
+<li>外部字段：实际存储在其他位置的字段，目前仅支持过滤，在06-25之后版本考虑实现聚合；</li>
 </ol>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="s2">"tn-yufu"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">租户id</span><span class="w">
+    </span><span class="s2">"operation_type"</span><span class="p">:</span><span class="s2">"CREATE"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">操作类型</span><span class="w">
+    </span><span class="s2">"operation_result"</span><span class="p">:</span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">操作结果</span><span class="w">
+    </span><span class="s2">"time_local"</span><span class="p">:</span><span class="s2">"2018-06-11T02:17:03.355Z"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">时间</span><span class="w">
+    </span><span class="s2">"source_ip"</span><span class="p">:</span><span class="s2">"192.168.2.179"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">用户ip</span><span class="w">
+    </span><span class="s2">"internal_ip"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">内部ip，</span><span class="w"> </span><span class="err">默认为空，</span><span class="w"> </span><span class="err">未使用</span><span class="w">
+    </span><span class="s2">"uid"</span><span class="p">:</span><span class="s2">"koucunhu@yufuid.com"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">uid</span><span class="w">
+    </span><span class="s2">"path"</span><span class="p">:</span><span class="s2">"/log-dir/admin-app.log"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">玉符日志</span><span class="w"> </span><span class="err">log</span><span class="w"> </span><span class="err">path</span><span class="w">
+    </span><span class="s2">"host_domain"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">访问的域名，</span><span class="w"> </span><span class="err">默认为空，未使用</span><span class="w">
+    </span><span class="s2">"event_id"</span><span class="p">:</span><span class="s2">"92e7f7b5-cad4-4abd-8c39-df5d360cfdd1"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">日志唯一id</span><span class="w">
+    </span><span class="s2">"_external"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"resolved_method"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">日志已处理的手段：停用(suspend)/封禁(lock)；默认为空</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">""</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">日志处理状态</span><span class="p">:</span><span class="w"> </span><span class="err">已处理(resolved)/未处理(unresolved)/忽略(ignored)，健康日志默认为空，危险日志默认为未处理</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"_pipeline"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="s2">"tn-yufu"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">租户id</span><span class="w">
+        </span><span class="s2">"source_location"</span><span class="p">:{</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">用户地理位置信息</span><span class="w">
+            </span><span class="s2">"country"</span><span class="p">:</span><span class="s2">"中国"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pre_device_id"</span><span class="p">:</span><span class="s2">"-1486793979"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">上一次device_id</span><span class="w">
+            </span><span class="s2">"distance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"city"</span><span class="p">:</span><span class="s2">"北京"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"latitude"</span><span class="p">:</span><span class="mf">39.54</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"time_local"</span><span class="p">:</span><span class="mi">1528683423</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"speed"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"longitude"</span><span class="p">:</span><span class="mf">116.23</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"operation_type"</span><span class="p">:</span><span class="s2">"CREATE"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">操作类型</span><span class="w">
+        </span><span class="s2">"city_set"</span><span class="p">:</span><span class="s2">"{"</span><span class="err">北京</span><span class="s2">":35}"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">登录地点集合</span><span class="w">
+        </span><span class="s2">"operation_type_1w"</span><span class="p">:</span><span class="s2">"{"</span><span class="err">DELETE</span><span class="s2">":{"</span><span class="err">SUCCESS</span><span class="s2">":12},"</span><span class="err">CREATE</span><span class="s2">":{"</span><span class="err">SUCCESS</span><span class="s2">":22},"</span><span class="err">LOGIN</span><span class="s2">":{"</span><span class="err">SUCCESS</span><span class="s2">":1}}"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="mi">1</span><span class="err">周内操作汇总</span><span class="w">
+        </span><span class="s2">"device_id_1d"</span><span class="p">:</span><span class="s2">"{"</span><span class="mi">-1486793979</span><span class="s2">":6}"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">一天内使用设备</span><span class="w">
+        </span><span class="s2">"feedback_risk_level"</span><span class="p">:</span><span class="s2">"healthy"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">用户反馈的日志危险等级，默认值等同于risk_level的值</span><span class="w">
+        </span><span class="s2">"source_ip"</span><span class="p">:</span><span class="s2">"192.168.2.179"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">用户ip</span><span class="w">
+        </span><span class="s2">"operation_type_1h"</span><span class="p">:</span><span class="s2">"{"</span><span class="err">CREATE</span><span class="s2">":{"</span><span class="err">SUCCESS</span><span class="s2">":5},"</span><span class="err">LOGIN</span><span class="s2">":{"</span><span class="err">SUCCESS</span><span class="s2">":1}}"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="mi">1</span><span class="err">小时操作汇总</span><span class="w">
+        </span><span class="s2">"uid"</span><span class="p">:</span><span class="s2">"koucunhu@yufuid.com"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">uid</span><span class="w">
+        </span><span class="s2">"operation_type_5m"</span><span class="p">:</span><span class="s2">"{"</span><span class="err">CREATE</span><span class="s2">":{"</span><span class="err">SUCCESS</span><span class="s2">":5}}"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="mi">5</span><span class="err">分钟操作汇总</span><span class="w">
+        </span><span class="s2">"device_id_5m"</span><span class="p">:</span><span class="s2">"{"</span><span class="mi">-1486793979</span><span class="s2">":5}"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="mi">5</span><span class="err">分钟设备汇总</span><span class="w">
+        </span><span class="s2">"operation_type_1d"</span><span class="p">:</span><span class="s2">"{"</span><span class="err">CREATE</span><span class="s2">":{"</span><span class="err">SUCCESS</span><span class="s2">":5},"</span><span class="err">LOGIN</span><span class="s2">":{"</span><span class="err">SUCCESS</span><span class="s2">":1}}"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="mi">1</span><span class="err">天操作汇总</span><span class="w">
+        </span><span class="s2">"device_id_1h"</span><span class="p">:</span><span class="s2">"{"</span><span class="mi">-1486793979</span><span class="s2">":6}"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="mi">1</span><span class="err">小时设备汇总</span><span class="w">
+        </span><span class="s2">"ip_risk"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">ip属于黑名单的级别</span><span class="w">
+        </span><span class="s2">"app_id"</span><span class="p">:</span><span class="s2">"dp-448161e21abb46478aa88a5705e93232"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">操作对象。</span><span class="w"> </span><span class="err">用户id或者是应用id</span><span class="w">
+        </span><span class="s2">"user_agent"</span><span class="p">:</span><span class="s2">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.79 Safari/537.36"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="mi">1528683423</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">日志发生时间戳</span><span class="w">
+        </span><span class="s2">"device_id"</span><span class="p">:</span><span class="s2">"-1486793979"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">设备id</span><span class="w">
+        </span><span class="s2">"operation_type_4w"</span><span class="p">:</span><span class="s2">"{"</span><span class="err">DELETE</span><span class="s2">":{"</span><span class="err">SUCCESS</span><span class="s2">":12},"</span><span class="err">CREATE</span><span class="s2">":{"</span><span class="err">SUCCESS</span><span class="s2">":22},"</span><span class="err">LOGIN</span><span class="s2">":{"</span><span class="err">SUCCESS</span><span class="s2">":1}}"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="mi">4</span><span class="err">周操作汇总</span><span class="w">
+        </span><span class="s2">"device_id_1w"</span><span class="p">:</span><span class="s2">"{"</span><span class="mi">-1486793979</span><span class="s2">":35}"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="mi">1</span><span class="err">周设备汇总</span><span class="w">
+        </span><span class="s2">"operation_result"</span><span class="p">:</span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">操作结果</span><span class="w">
+        </span><span class="s2">"time_local"</span><span class="p">:</span><span class="mi">1528683423</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">日志发生时间戳</span><span class="w">
+        </span><span class="s2">"basic_parameter"</span><span class="p">:</span><span class="s2">"{}"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">临时参数表</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:{</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">data-pipe为日志打的标签</span><span class="w">
 
-<p>例如：应用app_0的dept_1部门所有高危账户产生的高危操作：</p>
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"pre_location"</span><span class="p">:</span><span class="s2">"{"</span><span class="err">country</span><span class="s2">":"</span><span class="err">中国</span><span class="s2">","</span><span class="err">pre_device_id</span><span class="s2">":"</span><span class="mi">-1486793979</span><span class="s2">","</span><span class="err">pre_time_local</span><span class="s2">":1528683423,"</span><span class="err">distance</span><span class="s2">":0,"</span><span class="err">city</span><span class="s2">":"</span><span class="err">北京</span><span class="s2">","</span><span class="err">latitude</span><span class="s2">":39.54,"</span><span class="err">time_local</span><span class="s2">":1528683423,"</span><span class="err">speed</span><span class="s2">":0,"</span><span class="err">longitude</span><span class="s2">":116.23}"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">用户上次操作的地理位置信息</span><span class="w">
+        </span><span class="s2">"labels"</span><span class="p">:[</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">data-pipe打的标签列表，用于日志回溯索引</span><span class="w">
 
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api</code></p>
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"tags"</span><span class="p">:[</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">data-pipe打的tags，用于日志回溯索引</span><span class="w">
 
-<p><strong>Request Headers:</strong></p>
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"risk_level"</span><span class="p">:</span><span class="s2">"healthy"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">data-pipe判断的日志风险等级</span><span class="w">
+        </span><span class="s2">"event_id"</span><span class="p">:</span><span class="s2">"92e7f7b5-cad4-4abd-8c39-df5d360cfdd1"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">日志id</span><span class="w">
+        </span><span class="s2">"operation_obj_1d"</span><span class="p">:</span><span class="s2">"{}"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="mi">1</span><span class="err">天内操作对象统计</span><span class="w">
+        </span><span class="s2">"is_valid"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">日志是否合法</span><span class="w">
+        </span><span class="s2">"operation_description"</span><span class="p">:</span><span class="s2">"None"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">操作描述</span><span class="w">
+        </span><span class="s2">"device_id_4w"</span><span class="p">:</span><span class="s2">"{"</span><span class="mi">-1486793979</span><span class="s2">":35}"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="mi">4</span><span class="err">周内设备统计</span><span class="w">
+        </span><span class="s2">"parameters"</span><span class="p">:{</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">危险行为的参数，用于前端生成危险行为的描述文案</span><span class="w">
+
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"operation_description"</span><span class="p">:</span><span class="s2">"None"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">操作描述</span><span class="w">
+    </span><span class="s2">"app_id"</span><span class="p">:</span><span class="s2">"dp-448161e21abb46478aa88a5705e93232"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">操作对象。</span><span class="w"> </span><span class="err">用户id或者是应用id</span><span class="w">
+    </span><span class="s2">"user_agent"</span><span class="p">:</span><span class="s2">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.79 Safari/537.36"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<ul>
+<li>内部字段</li>
+</ul>
 
 <table><thead>
 <tr>
-<th>Header</th>
-<th>Value</th>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>Tenant-Id</td>
-<td>default</td>
+<td>event_id</td>
+<td>keyword</td>
+<td>日志ID</td>
 </tr>
 <tr>
-<td>Start-Time</td>
-<td>20180201T090000+0800</td>
+<td>tenant_id</td>
+<td>keyword</td>
+<td>租户ID</td>
 </tr>
 <tr>
-<td>End-Time</td>
-<td>20180301T000000+0000</td>
+<td>time_local</td>
+<td>date</td>
+<td>日志触发时间</td>
 </tr>
 <tr>
-<td>Query-Param</td>
-<td>WHERE label_user BETWEEN (0.9, 1) AND label_operation BETWEEN (0.9, 1) AND app_id = app_0 AND WHERE department_id = dept_1</td>
-</tr>
-</tbody></table>
-
-<p><strong>Response Parameters:</strong></p>
-
-<table><thead>
-<tr>
-<th>字段</th>
-<th>描述</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>source_location.latitude</td>
-<td>起点-纬度</td>
+<td>uid</td>
+<td>keyword</td>
+<td>用户ID</td>
 </tr>
 <tr>
-<td>source_location.longitude</td>
-<td>起点-经度</td>
+<td>source_ip</td>
+<td>keyword</td>
+<td>源IP</td>
 </tr>
 <tr>
-<td>source_location.city</td>
-<td>起点-城市标签</td>
+<td>app_id</td>
+<td>keyword</td>
+<td>操作对象=应用ID或用户ID</td>
 </tr>
 <tr>
-<td>host_location.latitude</td>
-<td>终点-经度</td>
-</tr>
-<tr>
-<td>host_location.longitude</td>
-<td>终点-经度</td>
+<td>user_agent</td>
+<td>keyword</td>
+<td>设备(浏览器、操作系统)</td>
 </tr>
 <tr>
 <td>operation_type</td>
-<td>边-操作类型标签</td>
+<td>keyword</td>
+<td>操作类型</td>
 </tr>
 <tr>
 <td>operation_result</td>
-<td>边-操作结果标签</td>
+<td>keyword</td>
+<td>操作结果</td>
+</tr>
+<tr>
+<td>operation_description</td>
+<td>text</td>
+<td>操作描述（考虑分词）</td>
+</tr>
+<tr>
+<td>_external.status</td>
+<td>keyword</td>
+<td>日志处理状态=已处理(resolved)/未处理(unresolved)/忽略(ignored)</td>
 </tr>
 </tbody></table>
 
-<blockquote>
-<p>response </p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-            </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-                 </span><span class="s2">"device_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10142_deviceC"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"device_id_1d"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"device_id_1h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"device_id_1month"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"device_id_1w"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"device_id_5m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"event_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"host_ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"220.181.16.184"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"host_location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                     </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"北京"</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">39.9289</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">116.3883</span><span class="w">
-                 </span><span class="p">},</span><span class="w">
-                 </span><span class="s2">"http_user_agent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                     </span><span class="s2">"browser"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Safari"</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"browser_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"device"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile"</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"operating_system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iOS 6 (iPhone)"</span><span class="w">
-                 </span><span class="p">},</span><span class="w">
-                 </span><span class="s2">"httpcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"httpcode_1d"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">200</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"httpcode_1h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">200</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"httpcode_1month"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">200</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"httpcode_1w"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">200</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"httpcode_5m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">200</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"is_handled"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"is_safe"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                     </span><span class="s2">"100"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0000039327715</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"101"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.955179e-7</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"400"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"000"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9999951</span><span class="w">
-                 </span><span class="p">},</span><span class="w">
-                 </span><span class="s2">"label_account"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"label_device"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"label_operation"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"label_user"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0000039327715</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"operation_result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"operation_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"login"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"operation_type_1d"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">login</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">success</span><span class="se">\"</span><span class="s2">:5013}}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"operation_type_1h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">login</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">success</span><span class="se">\"</span><span class="s2">:5013}}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"operation_type_1h_advanced"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">login</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">success</span><span class="se">\"</span><span class="s2">:5013}}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"operation_type_1month"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">login</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">success</span><span class="se">\"</span><span class="s2">:5013}}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"operation_type_1w"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">login</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">success</span><span class="se">\"</span><span class="s2">:5013}}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"operation_type_5m"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">login</span><span class="se">\"</span><span class="s2">:{</span><span class="se">\"</span><span class="s2">success</span><span class="se">\"</span><span class="s2">:5013}}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"pre_location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">pre_device_id</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">10142_deviceC</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">pre_time_local</span><span class="se">\"</span><span class="s2">:1519362384,</span><span class="se">\"</span><span class="s2">distance</span><span class="se">\"</span><span class="s2">:0,</span><span class="se">\"</span><span class="s2">city</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">北京</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">latitude</span><span class="se">\"</span><span class="s2">:39.9289,</span><span class="se">\"</span><span class="s2">speed</span><span class="se">\"</span><span class="s2">:0,</span><span class="se">\"</span><span class="s2">longitude</span><span class="se">\"</span><span class="s2">:116.3883}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"source_ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"220.181.16.84"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"source_location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                     </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"北京"</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"distance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">39.9289</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">116.3883</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"pre_device_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10142_deviceC"</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"speed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-                 </span><span class="p">},</span><span class="w">
-                 </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"time_local"</span><span class="p">:</span><span class="w"> </span><span class="mi">1519362384</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"time_series_predict_result"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"time_series_predict_result_1d"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">0</span><span class="se">\"</span><span class="s2">:5013}"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testbychenlifei"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yufu_user_name"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
-             </span><span class="p">}],</span><span class="w">
-            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">72000</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-    </span><span class="p">}</span><span class="w">    
+<p>，健康日志默认为空，危险日志默认为未处理
+_external.resolved_method   | keyword   |   日志已处理的手段=停用(suspend)/封禁(lock)；默认为空
+_pipeline.source_location.city |     keyword     |     城市
+_pipeline.source_location.country |     keyword     |     国家
+_pipeline.is_valid    |     boolean     |     格式是否合法<br>
+_pipeline.risk_level    |     keyword     |     日志风险等级=high/mid/low/healthy(优先级高于label.xxx)
+_pipeline.labels    |     keyword     |     预警类型的列表（优先级由高到低）
+_pipeline.label.xxx   |     float     |     某预警类型置信概率
+_pipeline.tags|      keyword     |    与某预警类型相关的列表</p>
 
-</span></code></pre>
-<p>注意：应用列表和部门列表如果是依照日志动态生成，同样受过滤器选择的制约，查询条件同上</p>
-<h1 id='9244f67449'>用户数 + 操作数时序图</h1><h2 id='51ee730b0c'>用户数时序图</h2>
-<p>描述：用户数在时间区间内和时间粒度中的分布序列；注意GROUP BY的顺序是时间序列在前，用户在后；</p>
-
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api</code></p>
-
-<p><strong>Request Headers:</strong></p>
+<ul>
+<li>外部字段</li>
+</ul>
 
 <table><thead>
 <tr>
-<th>Header</th>
-<th>Value</th>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>Tenant-Id</td>
-<td>default</td>
+<td>_user.department_ids</td>
+<td>keyword</td>
+<td>部门ID列表</td>
 </tr>
 <tr>
-<td>Start-Time</td>
-<td>20180201T090000+0800</td>
+<td>_user.critical_department_ids</td>
+<td>keyword</td>
+<td>部门ID列表（用于聚合）</td>
 </tr>
 <tr>
-<td>End-Time</td>
-<td>20180301T000000+0000</td>
+<td>_user.username</td>
+<td>text</td>
+<td>用户名</td>
 </tr>
 <tr>
-<td>Query-Param</td>
-<td>GROUP BY (time_local INTER 3600), uid</td>
+<td>_user.display_name</td>
+<td>text</td>
+<td>姓名</td>
+</tr>
+<tr>
+<td>_user.risk_level</td>
+<td>keyword</td>
+<td>账户风险等级=high/mid/low/healthy</td>
+</tr>
+<tr>
+<td>_user.role</td>
+<td>keyword</td>
+<td>账户角色=admin/user</td>
 </tr>
 </tbody></table>
-
-<p><strong>Response Parameters:</strong></p>
+<h3 id='d3fa086ed2'>日志合法过滤器：</h3>
+<p>注意任何查询中都需要添加公共过滤器：日志格式合法标志位；</p>
 
 <table><thead>
 <tr>
-<th>字段</th>
-<th>描述</th>
+<th>Parameter</th>
+<th>Example</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>aggs.dimension_a.buckets</td>
-<td>时间序列-列表</td>
+<td>type</td>
+<td>log</td>
 </tr>
 <tr>
-<td>aggs.dimension_a.buckets[i].key</td>
-<td>时间戳</td>
-</tr>
-<tr>
-<td>aggs.dimension_a.buckets[i].dimension_b.buckets</td>
-<td>用户序列-列表</td>
-</tr>
-<tr>
-<td>aggs.dimension_a.buckets[i].dimension_b.buckets.length</td>
-<td>用户数</td>
-</tr>
-<tr>
-<td>aggs.dimension_a.buckets[i].dimension_b.buckets[j].key</td>
-<td>用户ID</td>
+<td>query</td>
+<td>WHERE  _pipeline.is_valid=true</td>
 </tr>
 </tbody></table>
 
-<blockquote>
-<p>response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"dimension_b"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                            </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                                </span><span class="p">{</span><span class="w">
-                                    </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">72000</span><span class="p">,</span><span class="w">
-                                    </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testbychenlifei"</span><span class="w">
-                                </span><span class="p">}</span><span class="w">
-                            </span><span class="p">],</span><span class="w">
-                            </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                            </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-                        </span><span class="p">},</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">72000</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1519362000</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"dimension_b"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                            </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-                            </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                            </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-                        </span><span class="p">},</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1519365600</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"dimension_b"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                            </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-                            </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                            </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-                        </span><span class="p">},</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1519369200</span><span class="w">
-                    </span><span class="p">}</span><span class="w">
-                </span><span class="p">]</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">72000</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='04c9c1e0d4'>操作数时序图</h2>
-<p>描述：操作数在时间区间内和时间粒度中的分布序列；</p>
+<ol>
+<li>格式合法日志：<code>WHERE  _pipeline.is_valid=true</code></li>
+<li>格式非法日志：<code>WHERE  _pipeline.is_valid=false</code></li>
+</ol>
+<h3 id='674730753d'>危险、健康日志过滤器</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td>WHERE  _pipeline.risk_level=healthy</td>
+</tr>
+</tbody></table>
 
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api</code></p>
+<ol>
+<li>健康日志：<code>WHERE  _pipeline.risk_level=healthy</code></li>
+<li>危险日志：<code>WHERE NOT _pipeline.risk_level=healthy</code></li>
+</ol>
+<h3 id='de8356b743'>部门过滤器</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td>WHERE _user.department_ids=dept_2jd8</td>
+</tr>
+</tbody></table>
 
-<p><strong>Request Headers:</strong></p>
+<ol>
+<li>单个部门：<code>WHERE _user.department_ids=dept_2jd8</code></li>
+<li>多个部门：<code>WHERE _user.department_ids=dept_2jd8 OR _user.department_ids=dept_9sjw</code></li>
+</ol>
+<h3 id='8ece698b24'>时间过滤器</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td>WHERE time_local BETWEEN(2018-06-17T00:00:00+0800, 2018-07-01T00:00:00+0800)</td>
+</tr>
+</tbody></table>
+<h3 id='49a08ee204'>用户名或姓名模糊检索过滤器</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td>WHERE _user.username~王 OR _user.display_name~王</td>
+</tr>
+</tbody></table>
+<h3 id='ip'>城市或IP模糊检索过滤器</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td>WHERE _pipeline.source_location.city~上海 OR source_ip~上海</td>
+</tr>
+</tbody></table>
+<h3 id='4d1c68dcad'>处理状态过滤器（可多选）</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td>WHERE _external.status=unresolved</td>
+</tr>
+</tbody></table>
+
+<ol>
+<li>已处理日志：<code>WHERE _external.status=resolved</code></li>
+<li>未处理日志：<code>WHERE _external.status=unresolved</code></li>
+<li>已忽略日志：<code>WHERE _external.status=ignored</code></li>
+<li>多选（已处理+已忽略）：<code>WHERE _external.status=resolved OR _external.status=ignored</code></li>
+</ol>
+<h3 id='e255d01e81'>访问时间排序</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td>ORDER BY time_local DESC</td>
+</tr>
+</tbody></table>
+
+<ol>
+<li>时间倒序：<code>ORDER BY time_local DESC</code></li>
+<li>时间正序：<code>ORDER BY time_local ASC</code> </li>
+</ol>
+<h3 id='c57655e18e'>管理员过滤器（可多选）</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td>WHERE _user.role=admin</td>
+</tr>
+</tbody></table>
+
+<ol>
+<li>管理员：<code>WHERE _user.role=admin</code></li>
+<li>普通用户：<code>WHERE _user.role=user</code> </li>
+<li>多选（管理员+普通用户）： <code>WHERE _user.role=admin OR _user.role=user</code> 或 <code>空</code></li>
+</ol>
+<h3 id='pipeline'>浏览器过滤器（可多选）?? pipeline是否有全解析字段</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td>WHERE user_agent~Chrome</td>
+</tr>
+</tbody></table>
+
+<ol>
+<li>多选（Safari+Chrome）： <code>WHERE user_agent~Chrome OR user_agent~Safari</code></li>
+</ol>
+<h3 id='b266b5a278'>风险等级（可多选）</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td>WHERE _pipeline.risk_level=high</td>
+</tr>
+</tbody></table>
+
+<ol>
+<li>高危日志：<code>WHERE _pipeline.risk_level=high</code></li>
+<li>中危日志：<code>WHERE _pipeline.risk_level=mid</code></li>
+<li>低危日志：<code>WHERE _pipeline.risk_level=low</code></li>
+<li>多选（高危+中危）：<code>WHERE _pipeline.risk_level=high OR _pipeline.risk_level=mid</code></li>
+</ol>
+<h3 id='8aa0813814'>分页器</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td>LIMIT 10</td>
+</tr>
+</tbody></table>
+
+<ol>
+<li>offset=0, pageSize=10：<code>LIMIT 10</code></li>
+<li>offset=50, pageSize=10：<code>LIMIT 50, 10</code></li>
+</ol>
+<h3 id='50e7d28821'>危险日志相关日志</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td>RELATED BY <event_id>, <label></td>
+</tr>
+</tbody></table>
+
+<ol>
+<li>指定危险日志event_id和危险类型标签：<code>RELATED BY event-d83h, 100</code></li>
+<li>仅指定危险日志event_id（默认取labels第一个类型标签）：<code>RELATED BY event-d83h</code></li>
+</ol>
+<h3 id='e0457171b0'>过滤器叠加</h3>
+<ol>
+<li>不同过滤器的叠加由AND运算符实现；</li>
+<li>当前OR运算不允许出现复合嵌套，例如（不合法实例！）：<code>WHERE (a=1 AND b=2) OR c=3</code>; </li>
+<li>在以上基础上，当AND和OR同时出现，请在OR运算外部加括号表明优先级：<code>WHERE (a=1 OR b=2) AND c=3</code>;</li>
+<li>BETWEEN语句在AND连用情况下，请在外部加括号表明优先级：<code>WHERE (range BETWEEN(low, high)) AND a=1</code>;
+注意：2.3.4均属于语法设计不足，06-25后版本语法树会对此做进一步优化更新；</li>
+</ol>
+
+<p>实例：日志合法 + 日志类型=健康 + 部门=dept_1 + 时间区间 + 用户名/姓名%王 + 时间倒序 + 第二页:pagesize=10</p>
+
+<p><code>WHERE _pipeline.is_valid=true AND _pipeline.risk_level=healthy AND _user.department_ids=dept_0 AND (time_local BETWEEN(2018-06-17T00:00:00+0800, 2018-07-01T00:00:00+0800)) AND (_user.username~王 OR _user.display_name~王) ORDER BY time_local DESC LIMIT 10, 10</code></p>
+<h2 id='9ae4129295'>安全日志：更新接口</h2>
+<p>接口调用方法见：<a href="#fe2cc3e076">基础CRUD-更新文档</a></p>
+<pre class="highlight plaintext"><code>curl -X POST \
+  'http://analytic_service:5000/api/update?type=log&amp;query=WHERE%20_pipeline.risk_level%3Dhealthy%20WHERE%20event_id%3Devent-d83h'
+</code></pre>
+<p>日志待更新字段：</p>
+
+<ol>
+<li>内部字段：实际存储在日志内部的字段，支持更新；</li>
+<li>外部字段：实际存储在其他位置的字段，不支持更新！业务数据由专用接口完成更新；</li>
+</ol>
+
+<ul>
+<li>内部字段</li>
+</ul>
 
 <table><thead>
 <tr>
-<th>Header</th>
-<th>Value</th>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>Tenant-Id</td>
-<td>default</td>
+<td>_external.status</td>
+<td>keyword</td>
+<td>日志处理状态=已处理(resolved)/未处理(unresolved)/忽略(ignored)，健康日志默认为空，危险日志默认为未处理</td>
 </tr>
 <tr>
-<td>Start-Time</td>
-<td>20180201T090000+0800</td>
+<td>_external.resolved_method</td>
+<td>keyword</td>
+<td>日志已处理的手段=停用(suspend)/封禁(lock)；默认为空</td>
 </tr>
 <tr>
-<td>End-Time</td>
-<td>20180301T000000+0000</td>
-</tr>
-<tr>
-<td>Query-Param</td>
-<td>GROUP BY time_local INTER 3600</td>
+<td>_pipeline.risk_level</td>
+<td>keyword</td>
+<td>日志风险等级=high/mid/low/healthy(优先级高于label.xxx)</td>
 </tr>
 </tbody></table>
-
-<p><strong>Response Parameters:</strong></p>
-
+<h3 id='f9e9892904'>日志反馈（??是否联动日志处理状态？）</h3>
 <table><thead>
 <tr>
-<th>字段</th>
-<th>描述</th>
+<th>Parameter</th>
+<th>Example</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>aggs.dimension_a.buckets</td>
-<td>时间序列-列表</td>
+<td>type</td>
+<td>log</td>
 </tr>
 <tr>
-<td>aggs.dimension_a.buckets[i].doc_count</td>
-<td>操作数</td>
-</tr>
-<tr>
-<td>aggs.dimension_a.buckets[i].key</td>
-<td>时间戳</td>
+<td>query</td>
+<td>SET _pipeline.risk_level=healthy WHERE event_id=event-d83h</td>
 </tr>
 </tbody></table>
 
-<blockquote>
-<p>response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">72000</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1519362000</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1519365600</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1519369200</span><span class="w">
-                    </span><span class="p">}</span><span class="w">
-                </span><span class="p">]</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">72000</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='errors'>Errors</h1>
+<ol>
+<li>设置用户反馈=健康：<code>SET _pipeline.risk_level=healthy WHERE event_id=event-d83h</code></li>
+<li>设置用户反馈=危险（危险程度=??）：<code>SET _pipeline.risk_level=high WHERE event_id=event-d83h</code></li>
+</ol>
+<h3 id='1558a0e6d8'>日志处理状态设置</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td>SET _external.status=resolved AND _external.resolved_method=lock WHERE event_id=event-d83h</td>
+</tr>
+</tbody></table>
+
+<ol>
+<li>设置处理状态=忽略：<code>SET _external.status=ignored WHERE event_id=event-d83h</code></li>
+<li>设置处理状态=已处理：<code>SET _external.status=resolved AND _external.resolved_method=lock WHERE event_id=event-d83h</code></li>
+<li>设置处理状态=未处理：<code>SET _external.status=unresolved WHERE event_id=event-d83h</code></li>
+</ol>
+
+<p>注意：日志处理方法仅对处理状态=已处理时有效；</p>
+<h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
