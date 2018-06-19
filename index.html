@@ -1096,6 +1096,12 @@
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"_pipeline"</span><span class="p">:{</span><span class="w">
         </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="s2">"tn-yufu"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">租户id</span><span class="w">
+        </span><span class="s2">"user_agent"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"browser"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chrome"</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">浏览器类型</span><span class="w">
+            </span><span class="s2">"browser_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">     </span><span class="err">//</span><span class="w"> </span><span class="err">浏览器版本号</span><span class="w">
+            </span><span class="s2">"operation_system"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">     </span><span class="err">//</span><span class="w"> </span><span class="err">操作系统类型</span><span class="w">
+            </span><span class="s2">"operation_system_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">      </span><span class="err">//</span><span class="w"> </span><span class="err">操作系统版本号</span><span class="w">
+        </span><span class="p">},</span><span class="w">
         </span><span class="s2">"source_location"</span><span class="p">:{</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">用户地理位置信息</span><span class="w">
             </span><span class="s2">"country"</span><span class="p">:</span><span class="s2">"中国"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"pre_device_id"</span><span class="p">:</span><span class="s2">"-1486793979"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">上一次device_id</span><span class="w">
@@ -1264,7 +1270,7 @@
 <p>注意：</p>
 
 <ol>
-<li>日志处理状态：已处理(resolved)/未处理(unresolved)/忽略(ignored)，健康日志默认为空，危险日志默认为未处理</li>
+<li>日志处理状态：已处理(resolved)/未处理(unresolved)，健康日志默认为空，危险日志默认为未处理</li>
 <li>日志处理手段：停用(suspend)/封禁(lock)；默认为空</li>
 <li>日志风险等级：高危(high)/中危(mid)/低危(low)/健康(healthy)，优先级高于label.xxx</li>
 </ol>
@@ -1444,8 +1450,7 @@
 <ol>
 <li>已处理日志：<code>WHERE _external.status=resolved</code></li>
 <li>未处理日志：<code>WHERE _external.status=unresolved</code></li>
-<li>已忽略日志：<code>WHERE _external.status=ignored</code></li>
-<li>多选（已处理+已忽略）：<code>WHERE _external.status=resolved OR _external.status=ignored</code></li>
+<li>多选（已处理+未处理）：<code>WHERE _external.status=resolved OR _external.status=unresolved</code> 或 <code>空</code></li>
 </ol>
 <h3 id='e255d01e81'>访问时间排序</h3>
 <table><thead>
@@ -1490,7 +1495,7 @@
 <li>普通用户：<code>WHERE _user.role=user</code> </li>
 <li>多选（管理员+普通用户）： <code>WHERE _user.role=admin OR _user.role=user</code> 或 <code>空</code></li>
 </ol>
-<h3 id='pipeline'>浏览器过滤器（可多选）?? pipeline是否有全解析字段</h3>
+<h3 id='72bacb3206'>浏览器过滤器（可多选）</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1503,12 +1508,12 @@
 </tr>
 <tr>
 <td>query</td>
-<td>WHERE user_agent~Chrome</td>
+<td>WHERE _pipeline.user_agent.browser=chrome</td>
 </tr>
 </tbody></table>
 
 <ol>
-<li>多选（Safari+Chrome）： <code>WHERE user_agent~Chrome OR user_agent~Safari</code></li>
+<li>多选（Safari+Chrome）： <code>WHERE _pipeline.user_agent.browser=chrome OR _pipeline.user_agent.browser=safari</code></li>
 </ol>
 <h3 id='b266b5a278'>风险等级（可多选）</h3>
 <table><thead>
@@ -1613,7 +1618,7 @@
 <tr>
 <td>_external.status</td>
 <td>keyword</td>
-<td>日志处理状态=已处理(resolved)/未处理(unresolved)/忽略(ignored)，健康日志默认为空，危险日志默认为未处理</td>
+<td>日志处理状态=已处理(resolved)/未处理(unresolved)，健康日志默认为空，危险日志默认为未处理</td>
 </tr>
 <tr>
 <td>_external.resolved_method</td>
@@ -1626,7 +1631,7 @@
 <td>日志风险等级=high/mid/low/healthy(优先级高于label.xxx)</td>
 </tr>
 </tbody></table>
-<h3 id='f9e9892904'>日志反馈（??是否联动日志处理状态？）</h3>
+<h3 id='03c667b8fb'>日志反馈（??是否联动日志处理状态）</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1643,10 +1648,7 @@
 </tr>
 </tbody></table>
 
-<ol>
-<li>设置用户反馈=健康：<code>SET _pipeline.risk_level=healthy WHERE event_id=event-d83h</code></li>
-<li>设置用户反馈=危险（危险程度=??）：<code>SET _pipeline.risk_level=high WHERE event_id=event-d83h</code></li>
-</ol>
+<p>设置用户反馈=危险（危险程度=high）：<code>SET _pipeline.risk_level=high WHERE event_id=event-d83h</code></p>
 <h3 id='1558a0e6d8'>日志处理状态设置</h3>
 <table><thead>
 <tr>
