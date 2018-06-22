@@ -1092,16 +1092,19 @@
     </span><span class="s2">"event_id"</span><span class="p">:</span><span class="s2">"92e7f7b5-cad4-4abd-8c39-df5d360cfdd1"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">日志唯一id</span><span class="w">
     </span><span class="s2">"_external"</span><span class="p">:{</span><span class="w">
         </span><span class="s2">"resolved_method"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">日志已处理的手段：停用(suspend)/封禁(lock)；默认为空</span><span class="w">
-        </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">""</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">日志处理状态</span><span class="p">:</span><span class="w"> </span><span class="err">已处理(resolved)/未处理(unresolved)/忽略(ignored)，健康日志默认为空，危险日志默认为未处理</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">日志处理状态</span><span class="p">:</span><span class="w"> </span><span class="err">已处理(resolved)/未处理(unresolved)/忽略(ignored)，健康日志默认为空，危险日志默认为未处理</span><span class="w">
+        </span><span class="s2">"feedback_risk_level"</span><span class="p">:</span><span class="s2">"default"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">用户反馈的日志危险等级，默认值为default</span><span class="p">,</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="err">取值</span><span class="p">[</span><span class="err">default</span><span class="p">,</span><span class="w"> </span><span class="err">low</span><span class="p">,</span><span class="w"> </span><span class="err">medium</span><span class="p">,</span><span class="w"> </span><span class="err">high</span><span class="p">,</span><span class="w"> </span><span class="err">healthy</span><span class="p">]</span><span class="w">
+        </span><span class="s2">"feedback_description"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">用户输入的预警原因：可取值为长度不超过</span><span class="mi">100</span><span class="err">个汉字的字符串，初始值为缺省；用于记录用户在前端手动输入的预警原因；</span><span class="w">
+        </span><span class="s2">"tagged_by"</span><span class="p">:</span><span class="s2">"system"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">用户标记：默认值为system</span><span class="p">,</span><span class="w"> </span><span class="err">可取值</span><span class="p">[</span><span class="err">system</span><span class="p">,</span><span class="w"> </span><span class="err">user</span><span class="p">]</span><span class="err">；用于区分每条日志展示的为系统判断结果还是用户判断结果；</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"_pipeline"</span><span class="p">:{</span><span class="w">
         </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="s2">"tn-yufu"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">租户id</span><span class="w">
         </span><span class="s2">"user_agent"</span><span class="p">:{</span><span class="w">
-            </span><span class="s2">"browser"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chrome"</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">浏览器类型</span><span class="w">
-            </span><span class="s2">"browser_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">     </span><span class="err">//</span><span class="w"> </span><span class="err">浏览器版本号</span><span class="w">
-            </span><span class="s2">"operation_system"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">     </span><span class="err">//</span><span class="w"> </span><span class="err">操作系统类型</span><span class="w">
-            </span><span class="s2">"operation_system_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">      </span><span class="err">//</span><span class="w"> </span><span class="err">操作系统版本号</span><span class="w">
-        </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"browser"</span><span class="p">:</span><span class="s2">"Chrome"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"browser_version"</span><span class="p">:</span><span class="s2">"53"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"operating_system"</span><span class="p">:</span><span class="s2">"Mac OS X"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"device"</span><span class="p">:</span><span class="s2">"Computer"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
         </span><span class="s2">"source_location"</span><span class="p">:{</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">用户地理位置信息</span><span class="w">
             </span><span class="s2">"country"</span><span class="p">:</span><span class="s2">"中国"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"pre_device_id"</span><span class="p">:</span><span class="s2">"-1486793979"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">上一次device_id</span><span class="w">
@@ -1116,7 +1119,6 @@
         </span><span class="s2">"city_set"</span><span class="p">:</span><span class="s2">"{"</span><span class="err">北京</span><span class="s2">":35}"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">登录地点集合</span><span class="w">
         </span><span class="s2">"operation_type_1w"</span><span class="p">:</span><span class="s2">"{"</span><span class="err">DELETE</span><span class="s2">":{"</span><span class="err">SUCCESS</span><span class="s2">":12},"</span><span class="err">CREATE</span><span class="s2">":{"</span><span class="err">SUCCESS</span><span class="s2">":22},"</span><span class="err">LOGIN</span><span class="s2">":{"</span><span class="err">SUCCESS</span><span class="s2">":1}}"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="mi">1</span><span class="err">周内操作汇总</span><span class="w">
         </span><span class="s2">"device_id_1d"</span><span class="p">:</span><span class="s2">"{"</span><span class="mi">-1486793979</span><span class="s2">":6}"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">一天内使用设备</span><span class="w">
-        </span><span class="s2">"feedback_risk_level"</span><span class="p">:</span><span class="s2">"healthy"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">用户反馈的日志危险等级，默认值等同于risk_level的值</span><span class="w">
         </span><span class="s2">"source_ip"</span><span class="p">:</span><span class="s2">"192.168.2.179"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">用户ip</span><span class="w">
         </span><span class="s2">"operation_type_1h"</span><span class="p">:</span><span class="s2">"{"</span><span class="err">CREATE</span><span class="s2">":{"</span><span class="err">SUCCESS</span><span class="s2">":5},"</span><span class="err">LOGIN</span><span class="s2">":{"</span><span class="err">SUCCESS</span><span class="s2">":1}}"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="mi">1</span><span class="err">小时操作汇总</span><span class="w">
         </span><span class="s2">"uid"</span><span class="p">:</span><span class="s2">"koucunhu@yufuid.com"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">uid</span><span class="w">
@@ -1144,7 +1146,7 @@
         </span><span class="s2">"tags"</span><span class="p">:[</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">data-pipe打的tags，用于日志回溯索引</span><span class="w">
 
         </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"risk_level"</span><span class="p">:</span><span class="s2">"healthy"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">data-pipe判断的日志风险等级</span><span class="w">
+        </span><span class="s2">"risk_level"</span><span class="p">:</span><span class="s2">"healthy"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">data-pipe判断的日志风险等级</span><span class="p">,</span><span class="w"> </span><span class="err">取值</span><span class="p">[</span><span class="err">low</span><span class="p">,</span><span class="w"> </span><span class="err">medium</span><span class="p">,</span><span class="w"> </span><span class="err">high</span><span class="p">,</span><span class="w"> </span><span class="err">healthy</span><span class="p">]</span><span class="w">
         </span><span class="s2">"event_id"</span><span class="p">:</span><span class="s2">"92e7f7b5-cad4-4abd-8c39-df5d360cfdd1"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">日志id</span><span class="w">
         </span><span class="s2">"operation_obj_1d"</span><span class="p">:</span><span class="s2">"{}"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="mi">1</span><span class="err">天内操作对象统计</span><span class="w">
         </span><span class="s2">"is_valid"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">日志是否合法</span><span class="w">
@@ -1160,7 +1162,8 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <ul>
-<li>内部字段</li>
+<li>内部字段（部分字段）
+此处仅罗列部分业务相关字段，全部字段见：<a href="https://allseeingsecurity.atlassian.net/wiki/spaces/SPC/pages/223019009">玉符全量日志字段格式</a></li>
 </ul>
 
 <table><thead>
@@ -1218,7 +1221,7 @@
 <tr>
 <td>operation_description</td>
 <td>text</td>
-<td>操作描述（考虑分词）</td>
+<td>操作描述</td>
 </tr>
 <tr>
 <td>_external.status</td>
@@ -1229,6 +1232,26 @@
 <td>_external.resolved_method</td>
 <td>keyword</td>
 <td>日志已处理的手段</td>
+</tr>
+<tr>
+<td>_external.feedback_risk_level</td>
+<td>keyword</td>
+<td>用户反馈日志风险等级</td>
+</tr>
+<tr>
+<td>_external.feedback_description</td>
+<td>text</td>
+<td>用户输入预警原因</td>
+</tr>
+<tr>
+<td>_external.tagged_by</td>
+<td>keyword</td>
+<td>用户标记</td>
+</tr>
+<tr>
+<td>_pipeline.user_agent.browser</td>
+<td>keyword</td>
+<td>浏览器类型</td>
 </tr>
 <tr>
 <td>_pipeline.source_location.city</td>
@@ -1272,11 +1295,13 @@
 <ol>
 <li>日志处理状态：已处理(resolved)/未处理(unresolved)，健康日志默认为空，危险日志默认为未处理</li>
 <li>日志处理手段：停用(suspend)/封禁(lock)；默认为空</li>
-<li>日志风险等级：高危(high)/中危(mid)/低危(low)/健康(healthy)，优先级高于label.xxx</li>
+<li>日志风险等级：高危(high)/中危(medium)/低危(low)/健康(healthy)，优先级高于label.xxx</li>
+<li>用户反馈风险等级：默认值为default, 取值[default, low, medium, high, healthy]</li>
+<li>用户标记：默认值为system, 可取值[system, user]；用于区分每条日志展示的为系统判断结果还是用户判断结果；</li>
 </ol>
 
 <ul>
-<li>外部字段</li>
+<li>外部字段（部分字段）</li>
 </ul>
 
 <table><thead>
