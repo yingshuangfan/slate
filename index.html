@@ -257,10 +257,19 @@
             <a href="#78d4d8d1ca" class="toc-h1 toc-link" data-title="">查询语句示例</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#e7d73a53d9" class="toc-h2 toc-link" data-title="">安全日志：查询接口</a>
+                    <a href="#5fe1951420" class="toc-h2 toc-link" data-title="">安全报告: 危险账户</a>
                   </li>
                   <li>
-                    <a href="#9ae4129295" class="toc-h2 toc-link" data-title="">安全日志：更新接口</a>
+                    <a href="#6b54b15a6d" class="toc-h2 toc-link" data-title="">安全报告: 安全预警（部门+时间+风险等级过滤器）</a>
+                  </li>
+                  <li>
+                    <a href="#f6fa96818a" class="toc-h2 toc-link" data-title="">安全分析：查询接口</a>
+                  </li>
+                  <li>
+                    <a href="#3e99510ed1" class="toc-h2 toc-link" data-title="">安全日志：日志列表查询接口</a>
+                  </li>
+                  <li>
+                    <a href="#e3187a2695" class="toc-h2 toc-link" data-title="">安全日志：日志列表更新接口</a>
                   </li>
               </ul>
           </li>
@@ -1172,7 +1181,653 @@
 <td>WHERE risk_level=high AND (date BETWEEN(2018-04-17T17:00:00-0800, 2018-05-01T00:00:00-0800)) GROUP BY department_1</td>
 </tr>
 </tbody></table>
-<h1 id='78d4d8d1ca'>查询语句示例</h1><h2 id='e7d73a53d9'>安全日志：查询接口</h2>
+<h1 id='78d4d8d1ca'>查询语句示例</h1><h2 id='5fe1951420'>安全报告: 危险账户</h2>
+<p>注意：此处采用自定义用户表daily-risk-users；表结构和字段设计由前端决定，此处仅提供参考查询语句；</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">daily-risk-users字段结构</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">93</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-12T00:05:00+00:00"</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">风险等级计算时间</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"appSensitivity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">应用敏感度</span><span class="w">
+        </span><span class="s2">"departmentPath"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">     </span><span class="err">//</span><span class="w"> </span><span class="err">部门列表</span><span class="w">
+            </span><span class="s2">"dp-test-3-3069"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"dept0"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dp-test-3-3069"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">第一级部门</span><span class="w">
+        </span><span class="s2">"positionLevel"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">     
+        </span><span class="s2">"riskLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"high"</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">风险等级</span><span class="w">
+        </span><span class="s2">"securityLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"high"</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">安全等级</span><span class="w">
+        </span><span class="s2">"tenantUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tn-test-integration"</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">所属租户ID</span><span class="w">
+        </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-test-200-1526460508"</span><span class="w">        </span><span class="err">//</span><span class="w"> </span><span class="err">用户唯一标识UUID</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='47f07c43b2'>部门过滤器（单选）</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>daily-risk-users</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE user.dept0=dept_2jd8</code></td>
+</tr>
+</tbody></table>
+<h3 id='8ece698b24'>时间过滤器</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>daily-risk-users</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE date BETWEEN(2018-06-21T00:00:00+0800, 2018-06-27T00:00:00+0800)</code></td>
+</tr>
+</tbody></table>
+<h3 id='7d808fa63e'>高危用户数统计值</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>daily-risk-users</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE user.riskLevel=high LIMIT 0</code></td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">高危用户数统计值</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">183</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='9cc80c2fca'>中危用户数统计值</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>daily-risk-users</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE user.riskLevel=medium LIMIT 0</code></td>
+</tr>
+</tbody></table>
+<h3 id='283cbb828e'>低危用户数统计值</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>daily-risk-users</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE user.riskLevel=low LIMIT 0</code></td>
+</tr>
+</tbody></table>
+<h3 id='d5364a5de0'>全部危险用户数统计值</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>daily-risk-users</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>LIMIT 0</code></td>
+</tr>
+</tbody></table>
+<h3 id='0fc22c6873'>时序图-各风险等级用户数统计分布</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>daily-risk-users</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE date BETWEEN(2018-06-21T00:00:00+0800, 2018-06-27T00:00:00+0800) GROUP BY date INTER day, user.riskLevel</code></td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">时序图-各风险等级用户数统计分布</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"dimension_b"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                            </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529510400000</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key_as_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-21T00:00:00.000+08:00"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"dimension_b"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                                    </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"high"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529596800000</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key_as_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-22T00:00:00.000+08:00"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"dimension_b"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                                    </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"low"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529683200000</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key_as_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-23T00:00:00.000+08:00"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="err">...</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">180</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='6b54b15a6d'>安全报告: 安全预警（部门+时间+风险等级过滤器）</h2><h3 id='47f07c43b2-2'>部门过滤器（单选）</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE _user.department_ids=dept_2jd8</code></td>
+</tr>
+</tbody></table>
+<h3 id='8ece698b24-2'>时间过滤器</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE time_local BETWEEN(2018-06-21T00:00:00+0800, 2018-06-27T00:00:00+0800)</code></td>
+</tr>
+</tbody></table>
+<h3 id='b1cd42a553'>风险等级过滤器（单选）</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE _pipeline.risk_level=high</code></td>
+</tr>
+</tbody></table>
+
+<ol>
+<li>高危日志：<code>WHERE _pipeline.risk_level=high</code></li>
+<li>中危日志：<code>WHERE _pipeline.risk_level=medium</code></li>
+<li>低危日志：<code>WHERE _pipeline.risk_level=low</code></li>
+<li>全部日志：<code>空</code></li>
+</ol>
+<h3 id='42293a0ee9'>管理员操作数统计值</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE _user.role=admin LIMIT 0</code></td>
+</tr>
+</tbody></table>
+
+<p>注意：统计值=data.total字段</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">管理员操作数统计值</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1019</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1a6162e38d'>危险日志数统计值</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE NOT _pipeline.risk_level=healthy LIMIT 0</code></td>
+</tr>
+</tbody></table>
+
+<p>注意：统计值=data.total字段</p>
+<h3 id='35f0c220e5'>地址异常日志数统计值</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE (NOT _pipeline.risk_level=healthy) AND _pipeline.risk_type=source_ip LIMIT 0</code></td>
+</tr>
+</tbody></table>
+
+<p>注意：统计值=data.total字段</p>
+<h3 id='d77aea5778'>设备异常日志数统计值</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE (NOT _pipeline.risk_level=healthy) AND _pipeline.risk_type=user_agent LIMIT 0</code></td>
+</tr>
+</tbody></table>
+
+<p>注意：统计值=data.total字段</p>
+<h3 id='938b2f3f31'>时序图-管理员操作</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE _user.role=admin AND (time_local BETWEEN(2018-06-21T00:00:00+0800, 2018-06-27T00:00:00+0800)) GROUP BY time_local INTER day</code></td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">时序图-管理员操作</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529510400000</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key_as_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-21T00:00:00.000+08:00"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">329</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529596800000</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key_as_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-22T00:00:00.000+08:00"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529683200000</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key_as_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-23T00:00:00.000+08:00"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529769600000</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key_as_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-24T00:00:00.000+08:00"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529856000000</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key_as_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-25T00:00:00.000+08:00"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">404</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529942400000</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key_as_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-26T00:00:00.000+08:00"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">66</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1530028800000</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key_as_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-27T00:00:00.000+08:00"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">857</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1342bb55e9'>时序图-危险日志</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE (NOT _pipeline.risk_level=healthy) AND (time_local BETWEEN(2018-06-21T00:00:00+0800, 2018-06-27T00:00:00+0800)) GROUP BY time_local INTER day</code></td>
+</tr>
+</tbody></table>
+<h3 id='0926e324d4'>时序图-地址异常</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE time_local BETWEEN(2018-06-21T00:00:00+0800, 2018-06-27T00:00:00+0800) AND _pipeline.risk_type=location GROUP BY time_local INTER day</code></td>
+</tr>
+</tbody></table>
+<h3 id='bb040d08c8'>时序图-设备异常</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE time_local BETWEEN(2018-06-21T00:00:00+0800, 2018-06-27T00:00:00+0800) AND _pipeline.risk_type=device GROUP BY time_local INTER day</code></td>
+</tr>
+</tbody></table>
+<h3 id='6586005139'>过滤器叠加下的聚合统计</h3>
+<p>不同过滤器之间互相独立，使用AND链接
+例如：</p>
+
+<ol>
+<li>部门dept_0在过去一周中风险等级为高危的地址异常日志数统计值：<code>WHERE _user.department_ids=dept_2jd8 AND _pipeline.risk_level=high AND (time_local BETWEEN(2018-06-23T00:00:00+0800, 2018-06-29T00:00:00+0800)) AND _pipeline.risk_type=location</code></li>
+<li>部门dept_0在过去一周中风险等级为高危的地址异常日志数时序聚合列表：<code>WHERE _user.department_ids=dept_2jd8 AND _pipeline.risk_level=high AND (time_local BETWEEN(2018-06-23T00:00:00+0800, 2018-06-29T00:00:00+0800)) AND _pipeline.risk_type=location GROUP BY time_local INTER day</code></li>
+</ol>
+<h2 id='f6fa96818a'>安全分析：查询接口</h2><h3 id='top10'>危险行为最多的用户TOP10统计图（包含危险等级细分类）</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE (time_local BETWEEN(2018-06-21T00:00:00+0800, 2018-06-27T00:00:00+0800)) AND (NOT _pipeline.risk_level=healthy) GROUP BY uid, _pipeline.risk_level</code></td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">危险行为最多的用户TOP</span><span class="mi">10</span><span class="err">统计图（包含危险等级细分类）</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"dimension_b"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">167</span><span class="p">,</span><span class="w">
+                                    </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medium"</span><span class="w">
+                                </span><span class="p">},</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                                    </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"low"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-428999dc2fa24b37959f6f579e1caa5f"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"dimension_b"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">167</span><span class="p">,</span><span class="w">
+                                    </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medium"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">167</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-ea2056d945864c97bd4dd2d87c1fcd37"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"dimension_b"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">163</span><span class="p">,</span><span class="w">
+                                    </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medium"</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">],</span><span class="w">
+                            </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">163</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-3e7117cb49d343d290001faac80efec8"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="err">...</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">3059</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='top10-2'>危险行为最多的用户TOP10统计表</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE (time_local BETWEEN(2018-06-21T00:00:00+0800, 2018-06-27T00:00:00+0800)) AND (NOT _pipeline.risk_level=healthy) GROUP BY uid</code></td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">危险行为最多的用户TOP</span><span class="mi">10</span><span class="err">统计表</span><span class="w"> 
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-428999dc2fa24b37959f6f579e1caa5f"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">167</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-ea2056d945864c97bd4dd2d87c1fcd37"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">163</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-3e7117cb49d343d290001faac80efec8"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="err">...</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">3059</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='top10-3'>异常访问最多的应用TOP10统计图（包含危险等级细分类）</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE (time_local BETWEEN(2018-06-21T00:00:00+0800, 2018-06-27T00:00:00+0800)) AND (NOT _pipeline.risk_level=healthy) GROUP BY app_id, _pipeline.risk_level</code></td>
+</tr>
+</tbody></table>
+<h3 id='top10-4'>异常访问最多的应用TOP10统计表</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE (time_local BETWEEN(2018-06-21T00:00:00+0800, 2018-06-27T00:00:00+0800)) AND (NOT _pipeline.risk_level=healthy) GROUP BY app_id</code></td>
+</tr>
+</tbody></table>
+<h3 id='top10-5'>危险行为最多的部门TOP10统计图（包含危险等级细分类）</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE (time_local BETWEEN(2018-06-21T00:00:00+0800, 2018-06-27T00:00:00+0800)) AND (NOT _pipeline.risk_level=healthy) GROUP BY _user.critical_department_ids, _pipeline.risk_level</code></td>
+</tr>
+</tbody></table>
+<h3 id='top10-6'>危险行为最多的部门TOP10统计表</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>log</td>
+</tr>
+<tr>
+<td>query</td>
+<td><code>WHERE (time_local BETWEEN(2018-06-21T00:00:00+0800, 2018-06-27T00:00:00+0800)) AND (NOT _pipeline.risk_level=healthy) GROUP BY _user.critical_department_ids</code></td>
+</tr>
+</tbody></table>
+<h2 id='3e99510ed1'>安全日志：日志列表查询接口</h2>
 <p>接口调用方法见：<a href="#38645019ef">基础CRUD-查询文档</a></p>
 <pre class="highlight plaintext"><code>curl -X POST \
   'http://analytic_service:5000/api/update?type=log&amp;query=WHERE%20_pipeline.risk_level%3Dhealthy%20WHERE%20event_id%3Devent-d83h'
@@ -1381,17 +2036,22 @@
 <tr>
 <td>_pipeline.labels</td>
 <td>keyword</td>
-<td>预警类型的列表（优先级由高到低）</td>
+<td>预警标签的列表（优先级由高到低）</td>
 </tr>
 <tr>
 <td>_pipeline.label.xxx</td>
 <td>float</td>
-<td>某预警类型置信概率</td>
+<td>某预警标签置信概率</td>
 </tr>
 <tr>
 <td>_pipeline.tags</td>
 <td>keyword</td>
 <td>与某预警类型相关的列表</td>
+</tr>
+<tr>
+<td>_pipeline.risk_type</td>
+<td>keyword</td>
+<td>预警类型</td>
 </tr>
 </tbody></table>
 
@@ -1402,7 +2062,8 @@
 <li>日志处理手段：停用(suspend)/封禁(lock)；默认为空</li>
 <li>日志风险等级：高危(high)/中危(medium)/低危(low)/健康(healthy)，优先级高于label.xxx</li>
 <li>用户反馈风险等级：默认值为default, 取值[default, low, medium, high, healthy]</li>
-<li>用户标记：默认值为system, 可取值[system, user]；用于区分每条日志展示的为系统判断结果还是用户判断结果；</li>
+<li>用户标记：默认值为system, 可取值[system, user]；用于区分每条日志展示的为系统判断结果还是用户判断结果</li>
+<li>预警类型：默认值为空，可取值=[location,device,account,operation,ipRisk]</li>
 </ol>
 
 <ul>
@@ -1512,7 +2173,7 @@
 <li>单个部门：<code>WHERE _user.department_ids=dept_2jd8</code></li>
 <li>多个部门：<code>WHERE _user.department_ids=dept_2jd8 OR _user.department_ids=dept_9sjw</code></li>
 </ol>
-<h3 id='8ece698b24'>时间过滤器</h3>
+<h3 id='8ece698b24-3'>时间过滤器</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1710,6 +2371,15 @@
 <li>指定危险日志event_id和危险类型标签：<code>RELATED BY event-d83h, 100</code></li>
 <li>仅指定危险日志event_id（默认取labels第一个类型标签）：<code>RELATED BY event-d83h</code></li>
 </ol>
+
+<p>对健康日志回溯的返回结果：
+<code>json
+{
+    &quot;data&quot;: {},
+    &quot;message&quot;: &quot;cannot trace back on healthy logs&quot;,
+    &quot;status&quot;: 1
+}
+</code></p>
 <h3 id='e0457171b0'>过滤器叠加</h3>
 <ol>
 <li>不同过滤器的叠加由AND运算符实现；</li>
@@ -1722,7 +2392,7 @@
 <p>实例：日志合法 + 日志类型=健康 + 部门=dept_1 + 时间区间 + 用户名/姓名%王 + 时间倒序 + 第二页:pagesize=10</p>
 
 <p><code>WHERE _pipeline.is_valid=true AND _pipeline.risk_level=healthy AND _user.department_ids=dept_0 AND (time_local BETWEEN(2018-06-17T00:00:00+0800, 2018-07-01T00:00:00+0800)) AND (_user.username~王 OR _user.display_name~王) ORDER BY time_local DESC LIMIT 10, 10</code></p>
-<h2 id='9ae4129295'>安全日志：更新接口</h2>
+<h2 id='e3187a2695'>安全日志：日志列表更新接口</h2>
 <p>接口调用方法见：<a href="#fe2cc3e076">基础CRUD-更新文档</a></p>
 <pre class="highlight plaintext"><code>curl -X POST \
   'http://analytic_service:5000/api/update?type=log&amp;query=WHERE%20_pipeline.risk_level%3Dhealthy%20WHERE%20event_id%3Devent-d83h'
