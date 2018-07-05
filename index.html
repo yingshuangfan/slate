@@ -593,9 +593,9 @@
 </tr>
 </tbody></table>
 
-<p>更新单个字段：<code>SET _pipeline.risk_level=healthy WHERE uid=sample_uid</code></p>
+<p>更新单个字段：<code>SET _pipeline.risk_level=healthy WHERE _pipeline.uid=sample_uid</code></p>
 
-<p>更新多个字段：<code>SET _pipeline.risk_level=healthy AND _external.status=resolved WHERE uid=sample_uid</code></p>
+<p>更新多个字段：<code>SET _pipeline.risk_level=healthy AND _external.status=resolved WHERE _pipeline.uid=sample_uid</code></p>
 
 <p><strong>Response Parameters:</strong> 仅解释部分有效字段</p>
 
@@ -666,7 +666,7 @@
 </tr>
 </tbody></table>
 
-<p>query查询语句示例：<code>WHERE uid=sample_uid</code></p>
+<p>query查询语句示例：<code>WHERE _pipeline.uid=sample_uid</code></p>
 
 <p><strong>Request Parameters:</strong></p>
 
