@@ -867,7 +867,30 @@
 <td>string</td>
 </tr>
 </tbody></table>
-
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">时间序列聚合结果示例</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1530547200000</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1530633600000</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1530720000000</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><strong>Response Parameters:</strong> </p>
 
 <table><thead>
@@ -877,15 +900,15 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>data.aggs.dimension_a.buckets</td>
+<td>data.aggs</td>
 <td>时间聚合序列</td>
 </tr>
 <tr>
-<td>data.aggs.dimension_a.buckets[i].doc_count</td>
+<td>data.aggs[i].doc_count</td>
 <td>区间内统计数</td>
 </tr>
 <tr>
-<td>data.aggs.dimension_a.buckets[i].key</td>
+<td>data.aggs[i].key</td>
 <td>区间开始时间戳(毫秒单位)</td>
 </tr>
 <tr>
@@ -897,55 +920,6 @@
 <td>返回状态码</td>
 </tr>
 </tbody></table>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1523203200000</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key_as_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-09T00:00:00.000+08:00"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">86</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1524067200000</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key_as_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-19T00:00:00.000+08:00"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1524931200000</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key_as_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-29T00:00:00.000+08:00"</span><span class="w">
-                    </span><span class="p">}</span><span class="w">
-                </span><span class="p">]</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">94</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='b0ceb2263c'>实例：部门过滤器+安全等级+风险等级+时间聚合</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Example</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>type</td>
-<td>insecure_users_by_day</td>
-</tr>
-<tr>
-<td>query</td>
-<td>WHERE department_id=dept_3 AND security_level=high AND risk_level=high AND (date BETWEEN(2018-04-17T17:00:00+0800, 2018-05-01T00:00:00+0800)) GROUP BY date INTER day</td>
-</tr>
-</tbody></table>
-
-<p>注意：如果使用嵌套聚合，则将risk_level放在GROUP BY语句中</p>
-
-<p>例如：<code>WHERE department_id=dept_3 AND security_level=high AND (date BETWEEN(2018-04-17T17:00:00+0800, 2018-05-01T00:00:00+0800)) GROUP BY date INTER day, risk_level</code></p>
 <h2 id='amp'>文本&amp;列表字段聚合</h2>
 <p><strong>HTTP Reqeust:</strong> <code>GET   /api/search</code></p>
 
@@ -982,7 +956,31 @@
 <p>3&gt; 嵌套聚合：支持在聚合结果上再次聚合
 例如：<code>GROUP BY department_1, risk_level</code>
 例如：在时间序列聚合结果之上的聚合：<code>GROUP BY date INTER day, risk_level</code></p>
-
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">部门聚合结果示例</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dp-test-4-5717"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dp-test-2-2245"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dp-test-8-7506"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p><strong>Response Parameters:</strong> </p>
 
 <table><thead>
@@ -992,15 +990,15 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>data.aggs.dimension_a.buckets</td>
+<td>data.aggs</td>
 <td>部门统计列表</td>
 </tr>
 <tr>
-<td>data.aggs.dimension_a.buckets[i].doc_count</td>
+<td>data.aggs[i].doc_count</td>
 <td>部门统计值</td>
 </tr>
 <tr>
-<td>data.aggs.dimension_a.buckets[i].key</td>
+<td>data.aggs[i].key</td>
 <td>部门ID</td>
 </tr>
 <tr>
@@ -1010,178 +1008,6 @@
 <tr>
 <td>status</td>
 <td>返回状态码</td>
-</tr>
-</tbody></table>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">44</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dept_6"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">41</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dept_7"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dept_1"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dept_9"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">39</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dept_8"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dept_3"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dept_5"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">34</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dept_2"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dept_4"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dept_0"</span><span class="w">
-                    </span><span class="p">}</span><span class="w">
-                </span><span class="p">],</span><span class="w">
-                </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='84058c10ac'>实例：部门列表聚合</h3>
-<p>注意：
-1. departments_id是列表，例如 [&#39;id_1&#39;, &#39;id_2&#39;, ...]；列表中元素类型应当保持一致；元素类型不能是对象；
-2. BETWEEN语句作为过滤器，出现在AND语句中时，建议使用括号区分优先级；例如 <code>condition A AND ( condition B with BETWENN )</code></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Example</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>type</td>
-<td>insecure_users_by_day</td>
-</tr>
-<tr>
-<td>query</td>
-<td>WHERE date BETWEEN(2018-04-17T17:00:00-0800, 2018-05-01T00:00:00-0800) GROUP BY departments_id</td>
-</tr>
-</tbody></table>
-<h3 id='aadee20761'>实例：部门过滤器+风险评级聚合</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Example</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>type</td>
-<td>insecure_users_by_day</td>
-</tr>
-<tr>
-<td>query</td>
-<td>WHERE deparment_id=dept_3 AND (date BETWEEN(2018-04-17T17:00:00-0800, 2018-05-01T00:00:00-0800)) GROUP BY risk_level</td>
-</tr>
-</tbody></table>
-<h3 id='aadee20761-2'>实例：部门过滤器+风险评级聚合</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Example</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>type</td>
-<td>insecure_users_by_day</td>
-</tr>
-<tr>
-<td>query</td>
-<td>WHERE deparment_id=dept_3 AND (date BETWEEN(2018-04-17T17:00:00-0800, 2018-05-01T00:00:00-0800)) GROUP BY risk_level</td>
-</tr>
-</tbody></table>
-<h3 id='93a87898f0'>实例：用户聚合</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Example</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>type</td>
-<td>insecure_users_by_day</td>
-</tr>
-<tr>
-<td>query</td>
-<td>WHERE date BETWEEN(2018-04-17T17:00:00-0800, 2018-05-01T00:00:00-0800) GROUP BY user_id</td>
-</tr>
-</tbody></table>
-<h3 id='551f7b46ca'>实例：用户过滤器+风险评级聚合</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Example</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>type</td>
-<td>insecure_users_by_day</td>
-</tr>
-<tr>
-<td>query</td>
-<td>WHERE user_id=user_1 AND (date BETWEEN(2018-04-17T17:00:00-0800, 2018-05-01T00:00:00-0800)) GROUP BY risk_level</td>
-</tr>
-</tbody></table>
-<h3 id='64f6187dc3'>实例：风险过滤器+应用聚合</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Example</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>type</td>
-<td>insecure_users_by_day</td>
-</tr>
-<tr>
-<td>query</td>
-<td>WHERE risk_level=high AND (date BETWEEN(2018-04-17T17:00:00-0800, 2018-05-01T00:00:00-0800)) GROUP BY app_id</td>
-</tr>
-</tbody></table>
-<h3 id='b2151e7ee4'>实例：风险过滤器+（第一层级）部门聚合</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Example</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>type</td>
-<td>insecure_users_by_day</td>
-</tr>
-<tr>
-<td>query</td>
-<td>WHERE risk_level=high AND (date BETWEEN(2018-04-17T17:00:00-0800, 2018-05-01T00:00:00-0800)) GROUP BY department_1</td>
 </tr>
 </tbody></table>
 <h1 id='78d4d8d1ca'>查询语句示例</h1><h2 id='1dd7cee644'>安全报告: 报告评分</h2>
@@ -1207,19 +1033,39 @@
 <td><code>LIMIT 0</code></td>
 </tr>
 </tbody></table>
-
-<p>注意：统计值=data.total字段</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="err">//</span><span class="w"> </span><span class="err">日志总数</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
         </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1314</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1104</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='a5634351d1'>危险日志总数</h3>
+</span></code></pre>
+<p>返回结果：</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data.total</td>
+<td>日志总数</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回状态描述</td>
+</tr>
+<tr>
+<td>status</td>
+<td>返回状态码</td>
+</tr>
+</tbody></table>
+<h3 id='a5634351d1'>危险日志总数</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1235,8 +1081,6 @@
 <td><code>WHERE NOT _pipeline.risk_level=healthy LIMIT 0</code></td>
 </tr>
 </tbody></table>
-
-<p>注意：统计值=data.total字段</p>
 <h3 id='d1f6632a9c'>未处理危险日志总数</h3>
 <table><thead>
 <tr>
@@ -1253,8 +1097,6 @@
 <td><code>WHERE (NOT _pipeline.risk_level=healthy) AND _external.status=unresolved LIMIT 0</code></td>
 </tr>
 </tbody></table>
-
-<p>注意：统计值=data.total字段</p>
 <h2 id='5fe1951420'>安全报告: 危险账户</h2>
 <aside class="notice">
 注意：此处采用自定义用户表daily-risk-users；表结构和字段设计由前端决定，此处仅提供参考查询语句；
@@ -1324,19 +1166,39 @@
 <td><code>WHERE user.riskLevel=high LIMIT 0</code></td>
 </tr>
 </tbody></table>
-
-<p>注意：统计值=data.total字段</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="err">//</span><span class="w"> </span><span class="err">高危用户数统计值</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
         </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
         </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">183</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='e2913f2b72'>中危用户总数</h3>
+</span></code></pre>
+<p>返回结果：</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data.total</td>
+<td>日志总数</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回状态描述</td>
+</tr>
+<tr>
+<td>status</td>
+<td>返回状态码</td>
+</tr>
+</tbody></table>
+<h3 id='e2913f2b72'>中危用户总数</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1352,8 +1214,6 @@
 <td><code>WHERE user.riskLevel=medium LIMIT 0</code></td>
 </tr>
 </tbody></table>
-
-<p>注意：统计值=data.total字段</p>
 <h3 id='fc57add885'>低危用户总数</h3>
 <table><thead>
 <tr>
@@ -1370,8 +1230,6 @@
 <td><code>WHERE user.riskLevel=low LIMIT 0</code></td>
 </tr>
 </tbody></table>
-
-<p>注意：统计值=data.total字段</p>
 <h3 id='0f4f9a2074'>全部危险用户总数</h3>
 <table><thead>
 <tr>
@@ -1388,8 +1246,6 @@
 <td><code>LIMIT 0</code></td>
 </tr>
 </tbody></table>
-
-<p>注意：统计值=data.total字段</p>
 <h3 id='3b550f1bf6'>时序图-各风险等级用户总数序列</h3>
 <table><thead>
 <tr>
@@ -1579,19 +1435,39 @@
 <td><code>WHERE _user.role=admin LIMIT 0</code></td>
 </tr>
 </tbody></table>
-
-<p>注意：统计值=data.total字段</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="err">//</span><span class="w"> </span><span class="err">管理员操作数统计值</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
         </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1019</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='a5634351d1-2'>危险日志总数</h3>
+</span></code></pre>
+<p>返回结果：</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data.total</td>
+<td>日志总数</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回状态描述</td>
+</tr>
+<tr>
+<td>status</td>
+<td>返回状态码</td>
+</tr>
+</tbody></table>
+<h3 id='a5634351d1-2'>危险日志总数</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1607,8 +1483,6 @@
 <td><code>WHERE NOT _pipeline.risk_level=healthy LIMIT 0</code></td>
 </tr>
 </tbody></table>
-
-<p>注意：统计值=data.total字段</p>
 <h3 id='cb9baf1a29'>地址异常日志总数</h3>
 <table><thead>
 <tr>
@@ -1625,8 +1499,6 @@
 <td><code>WHERE (NOT _pipeline.risk_level=healthy) AND _pipeline.risk_type=source_ip LIMIT 0</code></td>
 </tr>
 </tbody></table>
-
-<p>注意：统计值=data.total字段</p>
 <h3 id='5827ab6c74'>设备异常日志总数</h3>
 <table><thead>
 <tr>
@@ -1643,8 +1515,6 @@
 <td><code>WHERE (NOT _pipeline.risk_level=healthy) AND _pipeline.risk_type=user_agent LIMIT 0</code></td>
 </tr>
 </tbody></table>
-
-<p>注意：统计值=data.total字段</p>
 <h3 id='7b599b9484'>时序图-管理员操作数序列</h3>
 <table><thead>
 <tr>
@@ -1662,57 +1532,46 @@
 </tr>
 </tbody></table>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">时序图-管理员操作</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">时序图-管理员操作数序列</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529510400000</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key_as_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-21T00:00:00.000+08:00"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">329</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529596800000</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key_as_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-22T00:00:00.000+08:00"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529683200000</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key_as_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-23T00:00:00.000+08:00"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529769600000</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key_as_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-24T00:00:00.000+08:00"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529856000000</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key_as_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-25T00:00:00.000+08:00"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">404</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529942400000</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key_as_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-26T00:00:00.000+08:00"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">66</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1530028800000</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key_as_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-27T00:00:00.000+08:00"</span><span class="w">
-                    </span><span class="p">}</span><span class="w">
-                </span><span class="p">]</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1530374400000</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1530460800000</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1530547200000</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1530633600000</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1530720000000</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1530806400000</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="mi">1530892800000</span><span class="w">
             </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
+        </span><span class="p">],</span><span class="w">
         </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">857</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>返回结果解析：</p>
+<p>返回结果：</p>
 
 <table><thead>
 <tr>
@@ -1721,20 +1580,16 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>data.aggs.dimension_a.buckets</td>
+<td>data.aggs</td>
 <td>时间序列</td>
 </tr>
 <tr>
-<td>data.aggs.dimension_a.buckets[i].doc_count</td>
+<td>data.aggs[i].doc_count</td>
 <td>某时刻管理员操作数</td>
 </tr>
 <tr>
-<td>data.aggs.dimension_a.buckets[i].key</td>
-<td>某区间开始时间戳</td>
-</tr>
-<tr>
-<td>data.aggs.dimension_a.buckets[i].key_as_string</td>
-<td>某区间开始时间戳-ISO8601格式字符串</td>
+<td>data.aggs[i].key</td>
+<td>某区间开始时间戳(毫秒级)</td>
 </tr>
 <tr>
 <td>message</td>
@@ -1814,37 +1669,59 @@
 </tr>
 <tr>
 <td>query</td>
-<td><code>WHERE (time_local BETWEEN(2018-06-21T00:00:00+0800, 2018-06-27T00:00:00+0800)) AND (NOT _pipeline.risk_level=healthy) GROUP BY uid, _pipeline.risk_level</code></td>
+<td><code>WHERE (time_local BETWEEN(2018-06-21T00:00:00+0800, 2018-06-27T00:00:00+0800)) AND (NOT _pipeline.risk_level=healthy) GROUP BY _pipeline.uid, _pipeline.risk_level</code></td>
 </tr>
 </tbody></table>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="err">//</span><span class="w"> </span><span class="err">危险行为最多的用户TOP</span><span class="mi">10</span><span class="err">统计图(柱状图)</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                     </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"dimension_b"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                            </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                                </span><span class="p">{</span><span class="w">
-                                    </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                                    </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medium"</span><span class="w">
-                                </span><span class="p">}</span><span class="w">
-                            </span><span class="p">],</span><span class="w">
-                            </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                            </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-                        </span><span class="p">},</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-test-100-1530349889"</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"healthy"</span><span class="w">
                     </span><span class="p">},</span><span class="w">
-                    </span><span class="err">...</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medium"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
                 </span><span class="p">],</span><span class="w">
-                </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-test-102-1530699833"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"healthy"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medium"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-test-204-1530699853"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"healthy"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"high"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-test-301-1530699860"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+        </span><span class="p">],</span><span class="w">
         </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1104</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
@@ -1859,28 +1736,32 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>data.aggs.dimension_a.buckets</td>
+<td>data.aggs</td>
 <td>用户序列</td>
 </tr>
 <tr>
-<td>data.aggs.dimension_a.buckets[i].key</td>
+<td>data.aggs[i].key</td>
 <td>某用户UUID</td>
 </tr>
 <tr>
-<td>data.aggs.dimension_a.buckets[i].doc_count</td>
+<td>data.aggs[i].doc_count</td>
 <td>某用户危险日志数</td>
 </tr>
 <tr>
-<td>data.aggs.dimension_a.buckets[i].dimension_b.buckets</td>
+<td>data.aggs[i].buckets</td>
 <td>日志风险等级序列</td>
 </tr>
 <tr>
-<td>data.aggs.dimension_a.buckets[i].dimension_b.key</td>
+<td>data.aggs[i].buckets[j].key</td>
 <td>某类日志风险等级</td>
 </tr>
 <tr>
-<td>data.aggs.dimension_a.buckets[i].dimension_b.doc_count</td>
+<td>data.aggs[i].buckets[j].doc_count</td>
 <td>某用户的指定危险等级日志数</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回状态描述</td>
 </tr>
 <tr>
 <td>status</td>
@@ -1900,89 +1781,7 @@
 </tr>
 <tr>
 <td>query</td>
-<td><code>WHERE (time_local BETWEEN(2018-06-21T00:00:00+0800, 2018-06-27T00:00:00+0800)) AND (NOT _pipeline.risk_level=healthy) GROUP BY _pipeline.risk_level, uid</code></td>
-</tr>
-</tbody></table>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">危险行为最多的用户TOP</span><span class="mi">10</span><span class="err">统计图(饼状图)</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"dimension_b"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                            </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                                </span><span class="p">{</span><span class="w">
-                                    </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-                                    </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-test-100-1530349889"</span><span class="w">
-                                </span><span class="p">},</span><span class="w">
-                                </span><span class="p">{</span><span class="w">
-                                    </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                                    </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-test-102-1530349910"</span><span class="w">
-                                </span><span class="p">},</span><span class="w">
-                                </span><span class="p">{</span><span class="w">
-                                    </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                                    </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-test-200-1530349924"</span><span class="w">
-                                </span><span class="p">}</span><span class="w">
-                            </span><span class="p">],</span><span class="w">
-                            </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                            </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-                        </span><span class="p">},</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medium"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="err">...</span><span class="w">
-                </span><span class="p">],</span><span class="w">
-                </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>返回结果解析：</p>
-
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>data.aggs.dimension_a.buckets</td>
-<td>日志危险等级序列</td>
-</tr>
-<tr>
-<td>data.aggs.dimension_a.buckets[i].key</td>
-<td>某类日志危险等级</td>
-</tr>
-<tr>
-<td>data.aggs.dimension_a.buckets[i].doc_count</td>
-<td>指定危险等级的日志数</td>
-</tr>
-<tr>
-<td>data.aggs.dimension_a.buckets[i].dimension_b.buckets</td>
-<td>用户序列</td>
-</tr>
-<tr>
-<td>data.aggs.dimension_a.buckets[i].dimension_b.key</td>
-<td>某用户UUID</td>
-</tr>
-<tr>
-<td>data.aggs.dimension_a.buckets[i].dimension_b.doc_count</td>
-<td>指定日志危险等级的某用户日志数</td>
-</tr>
-<tr>
-<td>message</td>
-<td>返回状态描述</td>
-</tr>
-<tr>
-<td>status</td>
-<td>返回状态码</td>
+<td><code>WHERE (time_local BETWEEN(2018-06-21T00:00:00+0800, 2018-06-27T00:00:00+0800)) AND (NOT _pipeline.risk_level=healthy) GROUP BY _pipeline.risk_level, _pipeline.uid</code></td>
 </tr>
 </tbody></table>
 <h3 id='top10-3'>危险行为最多的用户TOP10统计表</h3>
@@ -1998,35 +1797,29 @@
 </tr>
 <tr>
 <td>query</td>
-<td><code>WHERE (time_local BETWEEN(2018-06-21T00:00:00+0800, 2018-06-27T00:00:00+0800)) AND (NOT _pipeline.risk_level=healthy) GROUP BY uid</code></td>
+<td><code>WHERE (time_local BETWEEN(2018-06-21T00:00:00+0800, 2018-06-27T00:00:00+0800)) AND (NOT _pipeline.risk_level=healthy) GROUP BY _pipeline.uid</code></td>
 </tr>
 </tbody></table>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">危险行为最多的用户TOP</span><span class="mi">10</span><span class="err">统计表</span><span class="w"> 
+    </span><span class="err">//</span><span class="w"> </span><span class="err">危险行为最多的用户TOP</span><span class="mi">10</span><span class="err">统计表</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"dimension_a"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"buckets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-428999dc2fa24b37959f6f579e1caa5f"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">167</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-ea2056d945864c97bd4dd2d87c1fcd37"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">163</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-3e7117cb49d343d290001faac80efec8"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="err">...</span><span class="w">
-                </span><span class="p">],</span><span class="w">
-                </span><span class="s2">"doc_count_error_upper_bound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"sum_other_doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-test-102-1530699833"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-test-204-1530699853"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"doc_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-test-301-1530699860"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+        </span><span class="p">],</span><span class="w">
         </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">3059</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1104</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
@@ -2041,15 +1834,15 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>data.aggs.dimension_a.buckets</td>
+<td>data.aggs</td>
 <td>用户序列</td>
 </tr>
 <tr>
-<td>data.aggs.dimension_a.buckets[i].key</td>
+<td>data.aggs[i].key</td>
 <td>某用户UUID</td>
 </tr>
 <tr>
-<td>data.aggs.dimension_a.buckets[i].doc_count</td>
+<td>data.aggs[i].doc_count</td>
 <td>指定用户危险日志数</td>
 </tr>
 <tr>
@@ -2433,12 +2226,13 @@
 </tbody></table>
 <h3 id='ccc4153841'>当前支持的外部字段聚合语法</h3>
 <aside class="warning">
-语法不完整！待补全语法：双维度-外部和内部字段聚合；双维度-外部和外部字段聚合；
+语法不完整！待补全语法：双维度-外部和外部字段聚合；
 </aside>
 
 <ol>
-<li>单维度字段聚合：<code>GROUP BY _user.critical_department_ids</code></li>
-<li>双维度-内部和外部字段聚合： <code>GROUP BY _pipeline.risk_level, _user.critical_department_ids</code></li>
+<li>单维度字段聚合: <code>GROUP BY _user.critical_department_ids</code></li>
+<li>双维度-内部和外部字段聚合: <code>GROUP BY _pipeline.risk_level, _user.critical_department_ids</code></li>
+<li>双维度-外部和内部字段聚合: <code>GROUP BY _user.critical_department_ids, _pipeline.risk_level</code></li>
 </ol>
 <h3 id='674730753d'>危险、健康日志过滤器</h3>
 <table><thead>
