@@ -296,7 +296,7 @@
 
 <p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
 <h1 id='crud'>基础CRUD</h1><h2 id='38645019ef'>查询文档</h2>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api/search</code></p>
+<p><strong>Request Url+Method:</strong> <code>GET   /api/search</code></p>
 
 <p><strong>Request Parameters:</strong></p>
 
@@ -401,7 +401,7 @@
 <li>文档类型是标识一类文档的特殊关键词，在查询时也需要指定文档类型；</li>
 </ol>
 
-<p><strong>HTTP Reqeust:</strong> <code>POST   /api/create</code></p>
+<p><strong>Request Url+Method:</strong> <code>POST   /api/create</code></p>
 
 <p><strong>Request Headers:</strong></p>
 
@@ -483,7 +483,7 @@
 </span></code></pre><h2 id='154295858c'>批量添加文档</h2>
 <p>首次添加的文档，会默认生成对应的映射表; 需要提供指定的文档ID和文档类型; </p>
 
-<p><strong>HTTP Reqeust:</strong> <code>POST   /api/create/bulk</code></p>
+<p><strong>Request Url+Method:</strong> <code>POST   /api/create/bulk</code></p>
 
 <p><strong>Request Headers:</strong></p>
 
@@ -570,7 +570,7 @@
 </span></code></pre><h2 id='fe2cc3e076'>更新文档</h2>
 <p>描述：根据查询语法过滤得到一列文档，并统一更新其中的一个或多个字段</p>
 
-<p><strong>HTTP Reqeust:</strong> <code>POST   /api/update</code></p>
+<p><strong>Request Url+Method:</strong> <code>POST   /api/update</code></p>
 
 <p><strong>Request Parameters:</strong></p>
 
@@ -643,7 +643,7 @@
 <h2 id='b6b32bb637'>更新文档-带请求体（临时）</h2>
 <p>描述：根据查询语法过滤得到一列文档，并统一更新其中的一个或多个字段</p>
 
-<p><strong>HTTP Reqeust:</strong> <code>POST   /api/update</code></p>
+<p><strong>Request Url+Method:</strong> <code>POST   /api/update</code></p>
 
 <p><strong>Request Parameters:</strong></p>
 
@@ -746,7 +746,7 @@
 </span></code></pre><h2 id='c2aea3d33b'>删除文档类型</h2>
 <p>删除指定类型的所有文档；注意这一接口仅在develop环境中允许使用；</p>
 
-<p><strong>HTTP Reqeust:</strong> <code>DELETE   /api/delete/&lt;doc_type&gt;</code></p>
+<p><strong>Request Url+Method:</strong> <code>DELETE   /api/delete/&lt;doc_type&gt;</code></p>
 
 <p>例如：<code>curl -X DELETE http://127.0.0.1:5000/api/delete/test-0419</code></p>
 
@@ -795,7 +795,7 @@
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='6ad63067b5'>时间序列聚合</h2>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api/search</code></p>
+<p><strong>Request Url+Method:</strong> <code>GET   /api/search</code></p>
 
 <p>1&gt;. 日期以iso8601为标准，才能支持对日期的聚合查询；日期中必须携带时区信息，例如：2018-04-22T22:16:00+0800</p>
 
@@ -924,7 +924,7 @@
 </tr>
 </tbody></table>
 <h2 id='amp'>文本&amp;列表字段聚合</h2>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api/search</code></p>
+<p><strong>Request Url+Method:</strong> <code>GET   /api/search</code></p>
 
 <p><strong>Request Parameters:</strong></p>
 
@@ -2579,7 +2579,7 @@
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api/v1/security/search/systemScore</code>  </p>
+<p><strong>Request Url+Method:</strong> <code>GET   /api/v1/security/search/systemScore</code>  </p>
 
 <p><strong>Request Parameters:</strong></p>
 
@@ -2629,7 +2629,7 @@
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api/v1/security/search/unresolvedInsecureEventsCount</code>  </p>
+<p><strong>Request Url+Method:</strong> <code>GET   /api/v1/security/search/unresolvedInsecureEventsCount</code>  </p>
 
 <p><strong>Request Parameters:</strong></p>
 
@@ -2679,7 +2679,7 @@
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api/v1/security/search/insecureEventsCount</code>  </p>
+<p><strong>Request Url+Method:</strong> <code>GET   /api/v1/security/search/insecureEventsCount</code>  </p>
 
 <p><strong>Request Parameters:</strong></p>
 
@@ -2729,7 +2729,7 @@
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api/v1/security/search/insecureUsersCount</code>  </p>
+<p><strong>Request Url+Method:</strong> <code>GET   /api/v1/security/search/insecureUsersCount</code>  </p>
 
 <p><strong>Request Parameters:</strong></p>
 
@@ -2779,7 +2779,7 @@
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api/v1/security/search/eventsCount</code>  </p>
+<p><strong>Request Url+Method:</strong> <code>GET   /api/v1/security/search/eventsCount</code>  </p>
 
 <p><strong>Request Parameters:</strong></p>
 
@@ -2829,7 +2829,7 @@
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api/v1/security/search/usersCount</code>  </p>
+<p><strong>Request Url+Method:</strong> <code>GET   /api/v1/security/search/usersCount</code>  </p>
 
 <p><strong>Request Parameters:</strong></p>
 
@@ -2922,7 +2922,7 @@
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api/search</code>  </p>
+<p><strong>Request Url+Method:</strong> <code>GET   /api/search</code>  </p>
 
 <p><strong>Request Parameters:</strong></p>
 
@@ -3021,7 +3021,7 @@ query: <code>WHERE tenand_id=tn-test-integration AND (date BETWEEN(2018-07-01T00
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api/search</code>  </p>
+<p><strong>Request Url+Method:</strong> <code>GET   /api/search</code>  </p>
 
 <p><strong>Request Parameters:</strong></p>
 
@@ -3124,7 +3124,7 @@ query: <code>WHERE tenant_id=tn-test-integration ORDER BY risk_score_diff DESC L
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><strong>HTTP Reqeust:</strong> <code>GET   /api/search</code>  </p>
+<p><strong>Request Url+Method:</strong> <code>GET   /api/search</code>  </p>
 
 <p><strong>Request Parameters:</strong></p>
 
@@ -3249,7 +3249,7 @@ query: <code>WHERE tenant_id=tn-test-integration ORDER BY risk_score DESC LIMIT 
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><strong>HTTP Reqeust:</strong> <code>POST   /api/users/search/bulk</code>  </p>
+<p><strong>Request Url+Method:</strong> <code>POST   /api/users/search/bulk</code>  </p>
 
 <p><strong>Request Headers:</strong></p>
 
