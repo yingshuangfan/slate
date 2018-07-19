@@ -274,6 +274,9 @@
                   <li>
                     <a href="#d06e540943" class="toc-h2 toc-link" data-title="">安全日志: 日志更新</a>
                   </li>
+                  <li>
+                    <a href="#ueba" class="toc-h2 toc-link" data-title="ueba">UEBA-报告页</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -2567,6 +2570,772 @@
 </ol>
 
 <p>注意：日志处理方法仅对处理状态=已处理时有效；</p>
+<h2 id='ueba'>UEBA-报告页</h2><h3 id='92c0450e1b'>系统评分</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">   
+    </span><span class="err">//</span><span class="w"> </span><span class="err">系统评分</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">98</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>HTTP Reqeust:</strong> <code>GET   /api/v1/security/search/systemScore</code>  </p>
+
+<p><strong>Request Parameters:</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tenant_id</td>
+<td>必填（非空）</td>
+<td>租户ID</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response Parameters:</strong> </p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data.score</td>
+<td>系统评分</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回状态描述</td>
+</tr>
+<tr>
+<td>status</td>
+<td>返回状态码</td>
+</tr>
+</tbody></table>
+<h3 id='9fe065922c'>未处理危险事件数</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">   
+    </span><span class="err">//</span><span class="w"> </span><span class="err">未处理危险事件数</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>HTTP Reqeust:</strong> <code>GET   /api/v1/security/search/unresolvedInsecureEventsCount</code>  </p>
+
+<p><strong>Request Parameters:</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tenant_id</td>
+<td>必填（非空）</td>
+<td>租户ID</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response Parameters:</strong> </p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data.count</td>
+<td>未处理危险事件数</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回状态描述</td>
+</tr>
+<tr>
+<td>status</td>
+<td>返回状态码</td>
+</tr>
+</tbody></table>
+<h3 id='b059aa2aaf'>危险事件数</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">   
+    </span><span class="err">//</span><span class="w"> </span><span class="err">危险事件数</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>HTTP Reqeust:</strong> <code>GET   /api/v1/security/search/insecureEventsCount</code>  </p>
+
+<p><strong>Request Parameters:</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tenant_id</td>
+<td>必填（非空）</td>
+<td>租户ID</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response Parameters:</strong> </p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data.count</td>
+<td>危险事件数</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回状态描述</td>
+</tr>
+<tr>
+<td>status</td>
+<td>返回状态码</td>
+</tr>
+</tbody></table>
+<h3 id='8d627465fc'>危险用户数</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">   
+    </span><span class="err">//</span><span class="w"> </span><span class="err">危险用户数</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>HTTP Reqeust:</strong> <code>GET   /api/v1/security/search/insecureUsersCount</code>  </p>
+
+<p><strong>Request Parameters:</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tenant_id</td>
+<td>必填（非空）</td>
+<td>租户ID</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response Parameters:</strong> </p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data.count</td>
+<td>危险用户数</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回状态描述</td>
+</tr>
+<tr>
+<td>status</td>
+<td>返回状态码</td>
+</tr>
+</tbody></table>
+<h3 id='65ad36b0cd'>总事件数</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">   
+    </span><span class="err">//</span><span class="w"> </span><span class="err">总事件数</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">507</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>HTTP Reqeust:</strong> <code>GET   /api/v1/security/search/eventsCount</code>  </p>
+
+<p><strong>Request Parameters:</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tenant_id</td>
+<td>必填（非空）</td>
+<td>租户ID</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response Parameters:</strong> </p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data.count</td>
+<td>总事件数</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回状态描述</td>
+</tr>
+<tr>
+<td>status</td>
+<td>返回状态码</td>
+</tr>
+</tbody></table>
+<h3 id='5e50829d28'>总用户数</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">   
+    </span><span class="err">//</span><span class="w"> </span><span class="err">总用户数</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">74</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>HTTP Reqeust:</strong> <code>GET   /api/v1/security/search/usersCount</code>  </p>
+
+<p><strong>Request Parameters:</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tenant_id</td>
+<td>必填（非空）</td>
+<td>租户ID</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response Parameters:</strong> </p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data.count</td>
+<td>总用户数</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回状态描述</td>
+</tr>
+<tr>
+<td>status</td>
+<td>返回状态码</td>
+</tr>
+</tbody></table>
+<h3 id='22cb0d9de8'>系统风险趋势图</h3>
+<aside class="info">
+注意：系统风险序列的返回结果是分页的
+</aside>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">系统风险趋势图</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-01T00:00:00.000+08:00"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_score_diff"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tn-test-integration"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-02T00:00:00.000+08:00"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_score_diff"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tn-test-integration"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-03T00:00:00.000+08:00"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_score_diff"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tn-test-integration"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-04T00:00:00.000+08:00"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_score_diff"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tn-test-integration"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-05T00:00:00.000+08:00"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_score_diff"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tn-test-integration"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-06T00:00:00.000+08:00"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_score_diff"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tn-test-integration"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>HTTP Reqeust:</strong> <code>GET   /api/search</code>  </p>
+
+<p><strong>Request Parameters:</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>必填（非空）</td>
+<td>文档类型</td>
+<td>string</td>
+</tr>
+<tr>
+<td>query</td>
+<td>必填（非空）</td>
+<td>查询语句</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p>type: <code>daily-system-risk-score</code>
+query: <code>WHERE tenand_id=tn-test-integration AND (date BETWEEN(2018-07-01T00:00:00+08:00, 2018-07-06T00:00:00+08:00)) ORDER BY date ASC</code></p>
+
+<p><strong>Response Parameters:</strong> </p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data.list</td>
+<td>系统风险值时间序列</td>
+</tr>
+<tr>
+<td>data.list[i].date</td>
+<td>时间戳</td>
+</tr>
+<tr>
+<td>data.list[i].risk_score</td>
+<td>风险值</td>
+</tr>
+<tr>
+<td>data.list[i].risk_score_diff</td>
+<td>风险值差分</td>
+</tr>
+<tr>
+<td>data.list[i].tenant_id</td>
+<td>租户ID</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回状态描述</td>
+</tr>
+<tr>
+<td>status</td>
+<td>返回状态码</td>
+</tr>
+</tbody></table>
+<h3 id='top10-10'>风险值增长最快的账户TOP10</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">风险值增长最快的账户TOP</span><span class="mi">10</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"critical_department_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"default"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"department_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"default"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"袁鸿煊"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk.is_timeseries"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk.timeseries_prop"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9999998807907104</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"healthy"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_score_diff"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"member"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tn-test-integration"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"update_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-18T17:57:32+08:00"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-test-100-1531921624"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23@yahoo.com"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">74</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>HTTP Reqeust:</strong> <code>GET   /api/search</code>  </p>
+
+<p><strong>Request Parameters:</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>必填（非空）</td>
+<td>文档类型</td>
+<td>string</td>
+</tr>
+<tr>
+<td>query</td>
+<td>必填（非空）</td>
+<td>查询语句</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p>type: <code>user</code>
+query: <code>WHERE tenant_id=tn-test-integration ORDER BY risk_score_diff DESC LIMIT 10</code></p>
+
+<p><strong>Response Parameters:</strong> </p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data.list</td>
+<td>系统风险值时间序列</td>
+</tr>
+<tr>
+<td>data.list[i].user_id</td>
+<td>用户ID</td>
+</tr>
+<tr>
+<td>data.list[i].username</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>data.list[i].display_name</td>
+<td>姓名</td>
+</tr>
+<tr>
+<td>data.list[i].risk_score</td>
+<td>用户风险值</td>
+</tr>
+<tr>
+<td>data.list[i].risk_score_diff</td>
+<td>用户风险值差分</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回状态描述</td>
+</tr>
+<tr>
+<td>status</td>
+<td>返回状态码</td>
+</tr>
+</tbody></table>
+<h3 id='top10-11'>风险值最高的账户TOP10</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">风险值最高的账户TOP</span><span class="mi">10</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"critical_department_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"default"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"department_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"default"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"袁鸿煊"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk.is_timeseries"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk.timeseries_prop"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9999998807907104</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"healthy"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_score_diff"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"member"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tn-test-integration"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"update_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-18T17:57:32+08:00"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-test-100-1531921624"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23@yahoo.com"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">74</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>HTTP Reqeust:</strong> <code>GET   /api/search</code>  </p>
+
+<p><strong>Request Parameters:</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>必填（非空）</td>
+<td>文档类型</td>
+<td>string</td>
+</tr>
+<tr>
+<td>query</td>
+<td>必填（非空）</td>
+<td>查询语句</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p>type: <code>user</code>
+query: <code>WHERE tenant_id=tn-test-integration ORDER BY risk_score DESC LIMIT 10</code></p>
+
+<p><strong>Response Parameters:</strong> </p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data.list</td>
+<td>系统风险值时间序列</td>
+</tr>
+<tr>
+<td>data.list[i].user_id</td>
+<td>用户ID</td>
+</tr>
+<tr>
+<td>data.list[i].username</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>data.list[i].display_name</td>
+<td>姓名</td>
+</tr>
+<tr>
+<td>data.list[i].risk_score</td>
+<td>用户风险值</td>
+</tr>
+<tr>
+<td>data.list[i].risk_score_diff</td>
+<td>用户风险值差分</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回状态描述</td>
+</tr>
+<tr>
+<td>status</td>
+<td>返回状态码</td>
+</tr>
+</tbody></table>
+<h3 id='1c57383d51'>重点关注账户</h3>
+<aside class="info">
+注意：重点关注账户存储在业务DB中，仅风险值需要从此服务中抓取；注意此查询结果不是分页的；
+</aside>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">重点关注账户-请求体</span><span class="w">
+    </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tn-test-integration"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-test-100-1531921624"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tn-test-integration"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-test-100-1531921658"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tn-test-integration"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-test-100-1531921572"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">重点关注账户-返回结果</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"critical_department_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"default"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"department_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"default"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"袁鸿煊"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk.is_timeseries"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk.timeseries_prop"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9999998807907104</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"healthy"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_score_diff"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"member"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tn-test-integration"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"update_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-18T17:57:32+08:00"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-test-100-1531921624"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23@yahoo.com"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">74</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>HTTP Reqeust:</strong> <code>POST   /api/users/search/bulk</code>  </p>
+
+<p><strong>Request Headers:</strong></p>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+</tr>
+</tbody></table>
+
+<p><strong>Request Parameters:</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>users</td>
+<td>必填（非空）</td>
+<td>用户ID列表</td>
+<td>list</td>
+</tr>
+<tr>
+<td>users[i].tenant_id</td>
+<td>必填（非空）</td>
+<td>租户ID</td>
+<td>string</td>
+</tr>
+<tr>
+<td>users[i].user_id</td>
+<td>必填（非空）</td>
+<td>用户ID</td>
+<td>string(json-encoded)</td>
+</tr>
+</tbody></table>
+
+<p><strong>Response Parameters:</strong> </p>
+
+<table><thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data.list</td>
+<td>系统风险值时间序列</td>
+</tr>
+<tr>
+<td>data.list[i].user_id</td>
+<td>用户ID</td>
+</tr>
+<tr>
+<td>data.list[i].username</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>data.list[i].display_name</td>
+<td>姓名</td>
+</tr>
+<tr>
+<td>data.list[i].risk_score</td>
+<td>用户风险值</td>
+</tr>
+<tr>
+<td>data.list[i].risk_score_diff</td>
+<td>用户风险值差分</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回状态描述</td>
+</tr>
+<tr>
+<td>status</td>
+<td>返回状态码</td>
+</tr>
+</tbody></table>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
