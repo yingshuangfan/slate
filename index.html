@@ -278,7 +278,10 @@
                     <a href="#ueba" class="toc-h2 toc-link" data-title="ueba">UEBA-报告页</a>
                   </li>
                   <li>
-                    <a href="#ueba-2" class="toc-h2 toc-link" data-title="ueba">UEBA 安全系统架构</a>
+                    <a href="#ueba-2" class="toc-h2 toc-link" data-title="ueba">UEBA 用户列表页</a>
+                  </li>
+                  <li>
+                    <a href="#ueba-3" class="toc-h2 toc-link" data-title="ueba">UEBA 安全系统架构</a>
                   </li>
               </ul>
           </li>
@@ -3353,7 +3356,93 @@ query: <code>WHERE tenant_id=tn-test-integration ORDER BY risk_score DESC LIMIT 
 <td>返回状态码</td>
 </tr>
 </tbody></table>
-<h2 id='ueba-2'>UEBA 安全系统架构</h2><h3 id='a4195a9393'>系统+用户风险值更新计算</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h2 id='ueba-2'>UEBA 用户列表页</h2><h3 id='b3d9235f92'>用户列表</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">用户列表页</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"critical_department_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"dp-test-9-795"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"department_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"dp-test-9-795"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"何展鹏"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="err">//</span><span class="w"> </span><span class="err">时间序列账户异常相关参数</span><span class="w">
+                    </span><span class="s2">"timeseries"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"average"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">],</span><span class="w">
+                        </span><span class="s2">"current"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">],</span><span class="w">
+                        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3624</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"probability"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.997</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"is_alerted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="err">//</span><span class="w"> </span><span class="err">休眠账户异常相关参数</span><span class="w">
+                    </span><span class="s2">"sleeping"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"date_range"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"is_alerted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"risk_level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"healthy"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"risk_score_diff"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"member"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tn-test-integration"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"update_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-21T06:07:46+08:00"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us-test-AI-8000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3@yahoo.com"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"latest_alerted_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-21T06:07:46+08:00"</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">最近告警时间</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>Request Url+Method:</strong> <code>GET   /api/search</code>  </p>
+
+<p><strong>Request Parameters:</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>必填（非空）</td>
+<td>文档类型</td>
+<td>string</td>
+</tr>
+<tr>
+<td>query</td>
+<td>必填（非空）</td>
+<td>查询语句</td>
+<td>string</td>
+</tr>
+</tbody></table>
+<h4 id='e7f3672d7e'>按照风险值排序</h4>
+<p>type: <code>user</code>
+query: <code>ORDER BY risk_score_diff DESC</code></p>
+<h4 id='2083bd70f5'>按照最近报警时间排序</h4>
+<p>type: <code>user</code>
+query: <code>ORDER BY latest_alerted_time DESC</code></p>
+<h4 id='de8356b743-2'>部门过滤器</h4>
+<p>type: <code>user</code>
+query: <code>WHERE department_ids=dp-test-9-795</code></p>
+<h4 id='bfcacdf616'>用户名或姓名模糊检索</h4>
+<p>type: <code>user</code>
+query: <code>WHERE username~yahoo.com OR display_name~yahoo.com</code></p>
+<h4 id='bfcacdf616-2'>用户名或姓名模糊检索</h4>
+<p>type: <code>user</code>
+query: <code>WHERE username~yahoo.com OR display_name~yahoo.com</code></p>
+<h3 id='9a90fe4b36'>最近告警文案 （暂缺）</h3><h2 id='ueba-3'>UEBA 安全系统架构</h2><h3 id='a4195a9393'>系统+用户风险值更新计算</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="err">//</span><span class="w"> </span><span class="err">风险值更新计算-请求体</span><span class="w">
     </span><span class="s2">"tenant_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tenant-s8k3"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">租户ID</span><span class="w">
     </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user-d93k"</span><span class="p">,</span><span class="w">     </span><span class="err">//</span><span class="w"> </span><span class="err">用户UUID</span><span class="w">
